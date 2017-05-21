@@ -12,8 +12,9 @@ use App\Http\Controllers\SitoController;
 |
 */
 
-Route::get('/', function () {
-    return view('master');
-});
+Route::get('/', 'HomeController@index');
 
 Route::get('/siti', 'SitoController@index');
+
+Auth::routes();
+//Route::post('/login', 'LoginController@login');
