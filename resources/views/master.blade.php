@@ -69,8 +69,7 @@
 
         <div class="top-nav notification-row">
             <!-- notificatoin dropdown start-->
-
-
+            
                 <!-- user login dropdown start-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
