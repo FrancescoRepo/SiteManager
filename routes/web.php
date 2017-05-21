@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SitoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +15,5 @@
 Route::get('/', function () {
     return view('master');
 });
+
+Route::get('/siti', 'SitoController@index');
