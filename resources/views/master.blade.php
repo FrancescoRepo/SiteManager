@@ -1,7 +1,6 @@
 @section('title', 'Home')
 @section('path', 'Home')
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
