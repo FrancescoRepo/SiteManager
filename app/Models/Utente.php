@@ -7,6 +7,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
