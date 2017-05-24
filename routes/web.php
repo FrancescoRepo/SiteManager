@@ -13,8 +13,12 @@ use App\Http\Controllers\SitoController;
 */
 
 Route::get('/', 'HomeController@index');
-
 Route::get('/siti', 'SitoController@index');
 
 Auth::routes();
-//Route::post('/login', 'LoginController@login');
+
+Route::get('/account', 'UserController@setting');
+Route::get('/logout', 'UserController@logout');
+Route::get('/settings', 'SettingController@index');
+Route::get('/search', 'SearchController@index');
+

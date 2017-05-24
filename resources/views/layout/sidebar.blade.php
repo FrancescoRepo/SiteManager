@@ -4,7 +4,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
             <li class="active">
-                <a class="" href="{{ url('/') }}">
+                <a href="{{ url('/') }}">
                     <i class="icon_house_alt"></i>
                     <span>Home</span>
                 </a>
@@ -18,14 +18,14 @@
             </li>
 
             <li>
-                <a href="javascript:;" class="">
+                <a href="{{ url('/search') }}" class="">
                     <i class="icon_search"></i>
                     <span>Ricerca</span>
                 </a>
             </li>
 
             <li>
-                <a class="" href="">
+                <a href="{{ url('/settings') }}">
                     <i class="icon_toolbox"></i>
                     <span>Impostazioni</span>
                 </a>

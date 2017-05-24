@@ -6,15 +6,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
-    <meta name="author" content="GeeksLabs">
-    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>SiteManager - @yield('title')</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-toggle.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
@@ -45,40 +43,28 @@
         <!--logo end-->
 
         <div class="top-nav notification-row">
-            <!-- notificatoin dropdown start-->
+            <!-- notification dropdown start-->
+            <ul class="nav pull-right top-menu">
 
-                <!-- user login dropdown start-->
+            <!-- user login dropdown start-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                        <span class="username">Jenifer Smith</span>
+                        <span class="username">{{ Auth::user()->Nome }} {{ Auth::user()->Cognome }}</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
                         <li class="eborder-top">
-                            <a href="#"><i class="icon_profile"></i> My Profile</a>
+                            <a href="{{ url('/account') }}"><i class="icon_profile"></i> Il mio Profilo</a>
                         </li>
+
                         <li>
-                            <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
+                            <a href="{{ url('/logout') }}"><i class="icon_key_alt"></i> Log Out</a>
                         </li>
-                        <li>
-                            <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon_chat_alt"></i> Chats</a>
-                        </li>
-                        <li>
-                            <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
-                        </li>
-                        <li>
-                            <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
-                        </li>
-                        <li>
-                            <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
-                        </li>
+
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
@@ -120,17 +106,11 @@
 <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
 <!-- bootstrap -->
 <script src="js/bootstrap.min.js"></script>
+<script src="js//bootstrap-toggle.min.js"></script>
 <!-- nice scroll -->
 <script src="js/jquery.scrollTo.min.js"></script>
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-<!-- charts scripts -->
-<script src="assets/jquery-knob/js/jquery.knob.js"></script>
-<script src="js/jquery.sparkline.js" type="text/javascript"></script>
-<script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
 <script src="js/owl.carousel.js" ></script>
-<!-- jQuery full calendar -->
-<<script src="js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
-<script src="assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
 <!--script for this page only-->
 <script src="js/calendar-custom.js"></script>
 <script src="js/jquery.rateit.min.js"></script>
@@ -153,51 +133,8 @@
 <script src="js/sparklines.js"></script>
 <script src="js/charts.js"></script>
 <script src="js/jquery.slimscroll.min.js"></script>
+
 <script>
-
-    //knob
-    $(function() {
-        $(".knob").knob({
-            'draw' : function () {
-                $(this.i).val(this.cv + '%')
-            }
-        })
-    });
-
-    //carousel
-    $(document).ready(function() {
-        $("#owl-slider").owlCarousel({
-            navigation : true,
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            singleItem : true
-
-        });
-    });
-
-    //custom select box
-
-    $(function(){
-        $('select.styled').customSelect();
-    });
-
-    /* ---------- Map ---------- */
-    $(function(){
-        $('#map').vectorMap({
-            map: 'world_mill_en',
-            series: {
-                regions: [{
-                    values: gdpData,
-                    scale: ['#000', '#000'],
-                    normalizeFunction: 'polynomial'
-                }]
-            },
-            backgroundColor: '#eef3f7',
-            onLabelShow: function(e, el, code){
-                el.html(el.html()+' (GDP - '+gdpData[code]+')');
-            }
-        });
-    });
 
 </script>
 
