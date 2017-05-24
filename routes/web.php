@@ -12,13 +12,15 @@ use App\Http\Controllers\SitoController;
 |
 */
 
-Route::get('/', 'HomeController@index');
-Route::get('/siti', 'SitoController@index');
 
 Auth::routes();
 
-Route::get('/account', 'UserController@setting');
-Route::get('/logout', 'UserController@logout');
-Route::get('/settings', 'SettingController@index');
-Route::get('/search', 'SearchController@index');
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/', 'HomeController@index');
+    Route::get('/account', 'UserController@setting');
+    Route::get('/settings', 'SettingController@index');
+    Route::get('/search', 'SearchController@index');
+    Route::get('/siti', 'SitoController@index');
+
+});
 

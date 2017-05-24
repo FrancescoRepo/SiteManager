@@ -15,7 +15,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'cf', 'nome', 'cognome', 'sesso', 'username', 'password', 'primologin', 'email', 'telefono', 'tipoid', 'clientepi',
     ];
 
     /**
@@ -26,4 +25,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function usertype(){
+        return $this->belongsTo(UserType::class);
+    }
+
+    public function isSuperAdmin(){
+        return $this->role->Description=="Superadmin";
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function sites()
+    {
+        return $this->belongsToMany(Site::class);
+    }
 }
