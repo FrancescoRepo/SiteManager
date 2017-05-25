@@ -22,5 +22,6 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/search', 'SearchController@index')->name('search');
     Route::get('/sites', 'SiteController@index')->name('sites');
     Route::get('/logout', 'UserController@logout')->name('logout');
+    Route::post('/account/update/{user}', 'UserController@update')->name('updateUser');
 });
 
