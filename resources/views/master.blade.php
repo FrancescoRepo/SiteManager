@@ -1,5 +1,7 @@
 @section('title', 'Home')
 @section('path', 'Home')
+use Illuminate\Support\Facades\Auth;
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +85,6 @@
                     <h3 class="page-header"><i class="fa fa-laptop"></i> @yield('path')</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="{{ route('home') }}">Home</a></li>
-
                         <li><i class="fa fa-laptop"></i>@yield('path')</li>
                     </ol>
                 </div>

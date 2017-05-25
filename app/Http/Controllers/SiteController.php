@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Site;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
 {
@@ -14,7 +15,8 @@ class SiteController extends Controller
      */
     public function index()
     {
-        $sites = Site::all();
+        $user = Auth::user();
+        $sites = $user->sites;
         return view('site.index', array('sites' => $sites));
     }
 
