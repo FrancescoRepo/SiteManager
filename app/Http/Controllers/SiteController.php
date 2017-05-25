@@ -14,7 +14,8 @@ class SiteController extends Controller
      */
     public function index()
     {
-        //
+        $sites = Site::all();
+        return view('site.index', array('sites' => $sites));
     }
 
     /**

@@ -31,8 +31,6 @@
 <body>
 <!-- container section start -->
 <section id="container" class="">
-
-
     <header class="header dark-bg">
         <div class="toggle-nav">
             <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
@@ -52,17 +50,17 @@
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                        <span class="username">{{ Auth::user()->Nome }} {{ Auth::user()->Cognome }}</span>
+                        <span class="username">{{ Auth::user()->Name }} {{ Auth::user()->Surname }}</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
                         <li class="eborder-top">
-                            <a href="{{ url('/account') }}"><i class="icon_profile"></i> Il mio Profilo</a>
+                            <a href="{{ route('account') }}"><i class="icon_profile"></i> Il mio Profilo</a>
                         </li>
 
                         <li>
-                            <a href="{{ url('/logout') }}"><i class="icon_key_alt"></i> Log Out</a>
+                            <a href="{{ route('logout') }}"><i class="icon_key_alt"></i> Log Out</a>
                         </li>
 
                     </ul>
@@ -84,7 +82,7 @@
                 <div class="col-lg-12">
                     <h3 class="page-header"><i class="fa fa-laptop"></i> @yield('path')</h3>
                     <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i><a href="{{ url('/') }}">Home</a></li>
+                        <li><i class="fa fa-home"></i><a href="{{ route('home') }}">Home</a></li>
 
                         <li><i class="fa fa-laptop"></i>@yield('path')</li>
                     </ol>

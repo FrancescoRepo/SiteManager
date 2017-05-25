@@ -20,7 +20,7 @@
                     </thead>
 
                     <tbody>
-                    @foreach($siti as $sito)
+                    @foreach($sites as $site)
                         <tr>
                             <td>{{ $sito->Nome }}</td>
                             <td>{{ $sito->Descrizione }}</td>

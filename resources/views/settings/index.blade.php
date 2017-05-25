@@ -3,36 +3,14 @@
 @extends('master')
 
 @section('content')
-    <!--<div class="row">
+    <!-- Inizio trasferimento dati -->
+    <div class="row">
         <div class="col-md-12">
-            <h1>Sito</h1>
+            <h1>Servizi</h1>
         </div>
     </div>
-
     <div class="row clearfix">
         <div class="col-md-12 column">
-
-            <div class="row clearfix">
-                <div class="col-md-12 column">
-                    <div class="form-group">
-                        <select class="form-control">
-                            <option>ciao</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>-->
-
-        <!-- Inizio trasferimento dati -->
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Servizi</h1>
-            </div>
-        </div>
-        <div class="row clearfix">
-            <div class="col-md-12 column">
-
                 <div class="row clearfix">
                     <div class="col-md-12 column">
                         <div class="list-group">
@@ -76,25 +54,4 @@
             </div>
         </div>
         <!-- Fine Trasferimento dati -->
-
-    <!--<div class="row">
-        <div class="col-md-12">
-            <h1>Trasferisci a</h1>
-        </div>
-    </div>
-
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-
-            <div class="row clearfix">
-                <div class="col-md-12 column">
-                    <div class="form-group">
-                        <select class="form-control">
-                            <option>ciao</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>-->
 @endsection

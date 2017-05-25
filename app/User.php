@@ -26,12 +26,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function usertype(){
+    public function usertype()
+    {
         return $this->belongsTo(UserType::class);
-    }
-
-    public function isSuperAdmin(){
-        return $this->role->Description=="Superadmin";
     }
 
     public function client()
