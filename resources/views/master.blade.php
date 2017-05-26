@@ -186,6 +186,7 @@
                     } else {
                         $('#div_search_ok_result').css('display', 'block');
                         $(row).css('display', 'block');
+                        console.log(data['data']);
                         $(table).bootstrapTable({
                             data: data['data']
                         });

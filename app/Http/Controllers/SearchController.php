@@ -32,6 +32,18 @@ class SearchController extends Controller
             }
 
         } else if($filter == "Sensore") {
+            $sites = $user->sites;
+            $sensors = array();
+
+            foreach($sites as $site ) {
+                array_push($sensors, $site->sensors->where('Model', '=', $text));
+            }
+
+
+            $response = array(
+                'success' => true,
+                'data' => array_collapse($sensors)
+            );
         }
 
         return $response;
