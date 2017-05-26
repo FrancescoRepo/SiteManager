@@ -12,9 +12,6 @@ class UserController extends Controller
 {
     public function setting()
     {
-        $user = new User();
-        $client = Client::find(1);
-
         $user = Auth::user();
         return view('user.index', compact('user'));
     }

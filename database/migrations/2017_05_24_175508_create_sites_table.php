@@ -22,7 +22,7 @@ class CreateSitesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('user_site', function (Blueprint $table) {
+        Schema::create('site_user', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('site_id')->unsigned();
@@ -38,7 +38,7 @@ class CreateSitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_site');
+        Schema::dropIfExists('site_user');
         Schema::dropIfExists('sites');
     }
 }

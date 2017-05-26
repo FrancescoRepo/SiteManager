@@ -15,12 +15,13 @@
     <link href="css/bootstrap-toggle.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
     <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <!-- bootstrap table -->
+    <link href="css/bootstrap-table.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
     <link href="css/elegant-icons-style.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <!-- Custom styles -->
-    <link rel="stylesheet" href="css/fullcalendar.css">
     <link href="css/widgets.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet" />
@@ -105,6 +106,7 @@
 <!-- bootstrap -->
 <script src="js/bootstrap.min.js"></script>
 <script src="js//bootstrap-toggle.min.js"></script>
+<script src="js/bootstrap-table.js"></script>
 <!-- nice scroll -->
 <script src="js/jquery.scrollTo.min.js"></script>
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
@@ -133,8 +135,67 @@
 <script src="js/jquery.slimscroll.min.js"></script>
 
 <script>
-
 </script>
 
+<script type="text/javascript">
+    $('#btnSearch').click(function () {
+        var filter = $("input[name='optRadio']:checked").val();
+        var text = $('#txtSearch').val();
+        var route;
+        var table;
+        var row;
+        $('#div_search_no_result').css('display', 'none');
+        $('#div_search_ok_result').css('display', 'none');
+        $('#row_table_sites').css('display', 'none');
+        $('#row_table_users').css('display', 'none');
+        $('#row_table_sensors').css('display', 'none');
+
+        if(text.trim() == "") {
+            alert("Inserire un termine di ricerca");
+        } else {
+            if(filter == "Sito")
+            {
+                route = "{{ route('searchSites') }}";
+                row = '#row_table_sites';
+                table = '#sites_table';
+            }
+            else if(filter == "Utente")
+            {
+                route = "{{ route('searchUsers') }}";
+                row = '#row_table_users';
+                table = '#users_table';
+            }
+            else
+            {
+                route = "{{ route('searchSensors') }}";
+                row = '#row_table_sensors';
+                table = '#sensors_table';
+            }
+
+            $.ajax({
+                url: route,
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    text: text,
+                    filter: filter
+                },
+                type: 'POST',
+                success: function (data) {
+                    if(data['data'].length == 0) {
+                        $('#div_search_no_result').css('display', 'block');
+                    } else {
+                        $('#div_search_ok_result').css('display', 'block');
+                        $(row).css('display', 'block');
+                        $(table).bootstrapTable({
+                            data: data['data']
+                        });
+                    }
+                },
+                error: function (data) {
+                }
+            })
+        }
+    });
+</script>
 </body>
 </html>
