@@ -32,7 +32,6 @@ class SearchController extends Controller
             }
 
         } else if($filter == "Sensore") {
-            
         }
 
         return $response;
