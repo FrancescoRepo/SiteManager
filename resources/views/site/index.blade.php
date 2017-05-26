@@ -22,17 +22,17 @@
                     <tbody>
                     @foreach($sites as $site)
 
-                            <tr class='clickable-row' data-href="{{route('sensors' ,  $site->id)}}">
-                                <td><a href="{{route('sensors' ,  $site->id)}}">{{ $site->Name }}</a></td>
-                                <td>{{ $site->Description }}</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
-                                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                                        <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr class='clickable-row' data-href="{{route('sensors' ,  $site->id)}}">
+                            <td><a href="{{route('sensors' ,  $site->id)}}">{{ $site->Name }}</a></td>
+                            <td>{{ $site->Description }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
+                                    <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                                    <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
+                                </div>
+                            </td>
+                        </tr>
 
                     @endforeach
                     </tbody>
@@ -41,5 +41,6 @@
             </section>
         </div>
     </div>
+
 
 @endsection

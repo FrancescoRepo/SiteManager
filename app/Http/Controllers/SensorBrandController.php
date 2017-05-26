@@ -30,7 +30,7 @@ class SensorBrandController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +41,7 @@ class SensorBrandController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\SensorBrand  $sensorBrand
+     * @param  \App\SensorBrand $sensorBrand
      * @return \Illuminate\Http\Response
      */
     public function show(SensorBrand $sensorBrand)
@@ -52,7 +52,7 @@ class SensorBrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\SensorBrand  $sensorBrand
+     * @param  \App\SensorBrand $sensorBrand
      * @return \Illuminate\Http\Response
      */
     public function edit(SensorBrand $sensorBrand)
@@ -63,8 +63,8 @@ class SensorBrandController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SensorBrand  $sensorBrand
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\SensorBrand $sensorBrand
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, SensorBrand $sensorBrand)
@@ -75,7 +75,7 @@ class SensorBrandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\SensorBrand  $sensorBrand
+     * @param  \App\SensorBrand $sensorBrand
      * @return \Illuminate\Http\Response
      */
     public function destroy(SensorBrand $sensorBrand)

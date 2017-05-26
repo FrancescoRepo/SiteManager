@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Site extends Model
 {
-    public function address() 
+    public function address()
     {
         return $this->belongsTo(Address::class);
     }

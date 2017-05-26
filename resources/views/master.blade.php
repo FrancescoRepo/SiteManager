@@ -19,13 +19,13 @@ use Illuminate\Support\Facades\Auth;
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/elegant-icons-style.css" rel="stylesheet"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet"/>
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/fullcalendar.css">
     <link href="css/widgets.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet" />
+    <link href="css/style-responsive.css" rel="stylesheet"/>
     <link href="css/xcharts.min.css" rel=" stylesheet">
     <link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
 </head>
@@ -35,7 +35,8 @@ use Illuminate\Support\Facades\Auth;
 <section id="container" class="">
     <header class="header dark-bg">
         <div class="toggle-nav">
-            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i
+                        class="icon_menu"></i></div>
         </div>
 
         <!--logo start-->
@@ -46,7 +47,7 @@ use Illuminate\Support\Facades\Auth;
             <!-- notification dropdown start-->
             <ul class="nav pull-right top-menu">
 
-            <!-- user login dropdown start-->
+                <!-- user login dropdown start-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
@@ -74,9 +75,9 @@ use Illuminate\Support\Facades\Auth;
     </header>
     <!--header end-->
 
-    @include('layout.sidebar')
+@include('layout.sidebar')
 
-    <!--main content start-->
+<!--main content start-->
     <section id="main-content">
         <section class="wrapper">
             <!--overview start-->
@@ -109,12 +110,12 @@ use Illuminate\Support\Facades\Auth;
 <!-- nice scroll -->
 <script src="js/jquery.scrollTo.min.js"></script>
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-<script src="js/owl.carousel.js" ></script>
+<script src="js/owl.carousel.js"></script>
 <!--script for this page only-->
 <script src="js/calendar-custom.js"></script>
 <script src="js/jquery.rateit.min.js"></script>
 <!-- custom select -->
-<script src="js/jquery.customSelect.min.js" ></script>
+<script src="js/jquery.customSelect.min.js"></script>
 <script src="assets/chart-master/Chart.js"></script>
 
 <!--custome script for all page-->

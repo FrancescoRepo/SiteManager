@@ -16,11 +16,11 @@
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link href="css/elegant-icons-style.css" rel="stylesheet"/>
+    <link href="css/font-awesome.css" rel="stylesheet"/>
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet" />
+    <link href="css/style-responsive.css" rel="stylesheet"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
 </head>
 
 <body class="login-img3-body">
-    @yield('content')
+@yield('content')
 </body>
 </html>
 

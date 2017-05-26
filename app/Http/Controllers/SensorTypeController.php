@@ -30,7 +30,7 @@ class SensorTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +41,7 @@ class SensorTypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\SensorType  $sensorType
+     * @param  \App\SensorType $sensorType
      * @return \Illuminate\Http\Response
      */
     public function show(SensorType $sensorType)
@@ -52,7 +52,7 @@ class SensorTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\SensorType  $sensorType
+     * @param  \App\SensorType $sensorType
      * @return \Illuminate\Http\Response
      */
     public function edit(SensorType $sensorType)
@@ -63,8 +63,8 @@ class SensorTypeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SensorType  $sensorType
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\SensorType $sensorType
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, SensorType $sensorType)
@@ -75,7 +75,7 @@ class SensorTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\SensorType  $sensorType
+     * @param  \App\SensorType $sensorType
      * @return \Illuminate\Http\Response
      */
     public function destroy(SensorType $sensorType)

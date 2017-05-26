@@ -14,7 +14,7 @@ class SensorController extends Controller
      */
     public function index($id)
     {
-        $sensors = Sensor::where('site_id','=','$id');
+        $sensors = Sensor::where('site_id', '=', '$id');
         return view('sensor.index', array('sensors' => $sensors));
     }
 
@@ -31,7 +31,7 @@ class SensorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,7 +42,7 @@ class SensorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Sensor  $sensor
+     * @param  \App\Sensor $sensor
      * @return \Illuminate\Http\Response
      */
     public function show(Sensor $sensor)
@@ -53,7 +53,7 @@ class SensorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Sensor  $sensor
+     * @param  \App\Sensor $sensor
      * @return \Illuminate\Http\Response
      */
     public function edit(Sensor $sensor)
@@ -64,8 +64,8 @@ class SensorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Sensor  $sensor
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Sensor $sensor
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Sensor $sensor)
@@ -76,7 +76,7 @@ class SensorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Sensor  $sensor
+     * @param  \App\Sensor $sensor
      * @return \Illuminate\Http\Response
      */
     public function destroy(Sensor $sensor)
