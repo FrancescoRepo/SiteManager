@@ -138,6 +138,21 @@
 </script>
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        //Inserire funzioni eventuali quando si carica la pagina
+    });
+
+    $("input[name='optRadio']").change(function () {
+        var filter = $("input[name='optRadio']:checked").val();
+        if(filter == "Sito") {
+            $('#txtSearch').attr('placeholder', 'Cerca sito per Nome');
+        } else if(filter == "Sensore") {
+            $('#txtSearch').attr('placeholder', 'Cerca sensore per Modello');
+        } else {
+            $('#txtSearch').attr('placeholder', 'Cerca utente per Nome o Cognome');
+        }
+    });
+
     $('#btnSearch').click(function () {
         var filter = $("input[name='optRadio']:checked").val();
         var text = $('#txtSearch').val();
@@ -186,7 +201,6 @@
                     } else {
                         $('#div_search_ok_result').css('display', 'block');
                         $(row).css('display', 'block');
-                        console.log(data['data']);
                         $(table).bootstrapTable({
                             data: data['data']
                         });

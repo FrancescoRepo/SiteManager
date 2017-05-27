@@ -39,10 +39,21 @@ class SearchController extends Controller
                 array_push($sensors, $site->sensors->where('Model', '=', $text));
             }
 
-
             $response = array(
                 'success' => true,
                 'data' => array_collapse($sensors)
+            );
+        } else {
+            $client = $user->client;
+            $users = $client->users->where('Surname', '=', $text);
+            
+            if(count($users) == 0)
+            {
+                $users = $client->users->where('Name', '=', $text);
+            }
+            $response = array(
+                'success' => true,
+                'data' => $users
             );
         }
 
