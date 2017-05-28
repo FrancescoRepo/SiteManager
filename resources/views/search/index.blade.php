@@ -11,8 +11,8 @@
                     <div class="input-group">
                         <input class="form-control" type="text" id="txtSearch" name="txtSearch" placeholder="Cerca sito per Nome" required/>
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" id="btnSearch" name="btnSearch" >
-                                <span class="glyphicon glyphicon-search"></span>
+                            <button class="btn btn-success" type="button" id="btnSearch" name="btnSearch" >
+                                Ricerca
                             </button>
                         </span>
                     </div>
