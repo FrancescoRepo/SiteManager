@@ -1,5 +1,5 @@
-@section('title', 'Siti')
-@section('path', 'Siti')
+@section('title', 'Home')
+@section('path', 'Home')
 
 @extends('master')
 
@@ -9,6 +9,5 @@
             <h2> Benvenuto <b>{{Auth::user()->Name}} {{ Auth::user()->Surname }}</b></h2>
         </div>
     </div>
-
 @endsection
 
