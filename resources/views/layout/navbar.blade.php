@@ -6,10 +6,10 @@
         </div>
     @endif
     <!--logo start-->
-        @if(Auth::user()->usertype_id != 1){
+        @if(Auth::user()->usertype_id != 1)
     <a href="{{route('welcome')}}" class="logo">Site <span class="lite">Manager</span></a>
     <!--logo end-->
-    }@else
+    @else
             <a href="{{route('admin')}}" class="logo">Site <span class="lite">Manager</span></a>
      @endif
     <div class="top-nav notification-row">
