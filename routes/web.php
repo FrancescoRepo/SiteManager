@@ -30,6 +30,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/welcome', 'HomeController@index')->name('welcome');
     Route::post('/sensor/update/{sensor}', 'SensorController@update')->name('updateSensor');
     Route::get('/admin', 'AdminController@index')-> name('admin');
+
     
 });
 
