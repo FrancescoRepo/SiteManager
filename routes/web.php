@@ -28,3 +28,4 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/search/sensors', 'SearchController@search')->name('searchSensors');
 });
 
+

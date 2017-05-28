@@ -1,7 +1,5 @@
 @section('title', 'Home')
 @section('path', 'Home')
-use Illuminate\Support\Facades\Auth;
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +39,7 @@ use Illuminate\Support\Facades\Auth;
         </div>
 
         <!--logo start-->
-        <a href="index.html" class="logo">Site <span class="lite">Manager</span></a>
+        <a href="{{route('welcome')}}" class="logo">Site <span class="lite">Manager</span></a>
         <!--logo end-->
 
         <div class="top-nav notification-row">
