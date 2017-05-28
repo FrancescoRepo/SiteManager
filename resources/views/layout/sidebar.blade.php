@@ -1,4 +1,6 @@
 <!--sidebar start-->
+@if(Auth::user()->usertype_id) != 1)
+
 <aside>
     <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
@@ -35,3 +37,4 @@
     </div>
 </aside>
 <!--sidebar end-->
+@endif

@@ -1,7 +1,4 @@
-@section('title', 'Admin')
-@section('path', 'Admin')
-
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -31,76 +28,80 @@
 
 <body>
 <!-- container section start -->
-    <section id="container" class="">
-        <header class="header dark-bg">
-            <!--logo start-->
-            <a href="{{route('admin')}}" class="logo">Site <span class="lite">Manager</span></a>
-            <!--logo end-->
-            <div class="top-nav notification-row">
-                <!-- notification dropdown start-->
-                <ul class="nav pull-right top-menu">
+<section id="container" class="">
+@include('layout.navbar')
 
-                    <!-- user login dropdown start-->
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="profile-ava">
-                                    <img alt="" src="img/avatar1_small.jpg">
-                                </span>
-                            <span class="username">{{ Auth::user()->Name }} {{ Auth::user()->Surname }}</span>
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu extended logout">
-                            <div class="log-arrow-up"></div>
-                            <li class="eborder-top">
-                                <a href="{{ route('account') }}"><i class="icon_profile"></i> Il mio Profilo</a>
-                            </li>
-
-                            <li>
-                                <a href="{{ route('logout') }}"><i class="icon_key_alt"></i> Log Out</a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <!-- user login dropdown end -->
-                </ul>
-                <!-- notificatoin dropdown end-->
-            </div>
-        </header>
-        <!--header end-->
-
-        {{$users = \App\User::all()}}
-
-        <div class="row" style="margin:auto; width:90%;">
+<!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <!--overview start-->
+            <div class="row" style="margin:auto; padding:auto;">
                 <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            <h1>Utenti</h1>
+                            Utenti
                         </header>
                         <table class="table text-center">
                             <thead>
                             <tr>
                                 <th class="text-center">ID</th>
-                                <th class="text-center">Nome</th>
-                                <th class="text-center">Cognome</th>
+                                <th class="text-center">Modello</th>
                                 <th class="text-center">Tipo</th>
+                                <th class="text-center">Latitudine</th>
+                                <th class="text-center">Longitudine</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($users as $user)
-                                <tr class='clickable-row' data-href="">
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->Name}}</td>
-                                    <td>{{ $user->Surname}}</td>
-                                    <td>{{ $user->type->Description}}</td>
-                                </tr>
-
-                            @endforeach
                             </tbody>
 
                         </table>
                     </section>
                 </div>
-        </div>
+            </div>
+
+        </section>
     </section>
+    <!--main content end-->
+</section>
+<!-- container section start -->
+
+
+<!-- javascripts -->
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui-1.10.4.min.js"></script>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
+<!-- bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js//bootstrap-toggle.min.js"></script>
+<script src="js/bootstrap-table.js"></script>
+<!-- nice scroll -->
+<script src="js/jquery.scrollTo.min.js"></script>
+<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+<script src="js/owl.carousel.js"></script>
+<!--script for this page only-->
+<script src="js/calendar-custom.js"></script>
+<script src="js/jquery.rateit.min.js"></script>
+<!-- custom select -->
+<script src="js/jquery.customSelect.min.js"></script>
+<script src="assets/chart-master/Chart.js"></script>
+
+<!--custome script for all page-->
+<script src="js/scripts.js"></script>
+<!-- custom script for this page-->
+<script src="js/sparkline-chart.js"></script>
+<script src="js/easy-pie-chart.js"></script>
+<script src="js/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="js/jquery-jvectormap-world-mill-en.js"></script>
+<script src="js/xcharts.min.js"></script>
+<script src="js/jquery.autosize.min.js"></script>
+<script src="js/jquery.placeholder.min.js"></script>
+<script src="js/gdp-data.js"></script>
+<script src="js/morris.min.js"></script>
+<script src="js/sparklines.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/jquery.slimscroll.min.js"></script>
+
 </body>
 </html>
+
