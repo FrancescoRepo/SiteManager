@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\SitoController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,13 +15,12 @@ use App\Http\Controllers\SitoController;
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware'=>'auth'],function(){
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/account', 'UserController@setting')->name('account');
     Route::get('/settings', 'SettingController@index')->name('setting');
     Route::get('/search', 'SearchController@index')->name('search');
     Route::get('/sites', 'SiteController@index')->name('sites');
     Route::get('/logout', 'UserController@logout')->name('logout');
-    Route::get('/sensor/{id}', 'SensorController@index')->name('sensors');
 });
 
