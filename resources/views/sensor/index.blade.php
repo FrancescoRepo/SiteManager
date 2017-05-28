@@ -57,23 +57,25 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                     <h4 class="modal-title custom_align" id="Heading">Modifica il sensore</h4>
                 </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input class="form-control " type="text" value="{{$sensor->brand->Description}}">
+                <form href="{{route('updateSensor', $sensor)}}" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input class="form-control " type="text" value="{{$sensor->brand->Description}}">
+                        </div>
+                        <div class="form-group">
+                            <input rows="2" class="form-control" value="{{$sensor->Model}}"></input>
+                        </div>
+                        <div class="form-group">
+                            <input rows="2" class="form-control" value="{{$sensor->Latitude}}"></input>
+                        </div>
+                        <div class="form-group">
+                            <input rows="2" class="form-control" value="{{$sensor->Longitude}}"></input>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input rows="2" class="form-control" value="{{$sensor->Model}}"></input>
+                    <div class="modal-footer ">
+                        <button type="button" type="submit" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Modifica Dati</button>
                     </div>
-                    <div class="form-group">
-                        <input rows="2" class="form-control" value="{{$sensor->Latitude}}"></input>
-                    </div>
-                    <div class="form-group">
-                        <input rows="2" class="form-control" value="{{$sensor->Longitude}}"></input>
-                    </div>
-                </div>
-                <div class="modal-footer ">
-                    <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>

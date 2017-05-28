@@ -73,7 +73,7 @@ class SensorController extends Controller
      */
     public function update(Request $request, Sensor $sensor)
     {
-        //
+        return view('/');
     }
 
     /**
