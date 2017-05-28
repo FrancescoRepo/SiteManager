@@ -28,10 +28,12 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/search/sensors', 'SearchController@search')->name('searchSensors');
     Route::get('/sensor/{id}', 'SensorController@index')->name('sensors');
     Route::get('/welcome', 'HomeController@index')->name('welcome');
+    Route::post('/site/edit', 'SiteController@edit')->name('editSite');
+    Route::post('/site/delete', 'SiteController@delete')->name('deleteSite');
     Route::post('/sensor/update/{sensor}', 'SensorController@update')->name('updateSensor');
     Route::get('/admin', 'AdminController@index')-> name('admin');
 
-    
+
 });
 
 

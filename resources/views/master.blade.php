@@ -139,6 +139,8 @@
 </script>
 
 <script type="text/javascript">
+    var rowSiteID = 0;
+
     $(document).ready(function () {
         //Inserire funzioni eventuali quando si carica la pagina
     });
@@ -198,10 +200,8 @@
                 type: 'POST',
                 success: function (data) {
                     if(data['data'].length == 0) {
-                        console.log(data['data']);
                         $('#div_search_no_result').css('display', 'block');
                     } else {
-                        console.log(data['data']);
                         $('#div_search_ok_result').css('display', 'block');
                         $(row).css('display', 'block');
                         $(table).bootstrapTable({
@@ -211,14 +211,72 @@
                 },
                 error: function (data) {
                 }
-            })
+            });
         }
+    });
+
+    $("#sitesTable tr button").on('click', function(e){
+        rowSiteID = ($(this).closest('td').parent()[0].sectionRowIndex);
     });
 
     $('#editSiteModal').on('show.bs.modal', function (e) {
         var site = e.relatedTarget.id.split("|");
+        $('#editModalID').attr('value', site[0].trim());
         $('#editModalName').attr('value', site[1].trim());
         $('#editModalDescription').attr('value', site[2].trim());
+    });
+
+    $('#deleteSiteModal').on('show.bs.modal', function(e) {
+        var site = e.relatedTarget.id;
+        $('#deleteModalID').attr('value', site);
+    });
+
+
+    $('#btnEditModal').click(function(e) {
+        var ID = $('#editModalID').val();
+        var Name = $('#editModalName').val();
+        var Description = $('#editModalDescription').val();
+
+        $.ajax({
+           url: '{{ route('editSite') }}',
+           data: {
+               _token: "{{ csrf_token() }}",
+               id: ID,
+               Name: Name,
+               Description : Description
+           },
+           type: 'POST',
+           success: function(data) {
+               location.reload();
+
+               //Capire come poter aggiornare la riga mantenendo il link
+               /*console.log(data['data']);
+               console.log(data['data']['Name']);
+                $('#sitesTable').bootstrapTable('updateRow', {
+                    index: rowSiteID,
+                    row: {
+                        Name: data['data']['Name'],
+                        Description: data['data']['Description']
+                    }
+                });*/
+           }
+        });
+    });
+
+    $('#btnDeleteModal').click(function(e) {
+       var ID = $('#deleteModalID').val();
+
+       $.ajax({
+            url: '{{ route('deleteSite') }}',
+            data: {
+                _token: "{{ csrf_token() }}",
+                id: ID,
+            },
+           type: 'POST',
+           success: function(data) {
+                location.reload();
+           }
+       });
     });
 
 </script>
