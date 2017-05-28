@@ -198,8 +198,10 @@
                 type: 'POST',
                 success: function (data) {
                     if(data['data'].length == 0) {
+                        console.log(data['data']);
                         $('#div_search_no_result').css('display', 'block');
                     } else {
+                        console.log(data['data']);
                         $('#div_search_ok_result').css('display', 'block');
                         $(row).css('display', 'block');
                         $(table).bootstrapTable({
@@ -212,6 +214,13 @@
             })
         }
     });
+
+    $('#editSiteModal').on('show.bs.modal', function (e) {
+        var site = e.relatedTarget.id.split("|");
+        $('#editModalName').attr('value', site[1].trim());
+        $('#editModalDescription').attr('value', site[2].trim());
+    });
+
 </script>
 </body>
 </html>

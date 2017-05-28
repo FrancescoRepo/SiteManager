@@ -12,7 +12,9 @@
                         <input class="form-control" type="text" id="txtSearch" name="txtSearch" placeholder="Cerca sito per Nome" required/>
                         <span class="input-group-btn">
                             <button class="btn btn-success" type="button" id="btnSearch" name="btnSearch" >
-                                Ricerca
+                                <span class="glyphicon glyphicon-search" aria-hidden="true">
+                                    <span style="margin-left:10px;">Ricerca</span>
+                                </span>
                             </button>
                         </span>
                     </div>
