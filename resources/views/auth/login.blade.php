@@ -3,7 +3,9 @@
 @section('content')
     <div class="container">
 
-        <div align="center" style="margin-top:10%"><img src="img/logo.png" alt="SiteManager"></div>
+        <div align="center" style="margin-top:10%">
+            <img src="img/logo.png" alt="SiteManager">
+        </div>
         <form class="login-form" action="{{ route('login') }}" method="POST">
             {{ csrf_field() }}
 

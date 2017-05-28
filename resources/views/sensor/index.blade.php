@@ -29,7 +29,7 @@
                         <tr class='clickable-row' data-href="">
                             <td>{{ $sensor->brand->Description }}</td>
                             <td>{{ $sensor->Model}}</td>
-                            <td>{{ $sensor->sensortype_id }}</td>
+                            <td>{{ $sensor->type->Description}}</td>
                             <td>{{ $sensor->Latitude }}</td>
                             <td>{{ $sensor->Longitude }}</td>
                             @if(Auth::user()->usertype->Description == "ResponsabileAziendale")
