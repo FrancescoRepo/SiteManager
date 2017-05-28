@@ -100,6 +100,7 @@ use Illuminate\Support\Facades\Auth;
 </section>
 <!-- container section start -->
 
+
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui-1.10.4.min.js"></script>
