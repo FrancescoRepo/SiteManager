@@ -26,7 +26,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/search/sites', 'SearchController@search')->name('searchSites');
     Route::post('/search/users', 'SearchController@search')->name('searchUsers');
     Route::post('/search/sensors', 'SearchController@search')->name('searchSensors');
-    Route::get('/sites/sensors', 'SensorController@index')->name('sensors');
+    Route::get('/sensor{id}', 'SensorController@index')->name('sensors');
     Route::get('/welcome', 'HomeController@index')->name('welcome');
 });
 

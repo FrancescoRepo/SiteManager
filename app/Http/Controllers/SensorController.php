@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Sensor;
+use App\Site;
 use Illuminate\Http\Request;
 
 class SensorController extends Controller
@@ -14,7 +15,9 @@ class SensorController extends Controller
      */
     public function index($id)
     {
-        $sensors = Sensor::where('site_id', '=', '$id');
+
+        $site = Site::find($id);
+        $sensors = $site->sensors;
         return view('sensor.index', array('sensors' => $sensors));
     }
 
