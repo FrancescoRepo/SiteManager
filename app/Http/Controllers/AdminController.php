@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $users = \App\User::all();
-        $sensors = \App\Sensor::all();
-        $sites = \App\Site::all();
-        return view('admin.index', ['users' => $users]);
+        $data['users'] = \App\User::all();
+        $data['sensors'] = \App\Sensor::all();
+        $data['sites'] = \App\Site::all();
+        $data['customers'] = \App\Client::all();
+        return view('admin.index', $data);
     }
+
 }

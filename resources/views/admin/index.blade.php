@@ -32,29 +32,48 @@
 @include('layout.navbar')
 
 <!--main content start-->
-    <section id="main-content">
-        <section class="wrapper">
+    <section id="main-content-admin">
+        <section class="wrapperadmin">
             <!--overview start-->
-            <div class="row" style="margin:auto; padding:auto;">
+            <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
                             Utenti
                         </header>
-                        <table class="table text-center">
-                            <thead>
-                            <tr>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">Modello</th>
-                                <th class="text-center">Tipo</th>
-                                <th class="text-center">Latitudine</th>
-                                <th class="text-center">Longitudine</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-
-                        </table>
+                        @foreach($customers as $customer)
+                            <header class="panel-heading">
+                                <b>{{$client = $customer->BusinessName}}</b>
+                            </header>
+                            <table class=" table text-center">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">CF</th>
+                                    <th class="text-center">Nome</th>
+                                    <th class="text-center">Cognome</th>
+                                    <th class="text-center">Sesso</th>
+                                    <th class="text-center">Username</th>
+                                    <th class="text-center">Tipo</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($users as $user)
+                                        @if($user->client->BusinessName==$client)
+                                            <tr>
+                                                <th class="text-center">{{$user->id}}</th>
+                                                <th class="text-center">{{$user->CF}}</th>
+                                                <th class="text-center">{{$user->Name}}</th>
+                                                <th class="text-center">{{$user->Surname}}</th>
+                                                <th class="text-center">{{$user->Sex}}</th>
+                                                <th class="text-center">{{$user->username}}</th>
+                                                <th class="text-center">{{$user->usertype->Description}}</th>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                    </tbody>
+                            </table>
+                        @endforeach
                     </section>
                 </div>
             </div>
