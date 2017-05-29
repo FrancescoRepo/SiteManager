@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sensor extends Model
 {
+    protected $fillable = [
+        'Model', 'Latitude', 'Longitude', 'MaxValue', 'MinValue'
+    ];
+
     public function site()
     {
         return $this->belongsTo(Site::class);

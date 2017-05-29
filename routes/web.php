@@ -26,14 +26,13 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/search/sites', 'SearchController@search')->name('searchSites');
     Route::post('/search/users', 'SearchController@search')->name('searchUsers');
     Route::post('/search/sensors', 'SearchController@search')->name('searchSensors');
-    Route::get('/sensor/{id}', 'SensorController@index')->name('sensors');
+    Route::get('/site{id}', 'SensorController@index')->name('sensors');
     Route::get('/welcome', 'HomeController@index')->name('welcome');
     Route::post('/site/edit', 'SiteController@edit')->name('editSite');
     Route::post('/site/delete', 'SiteController@delete')->name('deleteSite');
-    Route::post('/sensor/update/{sensor}', 'SensorController@update')->name('updateSensor');
+    Route::post('/sensor/edit', 'SensorController@edit')->name('editSensor');
+    Route::post('/sensor/delete', 'SensorController@delete')->name('deleteSensor');
     Route::get('/admin', 'AdminController@index')-> name('admin');
-
-
 });
 
 

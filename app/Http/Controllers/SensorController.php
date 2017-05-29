@@ -5,85 +5,36 @@ namespace App\Http\Controllers;
 use App\Sensor;
 use App\Site;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SensorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index($id)
     {
-
         $site = Site::find($id);
+        $user = Auth::user();
         $sensors = $site->sensors;
-        return view('sensor.index', array('sensors' => $sensors));
+        return view('sensor.index', compact('sensors', 'user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function edit(Request $request)
     {
-        //
+        $sensor = Sensor::find($request->id);
+        $sensor->update($request->all());
+
+        $response = array(
+            'success' => true,
+            'data' => $sensor
+        );
+
+        return $response;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function delete(Request $request)
     {
-        //
-    }
+        Sensor::destroy($request->id);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Sensor $sensor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Sensor $sensor)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Sensor $sensor
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Sensor $sensor)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Sensor $sensor
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Sensor $sensor)
-    {
-        return view('/');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Sensor $sensor
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Sensor $sensor)
-    {
-        //
+        $response = array('success' => true);
+        return $response;
     }
 }

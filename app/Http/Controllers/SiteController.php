@@ -36,12 +36,6 @@ class SiteController extends Controller
 
     public function delete(Request $request)
     {
-        //$site = Site::where('id', $request->id);
-
-        /*$site->addresses()->delete();
-        $site->users()->delete();
-        $site->sensors()->delete();*/
-        //$site->delete();
         Site::destroy($request->id);
 
         $response = array('success' => true);

@@ -24,9 +24,16 @@
                         </thead>
 
                         <tbody>
+                        <tr>
+                            <a class="btn icon-btn btn-success center-block">
+                                <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success">
+                                </span>
+                                Aggiungi sito
+                            </a>
+                        </tr>
                         @foreach($sites as $site)
                             <tr class='clickable-row' data-href="{{route('sensors' ,  $site->id)}}">
-                                <td><a href="{{route('sensors' , $site->id)}}">{{ $site->Name }}</a></td>
+                                <td><a href="{{route('sensors', $site->id)}}">{{ $site->Name }}</a></td>
                                 <td>{{ $site->Description }}</td>
                                 @if(Auth::user()->usertype->Description == "ResponsabileAziendale")
                                     <td>
@@ -64,7 +71,7 @@
                         </div>
                     </div>
                     <div class="modal-footer ">
-                        <button type="button" id="btnEditModal" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Aggiorna</button>
+                        <button type="button" id="btnEditModalSite" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Aggiorna</button>
                     </div>
                 </div>
             </div>
@@ -85,7 +92,7 @@
 
                     </div>
                     <div class="modal-footer ">
-                        <button type="button" id="btnDeleteModal" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Si</button>
+                        <button type="button" id="btnDeleteModalSite" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Si</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
                     </div>
                 </div>

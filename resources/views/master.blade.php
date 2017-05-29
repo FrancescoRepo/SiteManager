@@ -99,6 +99,7 @@
 
 <script type="text/javascript">
     var rowSiteID = 0;
+    var rowSensorID = 0;
 
     $(document).ready(function () {
         //Inserire funzioni eventuali quando si carica la pagina
@@ -178,6 +179,10 @@
         rowSiteID = ($(this).closest('td').parent()[0].sectionRowIndex);
     });
 
+    $("#sensorsTable tr button").on('click', function(e){
+        rowSensorID = ($(this).closest('td').parent()[0].sectionRowIndex);
+    });
+
     $('#editSiteModal').on('show.bs.modal', function (e) {
         var site = e.relatedTarget.id.split("|");
         $('#editModalID').attr('value', site[0].trim());
@@ -190,8 +195,25 @@
         $('#deleteModalID').attr('value', site);
     });
 
+    $('#editSensorModal').on('show.bs.modal', function (e) {
+        var sensor = e.relatedTarget.id.split("|");
+        $('#editModalID').attr('value', sensor[0].trim());
+        $('#editModalModel').attr('value', sensor[1].trim());
+        $('#editModalLatitude').attr('value', sensor[2].trim());
+        $('#editModalLongitude').attr('value', sensor[3].trim());
+        $('#editModalMaxVal').attr('value', sensor[4].trim());
+        $('#editModalMinVal').attr('value', sensor[5].trim());
+    });
 
-    $('#btnEditModal').click(function(e) {
+    $('#deleteSensorModal').on('show.bs.modal', function(e) {
+        var sensor = e.relatedTarget.id;
+        $('#deleteModalID').attr('value', sensor);
+    });
+
+    /*
+        Modifica del Sito
+     */
+    $('#btnEditModalSite').click(function(e) {
         var ID = $('#editModalID').val();
         var Name = $('#editModalName').val();
         var Description = $('#editModalDescription').val();
@@ -222,7 +244,10 @@
         });
     });
 
-    $('#btnDeleteModal').click(function(e) {
+    /*
+        Eliminazione del sito
+     */
+    $('#btnDeleteModalSite').click(function(e) {
        var ID = $('#deleteModalID').val();
 
        $.ajax({
@@ -236,6 +261,66 @@
                 location.reload();
            }
        });
+    });
+
+    /*
+        Modifica del sensore
+     */
+    $('#btnEditModalSensor').click(function() {
+        var ID = $('#editModalID').val();
+        var Model = $('#editModalModel').val();
+        var Latitude = $('#editModalLatitude').val();
+        var Longitude = $('#editModalLongitude').val();
+        var MaxVal = $('#editModalMaxVal').val();
+        var MinVal = $('#editModalMinVal').val();
+
+        $.ajax({
+            url: '{{ route('editSensor') }}',
+            data: {
+                _token: "{{ csrf_token() }}",
+                id: ID,
+                Model: Model,
+                Latitude : Latitude,
+                Longitude: Longitude,
+                MaxValue: MaxVal,
+                MinValue: MinVal
+            },
+            type: 'POST',
+            success: function(data) {
+                console.log(data['data']);
+                location.reload();
+
+                //Capire come poter aggiornare la riga mantenendo il link
+                /*console.log(data['data']);
+                 console.log(data['data']['Name']);
+                 $('#sitesTable').bootstrapTable('updateRow', {
+                 index: rowSiteID,
+                 row: {
+                 Name: data['data']['Name'],
+                 Description: data['data']['Description']
+                 }
+                 });*/
+            }
+        });
+    });
+
+    /*
+     Eliminazione del sensore
+     */
+    $('#btnDeleteModalSensor').click(function(e) {
+        var ID = $('#deleteModalID').val();
+
+        $.ajax({
+            url: '{{ route('deleteSensor') }}',
+            data: {
+                _token: "{{ csrf_token() }}",
+                id: ID,
+            },
+            type: 'POST',
+            success: function(data) {
+                location.reload();
+            }
+        });
     });
 
 </script>
