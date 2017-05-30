@@ -25,7 +25,7 @@
 
                         <tbody>
                         <tr>
-                            <a class="btn icon-btn btn-success center-block">
+                            <a class="btn icon-btn btn-success center-block" href="{{ route('showAddSite') }}">
                                 <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success">
                                 </span>
                                 Aggiungi sito

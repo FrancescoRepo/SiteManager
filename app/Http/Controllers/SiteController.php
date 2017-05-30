@@ -20,6 +20,16 @@ class SiteController extends Controller
         return view('site.index', array('sites' => $sites));
     }
 
+    public function showAdd()
+    {
+        return view('site.insert');
+    }
+
+    public function create(Request $request)
+    {
+
+    }
+
     public function edit(Request $request)
     {
         $site = Site::find($request->id);

@@ -23,16 +23,23 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/sites', 'SiteController@index')->name('sites');
     Route::get('/logout', 'UserController@logout')->name('logout');
     Route::post('/account/update/{user}', 'UserController@update')->name('updateUser');
+
     Route::post('/search/sites', 'SearchController@search')->name('searchSites');
     Route::post('/search/users', 'SearchController@search')->name('searchUsers');
     Route::post('/search/sensors', 'SearchController@search')->name('searchSensors');
-    Route::get('/site{id}', 'SensorController@index')->name('sensors');
+
+    Route::get('/site/{id}/sensors', 'SensorController@index')->name('sensors');
     Route::get('/welcome', 'HomeController@index')->name('welcome');
+
+    Route::get('/site/add', 'SiteController@showAdd')->name('showAddSite');
+    Route::post('/site/add', 'SiteController@create')->name('insertSite');
     Route::post('/site/edit', 'SiteController@edit')->name('editSite');
     Route::post('/site/delete', 'SiteController@delete')->name('deleteSite');
+
     Route::post('/sensor/edit', 'SensorController@edit')->name('editSensor');
     Route::post('/sensor/delete', 'SensorController@delete')->name('deleteSensor');
     Route::get('/admin', 'AdminController@index')-> name('admin');
+
 });
 
 
