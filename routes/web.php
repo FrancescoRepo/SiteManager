@@ -40,8 +40,12 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/sensor/add', 'SensorController@create')->name('insertSensor');
     Route::post('/sensor/edit', 'SensorController@edit')->name('editSensor');
     Route::post('/sensor/delete', 'SensorController@delete')->name('deleteSensor');
-    Route::get('/admin', 'AdminController@index')-> name('admin');
 
+    Route::get('/admin', 'AdminController@index')-> name('admin');
+    Route::get('/admin/users', 'AdminController@users')-> name('adminUsers');
+    Route::get('/admin/clients', 'AdminController@client')-> name('adminClients');
+    Route::get('/admin/sites', 'AdminController@sites')-> name('adminSites');
+    Route::get('/admin/sensors', 'AdminController@sensors')-> name('adminSensors');
 });
 
 
