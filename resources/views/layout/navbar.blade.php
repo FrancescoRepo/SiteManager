@@ -1,17 +1,17 @@
 <header class="header dark-bg">
     @if(Auth::user()->usertype_id != 1)
         <div class="toggle-nav">
-            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i
-                        class="icon_menu"></i></div>
+            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
         </div>
     @endif
     <!--logo start-->
-        @if(Auth::user()->usertype_id != 1)
-    <a href="{{route('welcome')}}" class="logo">Site <span class="lite">Manager</span></a>
+    @if(Auth::user()->usertype_id != 1)
+        <a href="{{route('welcome')}}" class="logo">Site <span class="lite">Manager</span></a>
     <!--logo end-->
     @else
-            <a href="{{route('admin')}}" class="logo">Site <span class="lite">Manager</span></a>
+        <a href="{{route('admin')}}" class="logo">Site <span class="lite">Manager</span></a>
      @endif
+
     <div class="top-nav notification-row">
         <!-- notification dropdown start-->
         <ul class="nav pull-right top-menu">
@@ -20,7 +20,7 @@
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="{{ asset('img/avatar1_small.jpg') }}">
+                                <!-- <img alt="" src="{{ asset('') }}"> IMMAGINE PROFILO -->
                             </span>
                     <span class="username">{{ Auth::user()->Name }} {{ Auth::user()->Surname }}</span>
                     <b class="caret"></b>
