@@ -17,7 +17,7 @@ Auth::routes();
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/account', 'UserController@setting')->name('account');
+    Route::get('/account', 'UserController@index')->name('account');
     Route::get('/settings', 'SettingController@index')->name('setting');
     Route::get('/search', 'SearchController@index')->name('search');
     Route::get('/sites', 'SiteController@index')->name('sites');
@@ -36,6 +36,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/site/edit', 'SiteController@edit')->name('editSite');
     Route::post('/site/delete', 'SiteController@delete')->name('deleteSite');
 
+    Route::get('/sensor/{id}/add', 'SensorController@showAdd')->name('showAddSensor');
+    Route::post('/sensor/add', 'SensorController@create')->name('insertSensor');
     Route::post('/sensor/edit', 'SensorController@edit')->name('editSensor');
     Route::post('/sensor/delete', 'SensorController@delete')->name('deleteSensor');
     Route::get('/admin', 'AdminController@index')-> name('admin');

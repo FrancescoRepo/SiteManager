@@ -16,7 +16,7 @@
                         <tr>
                             <th class="text-center" data-field="Name">Nome</th>
                             <th class="text-center" data-field="Description">Descrizione</th>
-                            @if(Auth::user()->usertype->Description == "ResponsabileAziendale")
+                            @if($user->usertype->Description == "ResponsabileAziendale")
                                 <th class="text-center">Modifica</th>
                                 <th class="text-center">Elimina</th>
                             @endif
@@ -24,6 +24,7 @@
                         </thead>
 
                         <tbody>
+                        @if($user->usertype->Description == "ResponsabileAziendale")
                         <tr>
                             <a class="btn icon-btn btn-success center-block" href="{{ route('showAddSite') }}">
                                 <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success">
@@ -31,11 +32,12 @@
                                 Aggiungi sito
                             </a>
                         </tr>
+                        @endif
                         @foreach($sites as $site)
                             <tr class='clickable-row' data-href="{{route('sensors' ,  $site->id)}}">
                                 <td><a href="{{route('sensors', $site->id)}}">{{ $site->Name }}</a></td>
                                 <td>{{ $site->Description }}</td>
-                                @if(Auth::user()->usertype->Description == "ResponsabileAziendale")
+                                @if($user->usertype->Description == "ResponsabileAziendale")
                                     <td>
                                         <p data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#editSiteModal" id="{{ $site->id }} | {{ $site->Name }} | {{ $site->Description }}"><span class="glyphicon glyphicon-pencil" id="btnOpenModalSite"></span></button></p>
                                     </td>

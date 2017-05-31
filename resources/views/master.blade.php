@@ -157,9 +157,11 @@
                 success: function (data) {
                     if(data['data'].length == 0) {
                         $('#div_search_no_result').css('display', 'block');
+                        console.log(data['data']);
                     } else {
                         $('#div_search_ok_result').css('display', 'block');
                         $(row).css('display', 'block');
+                        $(table).bootstrapTable('destroy');
                         $(table).bootstrapTable({
                             data: data['data']
                         });

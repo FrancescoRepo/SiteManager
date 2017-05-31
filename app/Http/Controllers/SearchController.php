@@ -21,15 +21,17 @@ class SearchController extends Controller
         $user = Auth::user();
 
         if($filter == "Sito") {
-            $sites = $user->sites->where('Name', '=', $text);
-            if(!empty($sites)) {
-                $response = array(
-                    'success' => true,
-                    'data' => $sites
-                );
-            } else {
-                return Response::json(['error' => 'Error msg'], 404);
+            $items = $user->sites->where('Name', '=', $text);
+            $sites = array();
+
+            foreach($items as $site) {
+                $sites[] = $site;
             }
+
+            $response = array(
+                'success' => true,
+                'data' => $sites
+            );
 
         } else if($filter == "Sensore") {
             $sites = $user->sites;
@@ -45,12 +47,17 @@ class SearchController extends Controller
             );
         } else {
             $client = $user->client;
-            $users = $client->users->where('Surname', '=', $text);
-            
-            if(count($users) == 0)
-            {
-                $users = $client->users->where('Name', '=', $text);
+            $items = $client->users->where('Name', '=', $text);
+            $users = array();
+
+            if(count($items) == 0) {
+                $items = $client->users->where('Surname', '=', $text);
             }
+
+            foreach($items as $user) {
+                $users[] = $user;
+            }
+
             $response = array(
                 'success' => true,
                 'data' => $users

@@ -30,13 +30,15 @@
                         </thead>
 
                         <tbody>
+                        @if($user->usertype->Description == "ResponsabileAziendale")
                         <tr>
-                            <a class="btn icon-btn btn-success center-block">
+                            <a class="btn icon-btn btn-success center-block" href="{{ route('showAddSensor', $id) }}">
                                 <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success">
                                 </span>
                                 Aggiungi sensore
                             </a>
                         </tr>
+                        @endif
                         @foreach($sensors as $sensor)
                             <tr class='clickable-row' data-href="{{--route('sensors' ,  $site->id)--}}">
                                 <td><a href="{{--route('sensors', $site->id)--}}">{{ $sensor->Model }}</a></td>

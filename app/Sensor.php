@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sensor extends Model
 {
     protected $fillable = [
-        'Model', 'Latitude', 'Longitude', 'MaxValue', 'MinValue'
+        'Model', 'Latitude', 'Longitude', 'MaxValue', 'MinValue', 'site_id', 'brand_id', 'type_id'
     ];
 
     public function site()

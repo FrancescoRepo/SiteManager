@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function setting()
+    public function index()
     {
         $user = Auth::user();
         return view('user.index', compact('user'));

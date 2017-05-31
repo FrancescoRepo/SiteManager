@@ -5,10 +5,10 @@
 
 @section('content')
     <div class="box-content">
-        <form action="" method="POST">
+        <form action="{{ route('insertSite') }}" method="POST">
             {{ csrf_field() }}
             <div class="table-container">
-                <table id="edit_account" class="table is-datatable dataTable">
+                <table class="table is-datatable dataTable">
                     <thead>
                     <tr>
                         <th>Dati</th>
@@ -42,7 +42,7 @@
                     </tr>
                     <tr>
                         <td>Via</td>
-                        <td><input type="password" id="password" name="password" class="form-control" readonly></td>
+                        <td><input type="text" id="Street" name="Street" class="form-control"></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -54,6 +54,11 @@
                         <td>CodicePostale</td>
                         <td><input type="text" id="ZipCode" name="ZipCode" class="form-control"></td>
                         <td></td>
+                        @if ($errors->has('ZipCode'))
+                            <span class="help-block">
+                            <strong class="text-danger">{{ $errors->first('ZipCode') }}</strong>
+                        </span>
+                        @endif
                     </tr>
                     </tbody>
                 </table>
