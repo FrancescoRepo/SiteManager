@@ -25,8 +25,7 @@ class AdminController extends Controller
     }
 
     public function sites(){
-        $data['sites'] = \App\Site::all();
-        $data['customers'] = \App\Client::all();
+        $data['sites']= \App\Site::all();
         return view ('admin.sitesadmin', $data);
     }
 
@@ -34,5 +33,9 @@ class AdminController extends Controller
         $data['sites'] = \App\Site::all();
         $data['sensors'] = \App\Sensor::all();
         return view ('admin.sensoradmin', $data);
+    }
+
+    public function notAccesible(){
+        return view('error');
     }
 }

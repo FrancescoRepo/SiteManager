@@ -1,5 +1,5 @@
 @section('title', 'Admin')
-@section('path', 'AdminPage')
+@section('path', 'Admin')
 
 <!DOCTYPE html>
 <html lang="en">

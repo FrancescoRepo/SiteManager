@@ -41,6 +41,9 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/sensor/edit', 'SensorController@edit')->name('editSensor');
     Route::post('/sensor/delete', 'SensorController@delete')->name('deleteSensor');
 
+});
+
+Route::group(['middleware' => 'admin'], function(){
     Route::get('/admin', 'AdminController@index')-> name('admin');
     Route::get('/admin/users', 'AdminController@users')-> name('adminUsers');
     Route::get('/admin/clients', 'AdminController@client')-> name('adminClients');
@@ -48,4 +51,4 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/admin/sensors', 'AdminController@sensors')-> name('adminSensors');
 });
 
-
+Route::get ('/error', 'AdminController@notAccesible')-> name('error');
