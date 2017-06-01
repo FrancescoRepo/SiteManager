@@ -25,8 +25,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($sensors as $sensor)
-                            @if($sensor->site_id == $site->id)
+                        @foreach($site->sensors as $sensor)
                                 <tr>
                                     <td>{{ $sensor->Model }}</td>
                                     <td>{{ $sensor->Latitude }}</td>
@@ -43,7 +42,6 @@
                                         <p data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#deleteSiteModal" id="" ><span class="glyphicon glyphicon-trash"></span></button></p>
                                     </td>
                                 </tr>
-                            @endif
                         @endforeach
                         </tbody>
                     </table>

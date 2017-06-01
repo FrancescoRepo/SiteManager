@@ -49,6 +49,9 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('/admin/clients', 'AdminController@client')-> name('adminClients');
     Route::get('/admin/sites', 'AdminController@sites')-> name('adminSites');
     Route::get('/admin/sensors', 'AdminController@sensors')-> name('adminSensors');
+
+    Route::post('/admin/user/edit', 'AdminController@edit')->name('editUsers');
+    Route::post('/admin/user/delete', 'AdminController@delete')->name('deleteUsers');
 });
 
 Route::get ('/error', 'AdminController@notAccesible')-> name('error');
