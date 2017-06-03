@@ -37,7 +37,7 @@
                                         <p data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#editUserModal" id="{{ $user->id }} | {{ $user->CF }} | {{ $user->Name }} | {{ $user->Surname }} | {{ $user->Sex }} | {{ $user->username }} | {{ $user->password }} | {{ $user->Email }} | {{ $user->Phone }} | {{ $user->usertype->Description }} | {{ $user->client->BusinessName }}"><span class="glyphicon glyphicon-pencil" id="btnOpenModalUser"></span></button></p>
                                     </td>
                                     <td>
-                                        <p data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#deleteUserModal" id="" ><span class="glyphicon glyphicon-trash"></span></button></p>
+                                        <p data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#deleteUserModal" id="{{ $user->id }}" ><span class="glyphicon glyphicon-trash"></span></button></p>
                                     </td>
                                 </tr>
                         @endforeach
@@ -116,7 +116,7 @@
                     <div class="form-group">
                         <input class="form-control" type="text" style="display: none" id="deleteModalID">
                     </div>
-                    <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Sei sicuro di voler eliminare questo sito?</div>
+                    <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Sei sicuro di voler eliminare questo utente?</div>
 
                 </div>
                 <div class="modal-footer ">

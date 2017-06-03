@@ -118,7 +118,55 @@
         $('#deleteModalID').attr('value', user);
     });
 
+    $('#editClientModal').on('show.bs.modal', function (e) {
+        var client = e.relatedTarget.id.split("|");
+        $('#editModalID').attr('value', client[0].trim());
+        $('#editModalPI').attr('value', client[1].trim());
+        $('#editModalBusinessName').attr('value', client[2].trim());
+    });
 
+    $('#deleteClientModal').on('show.bs.modal', function(e) {
+        var client = e.relatedTarget.id;
+        $('#deleteModalID').attr('value', client);
+    });
+
+    $('#editSiteModal').on('show.bs.modal', function (e) {
+        var site = e.relatedTarget.id.split("|");
+        $('#editModalID').attr('value', site[0].trim());
+        $('#editModalName').attr('value', site[1].trim());
+        $('#editModalDescription').attr('value', site[2].trim());
+        $('#editModalAddressID').attr('value', site[3].trim());
+        $('#editModalStreet').attr('value', site[4].trim());
+        $('#editModalStreetNumber').attr('value', site[5].trim());
+        $('#editModalProvince').attr('value', site[6].trim());
+    });
+
+    $('#deleteSiteModal').on('show.bs.modal', function(e) {
+        var site = e.relatedTarget.id;
+        $('#deleteModalID').attr('value', site);
+    });
+
+    $('#editSensorModal').on('show.bs.modal', function (e) {
+        var sensor = e.relatedTarget.id.split("|");
+        $('#editModalID').attr('value', sensor[0].trim());
+        $('#editModalModel').attr('value', sensor[1].trim());
+        $('#editModalLatitude').attr('value', sensor[2].trim());
+        $('#editModalLongitude').attr('value', sensor[3].trim());
+        $('#editModalValMax').attr('value', sensor[4].trim());
+        $('#editModalValMin').attr('value', sensor[5].trim());
+        $('#editModalSite option').filter(function(){ return $.trim( $(this).text() ) == sensor[6].trim();}).attr('selected', true);
+        $('#editModalBrand option').filter(function(){ return $.trim( $(this).text() ) == sensor[7].trim();}).attr('selected', true);
+        $('#editModalType option').filter(function(){ return $.trim( $(this).text() ) == sensor[8].trim();}).attr('selected', true);
+    });
+
+    $('#deleteSensorModal').on('show.bs.modal', function(e) {
+        var sensor = e.relatedTarget.id;
+        $('#deleteModalID').attr('value', sensor);
+    });
+
+    /*
+        Modifica utenti
+     */
     $('#btnEditModalUser').click(function(e) {
         var ID = $('#editModalID').val();
         var Name = $('#editModalName').val();
@@ -132,7 +180,7 @@
         var Client = $('#editModalCustomer').val();
 
         $.ajax({
-            url: '{{ route('editUsers') }}',
+            url: '{{ route('edit', 'user') }}',
             data: {
                 _token: "{{ csrf_token() }}",
                 id: ID,
@@ -154,11 +202,163 @@
         });
     });
 
+    /*
+        Cancellazione utenti
+     */
     $('#btnDeleteModalUser').click(function(e) {
         var ID = $('#deleteModalID').val();
 
         $.ajax({
-            url: '{{ route('deleteUsers') }}',
+            url: '{{ route('delete', 'user') }}',
+            data: {
+                _token: "{{ csrf_token() }}",
+                id: ID,
+            },
+            type: 'POST',
+            success: function(data) {
+                location.reload();
+            }
+        });
+    });
+
+    /*
+        Modifica clienti
+     */
+    $('#btnEditModalClient').click(function(e) {
+        var ID = $('#editModalID').val();
+        var PI = $('#editModalPI').val();
+        var BusinessName = $('#editModalBusinessName').val();
+
+        $.ajax({
+            url: '{{route('edit', 'client') }}',
+            data: {
+                _token: "{{ csrf_token() }}",
+                id: ID,
+                PI: PI,
+                BusinessName: BusinessName
+            },
+            type: 'POST',
+            success: function(data) {
+                //console.log(data);
+                location.reload();
+            }
+        });
+    });
+
+    /*
+     Cancellazione clienti
+     */
+    $('#btnDeleteModalClient').click(function(e) {
+        var ID = $('#deleteModalID').val();
+
+        $.ajax({
+            url: '{{ route('delete', 'client') }}',
+            data: {
+                _token: "{{ csrf_token() }}",
+                id: ID,
+            },
+            type: 'POST',
+            success: function(data) {
+                location.reload();
+            }
+        });
+    });
+
+    /*
+        Modifica Siti
+     */
+    $('#btnEditModalSite').click(function(e) {
+        var ID = $('#editModalID').val();
+        var Name = $('#editModalName').val();
+        var Description = $('#editModalDescription').val();
+        var AddressID = $('#editModalAddressID').val();
+        var Street = $('#editModalStreet').val();
+        var StreetNumber = $('#editModalStreetNumber').val();
+        var Province = $('#editModalProvince').val();
+
+        $.ajax({
+            url: '{{route('edit', 'site') }}',
+            data: {
+                _token: "{{ csrf_token() }}",
+                id: ID,
+                Name: Name,
+                Description: Description,
+                AddressID: AddressID,
+                Street: Street,
+                StreetNumber: StreetNumber,
+                Province: Province
+            },
+            type: 'POST',
+            success: function(data) {
+                //console.log(data);
+                location.reload();
+            }
+        });
+    });
+
+    /*
+     Cancellazione Siti
+     */
+    $('#btnDeleteModalSite').click(function(e) {
+        var ID = $('#deleteModalID').val();
+
+        $.ajax({
+            url: '{{ route('delete', 'site') }}',
+            data: {
+                _token: "{{ csrf_token() }}",
+                id: ID,
+            },
+            type: 'POST',
+            success: function(data) {
+                location.reload();
+            }
+        });
+    });
+
+    /*
+        Modifica Sensori
+     */
+    $('#btnEditModalSensor').click(function(e) {
+        var ID = $('#editModalID').val();
+        var Model = $('#editModalModel').val();
+        var Latitude = $('#editModalLatitude').val();
+        var Longitude = $('#editModalLongitude').val();
+        var MaxValue = $('#editModalMaxVal').val();
+        var MinValue = $('#editModalMinVal').val();
+        var site_id = $('#editModalSite').val();
+        var brand_id = $('#editModalBrand').val();
+        var type_id = $('#editModalType').val();
+
+        $.ajax({
+            url: '{{route('edit', 'sensor') }}',
+            data: {
+                _token: "{{ csrf_token() }}",
+                id: ID,
+                Model: Model,
+                Latitude: Latitude,
+                Longitude: Longitude,
+                MaxValue: MaxValue,
+                MinValue: MinValue,
+                site_id: site_id,
+                brand_id: brand_id,
+                type_id: type_id
+            },
+            type: 'POST',
+            success: function(data) {
+                //console.log(data);
+                location.reload();
+            }
+        });
+    });
+
+    /*
+        Cancellazione Sensori
+     */
+    $('#btnDeleteModalSensor').click(function(e) {
+        var ID = $('#deleteModalID').val();
+
+        $.ajax({
+            url: '{{ route('delete', 'sensor') }}',
             data: {
                 _token: "{{ csrf_token() }}",
                 id: ID,
