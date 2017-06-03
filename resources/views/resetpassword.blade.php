@@ -5,7 +5,7 @@
         <div align="center" style="margin-top:10%">
             <img src="img/logo.png" alt="SiteManager">
         </div>
-        <form class="login-form" action="{{ route('updatePassword', Auth::user()) }}" method="POST">
+        <form class="login-form" action="{{ route('updatePassword')}}" method="POST">
             {{ csrf_field() }}
             <div class="login-wrap">
                 <p class="login-img"><i class="icon_lock_alt"></i></p>
