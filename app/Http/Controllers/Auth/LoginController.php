@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 class LoginController extends Controller
 {
     /*
@@ -25,16 +24,21 @@ class LoginController extends Controller
      *
      * @var string
      */
-    //protected $redirectTo = '/home';
+    //protected $redirectTo = '/welcome';
 
     protected function authenticated($request, $user)
     {
-
-        if($user->usertype_id == 1) {
-            return redirect()->route('admin');
+        if($user->FirstLogin == 1) {
+            return view('resetPassword');
+        } else {
+            if ($user->usertype_id == 1) {
+                return redirect()->route('admin');
+            } else {
+                return redirect()->route('welcome');
+            }
         }
 
-        return redirect()->route('welcome');
+
     }
     /**
      * Create a new controller instance.

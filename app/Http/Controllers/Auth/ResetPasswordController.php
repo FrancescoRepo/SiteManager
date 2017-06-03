@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\User;
 
 class ResetPasswordController extends Controller
 {
@@ -20,12 +22,17 @@ class ResetPasswordController extends Controller
 
     use ResetsPasswords;
 
+    public function index(){
+        return view('resetPassword');
+    }
+
+
     /**
      * Where to redirect users after resetting their password.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/welcome';
 
     /**
      * Create a new controller instance.

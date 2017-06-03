@@ -55,3 +55,6 @@ Route::group(['middleware' => 'admin'], function(){
 });
 
 Route::get ('/error', 'AdminController@notAccesible')-> name('error');
+
+Route::get('/resetpassword','Auth\ResetPasswordController@index')-> name('resetPassword');
+Route::post('/resetpassword/update','MyResetPasswordController@updatePassword')-> name('updatePassword');

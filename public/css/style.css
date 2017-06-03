@@ -180,6 +180,8 @@ table tr th {
 
     background: #d5d7de;
 
+    border-radius: 10px;
+
 }
 
 .login-img-body .login-form {
@@ -395,6 +397,7 @@ table tr th {
 .login-wrap {
 
     padding: 20px;
+
 
 }
 
@@ -8680,13 +8683,16 @@ span.customSelect.changed {
 }
 
 .btn-glyphicon {
-    padding:8px;
+
     background:#ffffff;
-    margin-right:4px;
+    padding: 7px 6px 7px 8px ;
+    margin:2px;
 }
 
 .icon-btn {
     padding: 1px 15px 3px 2px;
-    border-radius:50px;
+    border-radius: 0px;
+    margin-left: 0.5px;
+    margin-right: 0.5px;
 }
 
