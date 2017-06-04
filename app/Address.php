@@ -8,7 +8,7 @@ class Address extends Model
 {
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->hasOne(Client::class);
     }
 
     public function sites()
