@@ -14,10 +14,10 @@ class CreateSensorDatasTable extends Migration
     public function up()
     {
         Schema::create('sensor_datas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id', 15);
             $table->dateTime('Date');
-            $table->string('Description');
-            $table->integer('Value');
+            $table->string('Description', 30);
+            $table->double('Value');
             $table->integer('sensor_id')->unsigned();
             $table->foreign('sensor_id')->references('id')->on('sensors');
             $table->integer('error_id')->unsigned();

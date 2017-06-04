@@ -14,8 +14,8 @@ class CreateSensorBrandsTable extends Migration
     public function up()
     {
         Schema::create('sensor_brands', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('Description');
+            $table->increments('id', 10);
+            $table->string('Description', 40);
             $table->timestamps();
         });
     }

@@ -14,12 +14,12 @@ class CreateSensorsTable extends Migration
     public function up()
     {
         Schema::create('sensors', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('Model');
-            $table->float('Latitude');
-            $table->float('Longitude');
-            $table->integer('MaxValue');
-            $table->integer('MinValue');
+            $table->increments('id', 10);
+            $table->string('Model', 20);
+            $table->double('Latitude');
+            $table->double('Longitude');
+            $table->double('MaxValue');
+            $table->double('MinValue');
             $table->integer('site_id')->unsigned();
             $table->foreign('site_id')->references('id')->on('sites');
             $table->integer('brand_id')->unsigned();

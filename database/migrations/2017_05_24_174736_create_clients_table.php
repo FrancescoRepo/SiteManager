@@ -14,9 +14,11 @@ class CreateClientsTable extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('PI')->unique();
-            $table->string('BusinessName');
+            $table->increments('id', 10);
+            $table->string('PI', 11)->unique();
+            $table->string('BusinessName', 40);
+            $table->integer('address_id')->unsigned();
+            $table->foreign('address_id')->references('id')->on('addresses');
             $table->timestamps();
         });
     }
