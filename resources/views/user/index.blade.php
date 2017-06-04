@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                     <td>Nuova password</td>
-                    <td><input type="password" class="form-control"></td>
+                    <td><input type="password" id="newpassword" name="newpassword" class="form-control"></td>
                     <td></td>
                 </tr>
                 <tr>

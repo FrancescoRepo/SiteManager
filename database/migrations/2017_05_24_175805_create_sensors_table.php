@@ -21,11 +21,11 @@ class CreateSensorsTable extends Migration
             $table->double('MaxValue');
             $table->double('MinValue');
             $table->integer('site_id')->unsigned();
-            $table->foreign('site_id')->references('id')->on('sites');
+            $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
             $table->integer('brand_id')->unsigned();
-            $table->foreign('brand_id')->references('id')->on('sensor_brands');
-            $table->integer('sensortype_id')->unsigned();
-            $table->foreign('sensortype_id')->references('id')->on('sensor_types');
+            $table->foreign('brand_id')->references('id')->on('sensor_brands')->onDelete('cascade');
+            $table->integer('type_id')->unsigned();
+            $table->foreign('type_id')->references('id')->on('sensor_types')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -51,7 +51,6 @@ class SiteController extends Controller
             $address->Street = $request->Street;
             $address->StreetNumber = $request->StreetNumber;
             $address->ZipCode = $request->ZipCode;
-            $address->client_id = $user->client->id;
 
             $address->save();
 

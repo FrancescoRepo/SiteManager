@@ -20,14 +20,14 @@ class CreateUsersTable extends Migration
             $table->string('Surname', 40);
             $table->string('Sex', 8);
             $table->string('username', 20)->unique();
-            $table->string('password', 20);
+            $table->string('password');
             $table->boolean('FirstLogin');
             $table->string('Email', 45)->unique();
             $table->string('Phone', 10);
-            $table->integer('type_id')->unsigned();
-            $table->foreign('type_id')->references('id')->on('user_types');
+            $table->integer('usertype_id')->unsigned();
+            $table->foreign('usertype_id')->references('id')->on('user_types')->onDelete('cascade');
             $table->integer('client_id')->unsigned()->nullable();
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
             $table->rememberToken();
         });

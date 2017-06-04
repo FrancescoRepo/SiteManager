@@ -18,7 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('PI', 11)->unique();
             $table->string('BusinessName', 40);
             $table->integer('address_id')->unsigned();
-            $table->foreign('address_id')->references('id')->on('addresses');
+            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
             $table->timestamps();
         });
     }

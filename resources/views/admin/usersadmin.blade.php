@@ -5,6 +5,15 @@
 
 @section('content')
     <div class="row">
+        <div class="row text-center">
+            <a class="btn icon-btn btn-success center-block" href="{{ route('showAdd', 'user') }}">
+                <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success">
+                </span>
+                Aggiungi Utente
+            </a>
+        </div>
+
+        <br>
         <div class="col-lg-12">
             @foreach($customers as $customer)
                 <b><p style="margin-bottom: 10px">Utenti {{$customer->BusinessName}}</p></b>
@@ -105,7 +114,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="deleteSensorModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

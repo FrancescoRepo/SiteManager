@@ -5,6 +5,15 @@
 
 @section('content')
     <div class="row">
+        <div class="row text-center">
+            <a class="btn icon-btn btn-success center-block" href="{{ route('showAdd', 'sensor') }}">
+                <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success">
+                </span>
+                Aggiungi Sensore
+            </a>
+        </div>
+
+        <br>
         <div class="col-lg-12">
             @foreach($sites as $site)
                 <b><p style="margin-bottom: 10px">{{$site->Name}} , {{$site->Description}}</p></b>

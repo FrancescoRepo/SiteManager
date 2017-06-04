@@ -5,6 +5,15 @@
 
 @section('content')
     <div class="row">
+        <div class="row text-center">
+            <a class="btn icon-btn btn-success center-block" href="{{ route('showAdd', 'site') }}">
+                <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success">
+                </span>
+                Aggiungi Sito
+            </a>
+        </div>
+
+        <br>
         <div class="col-lg-12">
                 <section class="panel">
                     <table class=" table text-center">

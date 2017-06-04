@@ -19,9 +19,9 @@ class CreateSensorDatasTable extends Migration
             $table->string('Description', 30);
             $table->double('Value');
             $table->integer('sensor_id')->unsigned();
-            $table->foreign('sensor_id')->references('id')->on('sensors');
+            $table->foreign('sensor_id')->references('id')->on('sensors')->onDelete('cascade');
             $table->integer('error_id')->unsigned();
-            $table->foreign('error_id')->references('id')->on('errors');
+            $table->foreign('error_id')->references('id')->on('errors')->onDelete('cascade');
             $table->timestamps();
         });
     }

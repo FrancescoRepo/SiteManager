@@ -52,12 +52,14 @@ Route::group(['middleware' => 'admin'], function(){
 
     Route::post('/admin/{type}/edit', 'AdminController@edit')->name('edit');
     Route::post('/admin/{type}/delete', 'AdminController@delete')->name('delete');
+
+    Route::get('/admin/{type}/showAdd', 'AdminController@showAdd')->name('showAdd');
+    Route::post('/admin/{type}/add', 'AdminController@add')->name('add');
 });
 
 Route::group(['middleware' => 'firstlogin'], function(){
     Route::get('/resetpassword','Auth\ResetPasswordController@index')-> name('resetPassword');
     Route::post('/resetpassword/update','MyResetPasswordController@updatePassword')-> name('updatePassword');
-
 });
 
 Route::get ('/error', 'AdminController@notAccesible')-> name('error');

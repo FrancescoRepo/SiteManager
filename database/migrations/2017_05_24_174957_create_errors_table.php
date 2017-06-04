@@ -15,7 +15,7 @@ class CreateErrorsTable extends Migration
     {
         Schema::create('errors', function (Blueprint $table) {
             $table->increments('id', 4);
-            $table->string('Description', 40);
+            $table->string('Description');
             $table->timestamps();
         });
     }

@@ -49,6 +49,100 @@ class AdminController extends Controller
         return view('error');
     }
 
+    public function showAdd($type)
+    {
+        if($type == "user") {
+            $clients = Client::all();
+            $usertypes = UserType::all();
+            return view('admin.insertuser', compact('clients', 'usertypes'));
+        } else if($type == "client") {
+            return view('admin.insertclient');
+        } else if($type == "site") {
+            $users = User::all();
+            return view('admin.insertsite', compact('users'));
+        } else if($type == "sensor") {
+            $sites = Site::all();
+            $brands = SensorBrand::all();
+            $types = SensorType::all();
+            return view('admin.insertsensor', compact('sites', 'brands', 'types'));
+        }
+    }
+
+    public function add(Request $request, $type)
+    {
+        $response = array();
+        if($type == "user") {
+            $cryptPassword = Hash::make($request->password);
+            $request->merge(array('password' => $cryptPassword));
+            $user = new User($request->all());
+            $user->save();
+
+            return redirect(route('adminUsers'));
+        } else if($type == "client") {
+            $client = new Client();
+            $client->PI = $request->PI;
+            $client->BusinessName = $request->BusinessName;
+
+            $address = new Address();
+            $address->Country = $request->Country;
+            $address->Province = $request->Province;
+            $address->City = $request->City;
+            $address->Street = $request->Street;
+            $address->StreetNumber = $request->StreetNumber;
+            $address->ZipCode = $request->ZipCode;
+
+            if(Address::where('StreetNumber', '=', $request->StreetNumber)->exists()) {
+                $errors = array(
+                    'Address' => "Attenzione: L'indirizzo è già utilizzato"
+                );
+
+                return redirect(route('showAdd', 'client'))->withErrors($errors);
+            } else {
+                $address->save();
+
+                $client->address_id = $address->id;
+                $client->save();
+
+                return redirect(route('showAdd', 'user'));
+            }
+        } else if($type == "site") {
+            $user = User::find($request->user_id);
+
+            $site = new Site();
+            $site->Name = $request->Name;
+            $site->Description = $request->Description;
+
+            $address = new Address();
+            $address->Country = $request->Country;
+            $address->Province = $request->Province;
+            $address->City = $request->City;
+            $address->Street = $request->Street;
+            $address->StreetNumber = $request->StreetNumber;
+            $address->ZipCode = $request->ZipCode;
+
+            if(Address::where('StreetNumber', '=', $request->StreetNumber)->exists()) {
+                $errors = array(
+                    'Address' => "Attenzione: L'indirizzo è già utilizzato"
+                );
+
+                return redirect(route('showAdd', 'site'))->withErrors($errors);
+            } else {
+                $address->save();
+                $site->address_id = $address->id;
+                $site->save();
+
+                $user->sites()->attach($site->id);
+
+                return redirect(route('adminSites'));
+            }
+        } else if($type == "sensor") {
+            $sensor = new Sensor($request->all());
+            $sensor->save();
+
+            return redirect(route('adminSensors'));
+        }
+    }
+
     public function edit(Request $request, $type)
     {
         $response = array();
@@ -103,7 +197,9 @@ class AdminController extends Controller
                 'success' => 'true'
             );
         } else if($type == "client") {
-            Client::destroy($request->id);
+            $client = Client::find($request->id);
+            $client->address()->delete();
+            $client->delete();
 
             $response = array(
                 'success' => 'true'
