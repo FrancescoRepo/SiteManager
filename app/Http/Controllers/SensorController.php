@@ -16,7 +16,9 @@ class SensorController extends Controller
         $site = Site::find($id);
         $user = Auth::user();
         $sensors = $site->sensors;
-        return view('sensor.index', compact('sensors', 'user', 'id'));
+        $brands = SensorBrand::all();
+        $types = SensorType::all();
+        return view('sensor.index', compact('sensors', 'user', 'id', 'brands', 'types'));
     }
 
     public function showAdd($id)

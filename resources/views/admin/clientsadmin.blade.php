@@ -15,34 +15,34 @@
 
         <br>
         <div class="col-lg-12">
-                <section class="panel">
-                    <table class=" table text-center">
-                        <thead>
+            <section class="panel">
+                <table class=" table text-center">
+                    <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">PartitaIva</th>
+                        <th class="text-center">Ragione Sociale</th>
+                        <th class="text-center"style="width: 200px">Modifica</th>
+                        <th class="text-center"style="width: 200px">Elimina</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($customers as $customer)
                         <tr>
-                            <th class="text-center">ID</th>
-                            <th class="text-center">PartitaIva</th>
-                            <th class="text-center">Ragione Sociale</th>
-                            <th class="text-center"style="width: 200px">Modifica</th>
-                            <th class="text-center"style="width: 200px">Elimina</th>
+                            <th class="text-center">{{$customer->id}}</th>
+                            <th class="text-center">{{$customer->BusinessName}}</th>
+                            <th class="text-center">{{$customer->PI}}</th>
+                            <td>
+                                <p data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#editClientModal" id="{{ $customer->id }} | {{ $customer->PI }} | {{ $customer->BusinessName }}"><span class="glyphicon glyphicon-pencil" id="btnOpenModalSite"></span></button></p>
+                            </td>
+                            <td>
+                                <p data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#deleteClientModal" id="{{ $customer->id }}" ><span class="glyphicon glyphicon-trash"></span></button></p>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($customers as $customer)
-                                <tr>
-                                    <th class="text-center">{{$customer->id}}</th>
-                                    <th class="text-center">{{$customer->BusinessName}}</th>
-                                    <th class="text-center">{{$customer->PI}}</th>
-                                    <td>
-                                        <p data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#editClientModal" id="{{ $customer->id }} | {{ $customer->PI }} | {{ $customer->BusinessName }}"><span class="glyphicon glyphicon-pencil" id="btnOpenModalSite"></span></button></p>
-                                    </td>
-                                    <td>
-                                        <p data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#deleteClientModal" id="{{ $customer->id }}" ><span class="glyphicon glyphicon-trash"></span></button></p>
-                                    </td>
-                                </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </section>
+                    @endforeach
+                    </tbody>
+                </table>
+            </section>
         </div>
     </div>
 
@@ -58,9 +58,11 @@
                         <input class="form-control" type="text" style="display: none" id="editModalID">
                     </div>
                     <div class="form-group">
+                        Partita IVA
                         <input class="form-control " type="text" placeholder="P.IVA" id="editModalPI">
                     </div>
                     <div class="form-group">
+                        Ragione Sociale
                         <input class="form-control " type="text" placeholder="Ragione Sociale" id="editModalBusinessName">
                     </div>
                 </div>
@@ -92,5 +94,4 @@
             </div>
         </div>
     </div>
-
 @endsection

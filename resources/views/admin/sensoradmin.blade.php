@@ -71,21 +71,27 @@
                         <input class="form-control" type="text" style="display: none" id="editModalID">
                     </div>
                     <div class="form-group">
+                        Modello
                         <input class="form-control " type="text" placeholder="Modello" id="editModalModel">
                     </div>
                     <div class="form-group">
+                        Latitudine
                         <input class="form-control " type="text" placeholder="Latitudine" id="editModalLatitude">
                     </div>
                     <div class="form-group">
+                        Longitudine
                         <input class="form-control " type="text" placeholder="Longitudine" id="editModalLongitude">
                     </div>
                     <div class="form-group">
+                        Valore Massimo
                         <input class="form-control " type="text" placeholder="Valore Massimo" id="editModalValMax">
                     </div>
                     <div class="form-group">
+                        Valore Minimo
                         <input class="form-control " type="text" placeholder="Valore Minimo" id="editModalValMin">
                     </div>
                     <div class="form-group">
+                        Sito
                         <select class="form-control" id="editModalSite">
                             @foreach($sites as $site)
                                 <option value="{{ $site->id }}">{{ $site->Name }}</option>
@@ -93,6 +99,7 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        Marca
                         <select class="form-control" id="editModalBrand">
                             @foreach($brands as $brand)
                                 <option value="{{ $brand->id }}">{{ $brand->Description }}</option>
@@ -100,6 +107,7 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        Tipo
                         <select class="form-control" id="editModalType">
                             @foreach($types as $type)
                                 <option value="{{ $type->id }}">{{ $type->Description }}</option>

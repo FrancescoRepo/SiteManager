@@ -50,12 +50,12 @@
             </div>
 
             @yield('content')
-
         </section>
+
     </section>
     <!--main content end-->
 </section>
-<!-- container section start -->
+<!-- container section end -->
 
 
 <!-- javascripts -->
@@ -201,6 +201,8 @@
         $('#editModalLongitude').attr('value', sensor[3].trim());
         $('#editModalMaxVal').attr('value', sensor[4].trim());
         $('#editModalMinVal').attr('value', sensor[5].trim());
+        $('#editModalBrand option').filter(function(){ return $.trim( $(this).text() ) == sensor[6].trim();}).attr('selected', true);
+        $('#editModalType option').filter(function(){ return $.trim( $(this).text() ) == sensor[7].trim();}).attr('selected', true)
     });
 
     $('#deleteSensorModal').on('show.bs.modal', function(e) {
@@ -227,17 +229,6 @@
            type: 'POST',
            success: function(data) {
                location.reload();
-
-               //Capire come poter aggiornare la riga mantenendo il link
-               /*console.log(data['data']);
-               console.log(data['data']['Name']);
-                $('#sitesTable').bootstrapTable('updateRow', {
-                    index: rowSiteID,
-                    row: {
-                        Name: data['data']['Name'],
-                        Description: data['data']['Description']
-                    }
-                });*/
            }
         });
     });
@@ -271,6 +262,8 @@
         var Longitude = $('#editModalLongitude').val();
         var MaxVal = $('#editModalMaxVal').val();
         var MinVal = $('#editModalMinVal').val();
+        var Brand = $('#editModalBrand').val();
+        var Type = $('#editModalType').val();
 
         $.ajax({
             url: '{{ route('editSensor') }}',
@@ -281,23 +274,14 @@
                 Latitude : Latitude,
                 Longitude: Longitude,
                 MaxValue: MaxVal,
-                MinValue: MinVal
+                MinValue: MinVal,
+                brand_id: Brand,
+                type_id: Type
             },
             type: 'POST',
             success: function(data) {
-                console.log(data['data']);
+                //console.log(data['data']);
                 location.reload();
-
-                //Capire come poter aggiornare la riga mantenendo il link
-                /*console.log(data['data']);
-                 console.log(data['data']['Name']);
-                 $('#sitesTable').bootstrapTable('updateRow', {
-                 index: rowSiteID,
-                 row: {
-                 Name: data['data']['Name'],
-                 Description: data['data']['Description']
-                 }
-                 });*/
             }
         });
     });

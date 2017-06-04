@@ -68,9 +68,9 @@
                     </tr>
 
                     @if ($errors->has('Address'))
-                        <span class="help-block">
-                            <strong class="text-danger">{{ $errors->first('Address') }}</strong>
-                        </span>
+                        <div class="alert alert-danger">
+                            <strong>Attenzione! </strong>{{ $errors->first('Address') }}
+                        </div>
                     @endif
 
                     </tbody>

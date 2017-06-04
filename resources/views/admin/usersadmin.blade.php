@@ -69,30 +69,39 @@
                         <input class="form-control" type="text" style="display: none" id="editModalID">
                     </div>
                     <div class="form-group">
+                        Codice Fiscale
                         <input class="form-control " type="text" placeholder="Codice Fiscale" id="editModalCF">
                     </div>
                     <div class="form-group">
+                        Nome
                         <input class="form-control " type="text" placeholder="Nome" id="editModalName">
                     </div>
                     <div class="form-group">
+                        Cognome
                         <input class="form-control " type="text" placeholder="Cognome" id="editModalSurname">
                     </div>
                     <div class="form-group">
+                        Sesso
                         <input class="form-control " type="text" placeholder="Sesso" id="editModalSex">
                     </div>
                     <div class="form-group">
+                        Username
                         <input class="form-control " type="text" placeholder="Username" id="editModalUsername">
                     </div>
                     <div class="form-group">
+                        Password
                         <input class="form-control " type="text" placeholder="Password" id="editModalPassword">
                     </div>
                     <div class="form-group">
+                        Email
                         <input class="form-control " type="text" placeholder="Email" id="editModalEmail">
                     </div>
                     <div class="form-group">
+                        Telefono
                         <input class="form-control " type="text" placeholder="Telefono" id="editModalPhone">
                     </div>
                     <div class="form-group">
+                        Tipo
                         <select class="form-control" id="editModalUsertype">
                             @foreach($usersTypes as $type)
                                 <option value="{{ $type->id }}">{{ $type->Description }}</option>
@@ -100,6 +109,7 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        Cliente
                         <select class="form-control" id="editModalCustomer">
                             @foreach($customers as $customer)
                                 <option value="{{ $customer->id }}">{{ $customer->BusinessName }}</option>

@@ -66,9 +66,11 @@
                             <input class="form-control" type="text" style="display: none" id="editModalID">
                         </div>
                         <div class="form-group">
+                            Nome
                             <input class="form-control " type="text" placeholder="Nome" id="editModalName">
                         </div>
                         <div class="form-group">
+                            Descrizione
                             <textarea rows="2" class="form-control" placeholder="Descrizione" id="editModalDescription"></textarea>
                         </div>
                     </div>

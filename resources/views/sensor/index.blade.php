@@ -41,7 +41,7 @@
                         @endif
                         @foreach($sensors as $sensor)
                             <tr class='clickable-row' data-href="{{--route('sensors' ,  $site->id)--}}">
-                                <td><a href="{{--route('sensors', $site->id)--}}">{{ $sensor->Model }}</a></td>
+                                <td>{{ $sensor->Model }}</td>
                                 <td>{{ $sensor->Latitude }}</td>
                                 <td>{{ $sensor->Longitude }}</td>
                                 <td>{{ $sensor->MaxValue }}</td>
@@ -51,7 +51,7 @@
                                 <td>{{ $sensor->type->Description }}</td>
                                 @if($user->usertype->Description == "ResponsabileAziendale")
                                     <td>
-                                        <p data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#editSensorModal" id="{{ $sensor->id}} | {{$sensor->Model}} | {{$sensor->Latitude}} | {{$sensor->Longitude}} | {{$sensor->MaxValue}} | {{$sensor->MinValue}}"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                        <p data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#editSensorModal" id="{{ $sensor->id}} | {{$sensor->Model}} | {{$sensor->Latitude}} | {{$sensor->Longitude}} | {{$sensor->MaxValue}} | {{$sensor->MinValue}} | {{ $sensor->brand->Description }} | {{ $sensor->type->Description }}"><span class="glyphicon glyphicon-pencil"></span></button></p>
                                     </td>
                                     <td>
                                         <p data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#deleteSensorModal" id="{{ $sensor->id }}" ><span class="glyphicon glyphicon-trash"></span></button></p>
@@ -71,26 +71,47 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                        <h4 class="modal-title custom_align" id="Heading">Modifica il sito</h4>
+                        <h4 class="modal-title custom_align" id="Heading">Modifica il sensore</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
                             <input class="form-control" type="text" style="display: none" id="editModalID">
                         </div>
                         <div class="form-group">
+                            Modello
                             <input class="form-control " type="text" placeholder="Modello" id="editModalModel">
                         </div>
                         <div class="form-group">
+                            Latitudine
                             <input class="form-control " type="text" placeholder="Latitudine" id="editModalLatitude">
                         </div>
                         <div class="form-group">
+                            Longitudine
                             <input class="form-control " type="text" placeholder="Longitudine" id="editModalLongitude">
                         </div>
                         <div class="form-group">
+                            Valore Massimo
                             <input class="form-control " type="text" placeholder="Valore Massimo" id="editModalMaxVal">
                         </div>
                         <div class="form-group">
+                            Valore Minimo
                             <input class="form-control " type="text" placeholder="Valore Minimo" id="editModalMinVal">
+                        </div>
+                        <div class="form-group">
+                            Marca
+                            <select id="editModalBrand" class="form-control">
+                                @foreach($brands as $brand)
+                                    <option value="{{ $brand->id }}">{{ $brand->Description }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            Tipo
+                            <select id="editModalType" class="form-control">
+                                @foreach($types as $type)
+                                    <option value="{{ $type->id }}">{{ $type->Description }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer ">
@@ -111,7 +132,7 @@
                         <div class="form-group">
                             <input class="form-control" type="text" style="display: none" id="deleteModalID">
                         </div>
-                        <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Sei sicuro di voler eliminare questo sito?</div>
+                        <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Sei sicuro di voler eliminare questo sensore?</div>
 
                     </div>
                     <div class="modal-footer ">

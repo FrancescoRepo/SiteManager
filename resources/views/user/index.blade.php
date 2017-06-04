@@ -1,6 +1,7 @@
 @section('title', 'Impostazioni Account')
 @section('path', 'Il mio Profilo')
-@extends('master')
+
+@extends($user->usertype->id == "1" ? 'masteradmin' : 'master')
 
 @section('content')
 <div class="box-content">
@@ -63,9 +64,9 @@
                     <td><input type="email" id="Email" name="Email" value="{{ $user->Email }}" class="form-control"></td>
                     <td></td>
                     @if ($errors->has('Email'))
-                        <span class="help-block">
-                            <strong class="text-danger">{{ $errors->first('Email') }}</strong>
-                        </span>
+                        <div class="alert alert-danger">
+                            <strong>Attenzione! </strong>{{ $errors->first('Email') }}
+                        </div>
                     @endif
                 </tr>
                 <tr>
@@ -73,9 +74,9 @@
                     <td><input type="text" id="Phone" name="Phone" value="{{ $user->Phone }}" class="form-control" data-toggle="tooltip" data-placement="top" title="{{ $errors->first('Phone') }}"required></td>
                     <td></td>
                     @if ($errors->has('Phone'))
-                        <span class="help-block">
-                            <strong class="text-danger">{{ $errors->first('Phone') }}</strong>
-                        </span>
+                        <div class="alert alert-danger">
+                            <strong>Attenzione! </strong>{{ $errors->first('Phone') }}
+                        </div>
                     @endif
                 </tr>
                 <tr>

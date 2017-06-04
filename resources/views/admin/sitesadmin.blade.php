@@ -62,21 +62,26 @@
                         <input class="form-control" type="text" style="display: none" id="editModalID">
                     </div>
                     <div class="form-group">
+                        Nome
                         <input class="form-control " type="text" placeholder="Nome" id="editModalName">
                     </div>
                     <div class="form-group">
+                        Descrizione
                         <input class="form-control " type="text" placeholder="Descrizione" id="editModalDescription">
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="text" style="display: none" id="editModalAddressID">
                     </div>
                     <div class="form-group">
+                        Via
                         <input class="form-control " type="text" placeholder="Via" id="editModalStreet">
                     </div>
                     <div class="form-group">
+                        Numero Civico
                         <input class="form-control " type="text" placeholder="Civico" id="editModalStreetNumber">
                     </div>
                     <div class="form-group">
+                        Provincia
                         <input class="form-control " type="text" placeholder="Provincia" id="editModalProvince">
                     </div>
                 </div>
