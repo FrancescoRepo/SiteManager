@@ -16,6 +16,7 @@
                         <tr>
                             <th class="text-center" data-field="Name">Nome</th>
                             <th class="text-center" data-field="Description">Descrizione</th>
+                            <th class="text-center" data-field="Address">Indirizzo</th>
                             @if($user->usertype->Description == "ResponsabileAziendale")
                                 <th class="text-center">Modifica</th>
                                 <th class="text-center">Elimina</th>
@@ -37,9 +38,10 @@
                             <tr class='clickable-row' data-href="{{route('sensors' ,  $site->id)}}">
                                 <td><a href="{{route('sensors', $site->id)}}">{{ $site->Name }}</a></td>
                                 <td>{{ $site->Description }}</td>
+                                <td>{{ $site->address->Street }} {{ $site->address->StreetNumber }}, {{ $site->address->ZipCode }}</td>
                                 @if($user->usertype->Description == "ResponsabileAziendale")
                                     <td>
-                                        <p data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#editSiteModal" id="{{ $site->id }} | {{ $site->Name }} | {{ $site->Description }}"><span class="glyphicon glyphicon-pencil" id="btnOpenModalSite"></span></button></p>
+                                        <p data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#editSiteModal" id="{{ $site->id }} | {{ $site->Name }} | {{ $site->Description }} | {{ $site->address->id }} | {{ $site->address->Street }} | {{ $site->address->StreetNumber }} | {{ $site->address->ZipCode }}"><span class="glyphicon glyphicon-pencil" id="btnOpenModalSite"></span></button></p>
                                     </td>
                                     <td>
                                         <p data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#deleteSiteModal" id="{{ $site->id }}" ><span class="glyphicon glyphicon-trash"></span></button></p>
@@ -72,6 +74,21 @@
                         <div class="form-group">
                             Descrizione
                             <textarea rows="2" class="form-control" placeholder="Descrizione" id="editModalDescription"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" style="display: none" id="editModalAddressID">
+                        </div>
+                        <div class="form-group">
+                            Via
+                            <input class="form-control " type="text" placeholder="Via" id="editModalStreet">
+                        </div>
+                        <div class="form-group">
+                            Numero Civico
+                            <input class="form-control " type="text" placeholder="Numero Civico" id="editModalStreetNumber">
+                        </div>
+                        <div class="form-group">
+                            Codice Postale
+                            <input class="form-control " type="text" placeholder="Codice Postale" id="editModalZipCode">
                         </div>
                     </div>
                     <div class="modal-footer ">

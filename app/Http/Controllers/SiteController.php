@@ -65,7 +65,16 @@ class SiteController extends Controller
     public function edit(Request $request)
     {
         $site = Site::find($request->id);
-        $site->update($request->all());
+        $address = Address::find($request->AddressID);
+
+        $address->Street = $request->Street;
+        $address->StreetNumber = $request->StreetNumber;
+        $address->ZipCode = $request->ZipCode;
+
+        $address->save();
+        $site->Name = $request->Name;
+        $site->Description = $request->Description;
+        $site->save();
 
         $response = array(
             'success' => true,

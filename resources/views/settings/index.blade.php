@@ -22,7 +22,9 @@
                             </h4>
                             <p class="list-group-item-text">
                                 <select class="form-control">
-                                    <option>Ciao</option>
+                                    @foreach($sites as $site)
+                                        <option>{{ $site->Description }}</option>
+                                    @endforeach
                                 </select>
                             </p>
                         </div>

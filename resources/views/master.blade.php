@@ -186,6 +186,10 @@
         $('#editModalID').attr('value', site[0].trim());
         $('#editModalName').attr('value', site[1].trim());
         $('#editModalDescription').attr('value', site[2].trim());
+        $('#editModalAddressID').attr('value', site[3].trim());
+        $('#editModalStreet').attr('value', site[4].trim());
+        $('#editModalStreetNumber').attr('value', site[5].trim());
+        $('#editModalZipCode').attr('value', site[6].trim());
     });
 
     $('#deleteSiteModal').on('show.bs.modal', function(e) {
@@ -217,6 +221,10 @@
         var ID = $('#editModalID').val();
         var Name = $('#editModalName').val();
         var Description = $('#editModalDescription').val();
+        var AddressID = $('#editModalAddressID').val();
+        var Street = $('#editModalStreet').val();
+        var StreetNumber = $('#editModalStreetNumber').val();
+        var ZipCode = $('#editModalZipCode').val();
 
         $.ajax({
            url: '{{ route('editSite') }}',
@@ -224,7 +232,11 @@
                _token: "{{ csrf_token() }}",
                id: ID,
                Name: Name,
-               Description : Description
+               Description : Description,
+               AddressID: AddressID,
+               Street: Street,
+               StreetNumber: StreetNumber,
+               ZipCode: ZipCode
            },
            type: 'POST',
            success: function(data) {

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Site;
 
 class SettingController extends Controller
 {
     public function index()
     {
-        return view('settings.index');
+        $sites = Site::all();
+        return view('settings.index', compact('sites'));
     }
 }
