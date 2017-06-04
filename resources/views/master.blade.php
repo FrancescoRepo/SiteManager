@@ -50,12 +50,12 @@
             </div>
 
             @yield('content')
-        </section>
 
+        </section>
     </section>
     <!--main content end-->
 </section>
-<!-- container section end -->
+<!-- container section start -->
 
 
 <!-- javascripts -->
@@ -186,10 +186,6 @@
         $('#editModalID').attr('value', site[0].trim());
         $('#editModalName').attr('value', site[1].trim());
         $('#editModalDescription').attr('value', site[2].trim());
-        $('#editModalAddressID').attr('value', site[3].trim());
-        $('#editModalStreet').attr('value', site[4].trim());
-        $('#editModalStreetNumber').attr('value', site[5].trim());
-        $('#editModalZipCode').attr('value', site[6].trim());
     });
 
     $('#deleteSiteModal').on('show.bs.modal', function(e) {
@@ -205,8 +201,6 @@
         $('#editModalLongitude').attr('value', sensor[3].trim());
         $('#editModalMaxVal').attr('value', sensor[4].trim());
         $('#editModalMinVal').attr('value', sensor[5].trim());
-        $('#editModalBrand option').filter(function(){ return $.trim( $(this).text() ) == sensor[6].trim();}).attr('selected', true);
-        $('#editModalType option').filter(function(){ return $.trim( $(this).text() ) == sensor[7].trim();}).attr('selected', true)
     });
 
     $('#deleteSensorModal').on('show.bs.modal', function(e) {
@@ -221,10 +215,6 @@
         var ID = $('#editModalID').val();
         var Name = $('#editModalName').val();
         var Description = $('#editModalDescription').val();
-        var AddressID = $('#editModalAddressID').val();
-        var Street = $('#editModalStreet').val();
-        var StreetNumber = $('#editModalStreetNumber').val();
-        var ZipCode = $('#editModalZipCode').val();
 
         $.ajax({
            url: '{{ route('editSite') }}',
@@ -232,15 +222,22 @@
                _token: "{{ csrf_token() }}",
                id: ID,
                Name: Name,
-               Description : Description,
-               AddressID: AddressID,
-               Street: Street,
-               StreetNumber: StreetNumber,
-               ZipCode: ZipCode
+               Description : Description
            },
            type: 'POST',
            success: function(data) {
                location.reload();
+
+               //Capire come poter aggiornare la riga mantenendo il link
+               /*console.log(data['data']);
+               console.log(data['data']['Name']);
+                $('#sitesTable').bootstrapTable('updateRow', {
+                    index: rowSiteID,
+                    row: {
+                        Name: data['data']['Name'],
+                        Description: data['data']['Description']
+                    }
+                });*/
            }
         });
     });
@@ -274,8 +271,6 @@
         var Longitude = $('#editModalLongitude').val();
         var MaxVal = $('#editModalMaxVal').val();
         var MinVal = $('#editModalMinVal').val();
-        var Brand = $('#editModalBrand').val();
-        var Type = $('#editModalType').val();
 
         $.ajax({
             url: '{{ route('editSensor') }}',
@@ -286,14 +281,23 @@
                 Latitude : Latitude,
                 Longitude: Longitude,
                 MaxValue: MaxVal,
-                MinValue: MinVal,
-                brand_id: Brand,
-                type_id: Type
+                MinValue: MinVal
             },
             type: 'POST',
             success: function(data) {
-                //console.log(data['data']);
+                console.log(data['data']);
                 location.reload();
+
+                //Capire come poter aggiornare la riga mantenendo il link
+                /*console.log(data['data']);
+                 console.log(data['data']['Name']);
+                 $('#sitesTable').bootstrapTable('updateRow', {
+                 index: rowSiteID,
+                 row: {
+                 Name: data['data']['Name'],
+                 Description: data['data']['Description']
+                 }
+                 });*/
             }
         });
     });

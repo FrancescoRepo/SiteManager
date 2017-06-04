@@ -4,6 +4,39 @@
 @extends('master')
 
 @section('content')
+    <!-- Dashboard start -->
+    <div class="raw">
+
+        <div class="col-lg-6">
+            <section class="panel">
+                <header class="panel-heading">
+                    Temperatura
+                </header>
+                <canvas id="temp-chart" name="value">{{$id}}</canvas>
+            </section>
+            <section class="panel">
+                <header class="panel-heading">
+                    Umidità
+                </header>
+            </section>
+        </div>
+        <div class="col-lg-6">
+            <section class="panel">
+                <header class="panel-heading">
+                    Capacità
+                </header>
+            </section>
+            <section class="panel">
+                <header class="panel-heading">
+                    Pressione
+                </header>
+            </section>
+        </div>
+    </div>
+
+
+    <!-- Dashboard end -->
+
     <form>
         <div class="row">
             <div class="col-lg-12">
@@ -143,4 +176,6 @@
             </div>
         </div>
     </form>
+    <input id="site" type="hidden" value="">
 @endsection
+

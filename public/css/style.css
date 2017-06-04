@@ -8696,3 +8696,14 @@ span.customSelect.changed {
     margin-right: 0.5px;
 }
 
+footer {
+    position: absolute;
+    padding-top: 5px;
+    left: 0;
+    bottom: 0;
+    height: auto;
+    width: 100%;
+    background: #d4d4d6;
+    color: #6d6d6d;
+    text-align: center;
+}
