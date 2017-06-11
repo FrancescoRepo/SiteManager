@@ -8707,3 +8707,7 @@ footer {
     color: #6d6d6d;
     text-align: center;
 }
+
+canvas{
+    height: 200px;
+}

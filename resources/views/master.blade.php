@@ -26,6 +26,8 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/style-responsive.css')}}" rel="stylesheet"/>
     <link href="{{ asset('css/jquery-ui-1.10.4.min.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('js/Chart.js') }}"></script>
+    <script src="{{ asset('js/Chart.min.js') }}"></script>
 </head>
 
 <body>
@@ -62,6 +64,7 @@
 <script src="{{ asset('js/jquery-ui-1.10.4.min.js') }}"></script>
 <script src="{{ asset('js/jquery-1.8.3.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}"></script>
+
 <!-- bootstrap -->
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap-table.js') }}"></script>
@@ -79,11 +82,12 @@
 <script src="{{ asset('js/jquery.autosize.min.js') }}"></script>
 <script src="{{ asset('js/jquery.placeholder.min.js') }}"></script>
 <script src="{{ asset('js/morris.min.js') }}"></script>
-<script src="{{ asset('js/charts.js') }}"></script>
+
 <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
 
 <script>
 </script>
+
 
 <script type="text/javascript">
     var rowSiteID = 0;
@@ -328,5 +332,8 @@
     });
 
 </script>
+
+
+
 </body>
 </html>

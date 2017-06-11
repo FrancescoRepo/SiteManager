@@ -4,33 +4,69 @@
 @extends('master')
 
 @section('content')
+
+
     <!-- Dashboard start -->
     <div class="raw">
-
         <div class="col-lg-6">
-            <section class="panel">
-                <header class="panel-heading">
-                    Temperatura
-                </header>
-                <canvas id="temp-chart" name="value">{{$id}}</canvas>
-            </section>
-            <section class="panel">
-                <header class="panel-heading">
-                    Umidità
-                </header>
-            </section>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <a data-toggle="collapse"  href="#collapseOne">
+                        <div class="panel-heading" style="text-align: center;">
+                            <h2> Temperatura </h2>
+                        </div>
+                    </a>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <canvas id="tempChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <a data-toggle="collapse"  href="#collapseTwo">
+                        <div class="panel-heading" style="text-align: center;">
+                            <h2> Pressione </h2>
+                        </div>
+                    </a>
+                    <div id="collapseTwo" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <canvas id="presChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-lg-6">
-            <section class="panel">
-                <header class="panel-heading">
-                    Capacità
-                </header>
-            </section>
-            <section class="panel">
-                <header class="panel-heading">
-                    Pressione
-                </header>
-            </section>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <a data-toggle="collapse"  href="#collapseThree">
+                        <div class="panel-heading" style="text-align: center;">
+                            <h2> Umidità </h2>
+                        </div>
+                    </a>
+                    <div id="collapseThree" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <canvas id="tempChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <a data-toggle="collapse"  href="#collapseFour">
+                        <div class="panel-heading" style="text-align: center;">
+                            <h2> Capacità </h2>
+                        </div>
+                    </a>
+                    <div id="collapseFour" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <canvas id="tempChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -176,6 +212,74 @@
             </div>
         </div>
     </form>
-    <input id="site" type="hidden" value="">
+
+    <script>
+
+        var ctx = document.getElementById('tempChart').getContext('2d');
+
+        var elements = {
+            // The type of chart we want to create
+            type: 'line',
+
+            data: {
+                labels:["1","2","3","4","5"]
+            },
+            // Configuration options go here
+            options: { responsive: true,
+                maintainAspectRatio: false
+            }
+        }
+        var chart = new Chart(ctx, elements);
+
+        @foreach($data as $d)
+            var prova = [];
+                @foreach($d['values'] as $value)
+                    prova.push({{$value}});
+                @endforeach
+                 var newdataset = {
+                     label: "{{$d['model']}}",
+                     backgroundColor: 'rgba(255, 99, 132, 0)',
+                     borderColor: 'rgb(255, 99, 132)',
+                     data: prova
+                 };
+            chart.data.datasets.push(newdataset);
+        @endforeach
+
+        chart.update();
+
+
+    </script>
+
+    <script>
+
+        var ctx = document.getElementById('presChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+
+            // The data for our dataset
+            data: {
+                labels: ["January", "February", "July"],
+                datasets: [{
+                    label: "My First dataset",
+                    backgroundColor: 'rgba(255, 99, 132, 0)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [0, 10, 5],
+                },
+                    {
+                        label: "My  Second Dataset",
+                        backgroundColor: 'rgba(200, 99, 0,0)',
+                        borderColor: 'rgb(200, 99, 0)',
+                        data: [30, 15, 5],
+                    }]
+            },
+
+            // Configuration options go here
+            options: { responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+    </script>
 @endsection
 

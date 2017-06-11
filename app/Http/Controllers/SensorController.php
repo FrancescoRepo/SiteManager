@@ -8,6 +8,8 @@ use App\SensorType;
 use App\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
+use function Sodium\add;
 
 class SensorController extends Controller
 {
@@ -18,7 +20,13 @@ class SensorController extends Controller
         $sensors = $site->sensors;
         $brands = SensorBrand::all();
         $types = SensorType::all();
-        return view('sensor.index', compact('sensors', 'user', 'id', 'brands', 'types'));
+        $x = 5;
+        $data = array();
+        foreach($sensors as $sensor){
+            array_push($data,['model'=> $sensor->Model , 'values' => [0,1,2,3]]);
+        }
+        //dd($data);
+        return view('sensor.index', compact('sensors', 'user', 'id', 'brands', 'types', 'data'));
     }
 
     public function showAdd($id)
