@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Sensor;
 use App\SensorBrand;
+use App\SensorData;
 use App\SensorType;
 use App\Site;
 use Illuminate\Http\Request;
@@ -20,12 +21,18 @@ class SensorController extends Controller
         $sensors = $site->sensors;
         $brands = SensorBrand::all();
         $types = SensorType::all();
-        $x = 5;
+
         $data = array();
         foreach($sensors as $sensor){
-            array_push($data,['model'=> $sensor->Model , 'values' => [0,1,2,3]]);
+            $sensordatas = SensorData::all()->where('sensor_id', '=', $sensor->id);
+            $sensorvalues = array();
+            $sensordates = array();
+            foreach($sensordatas as $sensordata){
+                $sensorvalues[] = $sensordata->Value;
+                $sensordates[] = $sensordata->Date;
+            }
+            array_push($data,['model' => $sensor->Model , 'type' => $sensor->type->Description, 'dates' => $sensordates, 'values' => $sensorvalues]);
         }
-        //dd($data);
         return view('sensor.index', compact('sensors', 'user', 'id', 'brands', 'types', 'data'));
     }
 

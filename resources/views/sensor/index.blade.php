@@ -5,7 +5,6 @@
 
 @section('content')
 
-
     <!-- Dashboard start -->
     <div class="raw">
         <div class="col-lg-6">
@@ -48,7 +47,7 @@
                     </a>
                     <div id="collapseThree" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <canvas id="tempChart"></canvas>
+                            <canvas id="umChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -62,7 +61,7 @@
                     </a>
                     <div id="collapseFour" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <canvas id="tempChart"></canvas>
+                            <canvas id="capChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -214,72 +213,195 @@
     </form>
 
     <script>
-
+        var dates = [];
         var ctx = document.getElementById('tempChart').getContext('2d');
-
         var elements = {
             // The type of chart we want to create
             type: 'line',
 
             data: {
-                labels:["1","2","3","4","5"]
+                labels: [],
+                datasets: []
             },
             // Configuration options go here
-            options: { responsive: true,
+            options: {
+                responsive: true,
                 maintainAspectRatio: false
             }
-        }
-        var chart = new Chart(ctx, elements);
+        };
 
         @foreach($data as $d)
-            var prova = [];
+            var values = [];
+            var x = 18;
+
+            @if($d['type'] == "Temperatura")
                 @foreach($d['values'] as $value)
-                    prova.push({{$value}});
+                    values.push({{$value}});
                 @endforeach
-                 var newdataset = {
-                     label: "{{$d['model']}}",
-                     backgroundColor: 'rgba(255, 99, 132, 0)',
-                     borderColor: 'rgb(255, 99, 132)',
-                     data: prova
-                 };
-            chart.data.datasets.push(newdataset);
+
+                @foreach($d['dates'] as $date)
+                    if(dates.indexOf("{{$date}}") == -1) {
+                        dates.push('{{ $date }}');
+                    }
+                @endforeach
+
+                var newdataset = {
+                    label: "{{$d['model']}}",
+                    backgroundColor: 'rgba(255, 99, 132, 0)',
+                    borderColor: 'rgb(' + Math.floor((Math.random() * 249) + 1) + ', ' + Math.floor((Math.random() * 249) + 1) + ',' + Math.floor((Math.random() * 249) + 1) + ')',
+                    data: values
+                };
+
+                elements.data.labels = dates.slice().sort();
+                elements.data.datasets.push(newdataset);
+            @endif
         @endforeach
 
-        chart.update();
-
-
+        var chart = new Chart(ctx, elements);
     </script>
 
     <script>
-
-        var ctx = document.getElementById('presChart').getContext('2d');
-        var chart = new Chart(ctx, {
+        var dates = [];
+        var ctx = document.getElementById('capChart').getContext('2d');
+        var elements = {
             // The type of chart we want to create
             type: 'line',
 
-            // The data for our dataset
             data: {
-                labels: ["January", "February", "July"],
-                datasets: [{
-                    label: "My First dataset",
-                    backgroundColor: 'rgba(255, 99, 132, 0)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    data: [0, 10, 5],
-                },
-                    {
-                        label: "My  Second Dataset",
-                        backgroundColor: 'rgba(200, 99, 0,0)',
-                        borderColor: 'rgb(200, 99, 0)',
-                        data: [30, 15, 5],
-                    }]
+                labels: [],
+                datasets: []
             },
-
             // Configuration options go here
-            options: { responsive: true,
+            options: {
+                responsive: true,
                 maintainAspectRatio: false
             }
-        });
+        };
 
+        @foreach($data as $d)
+            var values = [];
+            var x = 18;
+
+            @if($d['type'] == "Capacità")
+                @foreach($d['values'] as $value)
+                    values.push({{$value}});
+                @endforeach
+
+                @foreach($d['dates'] as $date)
+                if(dates.indexOf("{{$date}}") == -1) {
+                    dates.push('{{ $date }}');
+                }
+                @endforeach
+
+                var newdataset = {
+                    label: "{{$d['model']}}",
+                    backgroundColor: 'rgba(255, 99, 132, 0)',
+                    borderColor: 'rgb(' + Math.floor((Math.random() * 249) + 1) + ', ' + Math.floor((Math.random() * 249) + 1) + ',' + Math.floor((Math.random() * 249) + 1) + ')',
+                    data: values
+                };
+
+                elements.data.labels = dates.slice().sort();
+                elements.data.datasets.push(newdataset);
+            @endif
+        @endforeach
+
+        var chart = new Chart(ctx, elements);
+    </script>
+
+    <script>
+        var dates = [];
+        var ctx = document.getElementById('presChart').getContext('2d');
+        var elements = {
+            // The type of chart we want to create
+            type: 'line',
+
+            data: {
+                labels: [],
+                datasets: []
+            },
+            // Configuration options go here
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        };
+
+        @foreach($data as $d)
+        var values = [];
+        var x = 18;
+
+            @if($d['type'] == "Pressione")
+                @foreach($d['values'] as $value)
+                values.push({{$value}});
+                @endforeach
+
+                @foreach($d['dates'] as $date)
+                    if(dates.indexOf("{{$date}}") == -1) {
+                        dates.push('{{ $date }}');
+                    }
+                @endforeach
+
+                var newdataset = {
+                        label: "{{$d['model']}}",
+                        backgroundColor: 'rgba(255, 99, 132, 0)',
+                        borderColor: 'rgb(' + Math.floor((Math.random() * 249) + 1) + ', ' + Math.floor((Math.random() * 249) + 1) + ',' + Math.floor((Math.random() * 249) + 1) + ')',
+                        data: values
+                    };
+
+                elements.data.labels = dates.slice().sort();
+                elements.data.datasets.push(newdataset);
+            @endif
+        @endforeach
+
+        var chart = new Chart(ctx, elements);
+    </script>
+
+    <script>
+        var dates = [];
+        var ctx = document.getElementById('umChart').getContext('2d');
+        var elements = {
+            // The type of chart we want to create
+            type: 'line',
+
+            data: {
+                labels: [],
+                datasets: []
+            },
+            // Configuration options go here
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        };
+
+        @foreach($data as $d)
+        var values = [];
+        var x = 18;
+
+            @if($d['type'] == "Umidità")
+                @foreach($d['values'] as $value)
+                values.push({{$value}});
+                @endforeach
+
+                @foreach($d['dates'] as $date)
+                    if(dates.indexOf("{{$date}}") == -1) {
+                        dates.push('{{ $date }}');
+                    }
+                @endforeach
+
+                var newdataset = {
+                        label: "{{$d['model']}}",
+                        backgroundColor: 'rgba(255, 99, 132, 0)',
+                        borderColor: 'rgb(' + Math.floor((Math.random() * 249) + 1) + ', ' + Math.floor((Math.random() * 249) + 1) + ',' + Math.floor((Math.random() * 249) + 1) + ')',
+                        data: values
+                    };
+
+                elements.data.labels = dates.slice().sort();
+                elements.data.datasets.push(newdataset);
+            @endif
+        @endforeach
+
+        var chart = new Chart(ctx, elements);
     </script>
 @endsection
 
