@@ -33,6 +33,10 @@
             </li>
         </ul>
         <!-- sidebar menu end-->
+        <div class="footer">
+            SiteManager v 1.00 <br>
+            © FourBit
+        </div>
     </div>
 </aside>
 <!--sidebar end-->

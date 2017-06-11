@@ -21,10 +21,10 @@ class SensorController extends Controller
         $sensors = $site->sensors;
         $brands = SensorBrand::all();
         $types = SensorType::all();
-
+        $errors = SensorData::all()->where('error_id', '>', 0);
         $data = array();
         foreach($sensors as $sensor){
-            $sensordatas = SensorData::all()->where('sensor_id', '=', $sensor->id);
+            $sensordatas = SensorData::all()->where('sensor_id', '=', $sensor->id)->where('error_id', '=', '');
             $sensorvalues = array();
             $sensordates = array();
             foreach($sensordatas as $sensordata){
@@ -33,7 +33,7 @@ class SensorController extends Controller
             }
             array_push($data,['model' => $sensor->Model , 'type' => $sensor->type->Description, 'dates' => $sensordates, 'values' => $sensorvalues]);
         }
-        return view('sensor.index', compact('sensors', 'user', 'id', 'brands', 'types', 'data'));
+        return view('sensor.index', compact('sensors', 'user', 'id', 'brands', 'types', 'data', 'errors'));
     }
 
     public function showAdd($id)

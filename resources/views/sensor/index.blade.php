@@ -7,6 +7,23 @@
 
     <!-- Dashboard start -->
     <div class="raw">
+        <div class="col-lg-12">
+            <div class="alert-panel">
+                <div class="alert-panel-heading"><strong>ERRORI RILEVATI</strong></div>
+                <div class="alert-panel-content">
+                    @foreach($errors as $error)
+                        <img src="img/logo.png" alt="error"><b>{{$error->Date}}</b> Il sensore {{$error->sensor->model}} ha riscontrato il seguente errore: <b>"<u>{{$error->error->Description}}</u>"</b>.
+                        <hr>
+                        NON CAPISCO PERCHE' LA CAZZO DI IMMAGINE NON ESCE
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="raw">
         <div class="col-lg-6">
             <div class="panel-group">
                 <div class="panel panel-default">
