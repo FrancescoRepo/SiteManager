@@ -28,27 +28,24 @@
                                 </select>
                             </p>
                         </div>
-
-                        <div class="list-group-item">
-                            <h4 class="list-group-item-heading">
-                                Trasferimento automatico dati
-
-                            </h4>
-                            <p class="list-group-item-text">
-                                <span class="label label-success">Operational</span>
-                            </p>
-                        </div>
-
                         <div class="list-group-item">
                             <h4 class="list-group-item-heading">
                                 Trasferisci a
-
                             </h4>
                             <p class="list-group-item-text">
                                 <select class="form-control">
-                                    <option>Ciao</option>
+                                    <option>MyApp</option>
+                                    <option>Manager SW</option>
                                 </select>
                             </p>
+                        </div>
+                        <div class="list-group-item">
+                            <h4 class="list-group-item-heading">
+                                Trasferimento automatico dati
+                            </h4>
+                            <div class="checkbox">
+                                <input type="checkbox" data-toggle="toggle" checked>
+                            </div>
                         </div>
                     </div>
                 </div>

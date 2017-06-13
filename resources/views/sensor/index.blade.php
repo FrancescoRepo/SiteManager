@@ -12,16 +12,15 @@
                 <div class="alert-panel-heading"><strong>ERRORI RILEVATI</strong></div>
                 <div class="alert-panel-content">
                     @foreach($errors as $error)
-                        <img src="{{ asset('img/logo.png') }}" alt="error"><b>{{$error->Date}}</b> Il sensore {{$error->sensor->model}} ha riscontrato il seguente errore: <b>"<u>{{$error->error->Description}}</u>"</b>.
+                        <img src="{{ asset('img/error.png') }}" style="height: 25px; width: 25px;" alt="error"><b>   {{$error->Date}}</b> Il sensore {{$error->sensor->model}} ha riscontrato il seguente errore: <b>"<u>{{$error->error->Description}}</u>"</b>.
                         <hr>
+                        <img src="{{ asset('img/error.png') }}" style="height: 25px; width: 25px;" alt="error"><b>   {{$error->Date}}</b> Il sensore {{$error->sensor->model}} ha riscontrato il seguente errore: <b>"<u>{{$error->error->Description}}</u>"</b>.
+
                     @endforeach
                 </div>
             </div>
         </div>
-
     </div>
-
-
     <div class="raw">
         <div class="col-lg-6">
             <div class="panel-group">

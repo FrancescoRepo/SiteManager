@@ -67,6 +67,7 @@
 
 <!-- bootstrap -->
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-toggle.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap-table.js') }}"></script>
 <!-- nice scroll -->
 <script src="{{ asset('js/jquery.scrollTo.min.js') }}"></script>

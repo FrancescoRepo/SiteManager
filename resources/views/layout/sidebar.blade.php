@@ -25,12 +25,15 @@
                 </a>
             </li>
 
-            <li>
-                <a href="{{ route('setting') }}">
-                    <i class="icon_toolbox"></i>
-                    <span>Impostazioni</span>
-                </a>
-            </li>
+            @if(Auth::user()->usertype_id != 3)
+                <li>
+                    <a href="{{ route('setting') }}">
+                        <i class="icon_toolbox"></i>
+                        <span>Impostazioni</span>
+                    </a>
+                </li>
+            @endif
+
         </ul>
         <!-- sidebar menu end-->
         <div class="footer">
