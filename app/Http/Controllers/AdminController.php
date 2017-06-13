@@ -149,8 +149,12 @@ class AdminController extends Controller
 
         if($type == "user") {
             $user = User::find($request->id);
-            $cryptPassword = Hash::make($request->password);
-            $request->merge(array('password' => $cryptPassword));
+            if($request->password != "") {
+                $cryptPassword = Hash::make($request->password);
+                $request->merge(array('password' => $cryptPassword));
+            } else {
+                unset($request['password']);
+            }
 
             $user->update($request->all());
 

@@ -106,11 +106,11 @@
         $('#editModalSurname').attr('value', user[3].trim());
         $('#editModalSex').attr('value', user[4].trim());
         $('#editModalUsername').attr('value', user[5].trim());
-        $('#editModalPassword').attr('value', user[6].trim());
-        $('#editModalEmail').attr('value', user[7].trim());
-        $('#editModalPhone').attr('value', user[8].trim());
-        $('#editModalUsertype option').filter(function(){ return $.trim( $(this).text() ) == user[9].trim();}).attr('selected', true);
-        $('#editModalCustomer option').filter(function(){ return $.trim( $(this).text() ) == user[10].trim();}).attr('selected', true);
+        //$('#editModalPassword').attr('value', user[6].trim());
+        $('#editModalEmail').attr('value', user[6].trim());
+        $('#editModalPhone').attr('value', user[7].trim());
+        $('#editModalUsertype option').filter(function(){ return $.trim( $(this).text() ) == user[8].trim();}).attr('selected', true);
+        $('#editModalCustomer option').filter(function(){ return $.trim( $(this).text() ) == user[9].trim();}).attr('selected', true);
     });
 
     $('#deleteUserModal').on('show.bs.modal', function(e) {

@@ -43,7 +43,7 @@
                                     <th class="text-center">{{$user->username}}</th>
                                     <th class="text-center">{{$user->usertype->Description}}</th>
                                     <td>
-                                        <p data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#editUserModal" id="{{ $user->id }} | {{ $user->CF }} | {{ $user->Name }} | {{ $user->Surname }} | {{ $user->Sex }} | {{ $user->username }} | {{ $user->password }} | {{ $user->Email }} | {{ $user->Phone }} | {{ $user->usertype->Description }} | {{ $user->client->BusinessName }}"><span class="glyphicon glyphicon-pencil" id="btnOpenModalUser"></span></button></p>
+                                        <p data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#editUserModal" id="{{ $user->id }} | {{ $user->CF }} | {{ $user->Name }} | {{ $user->Surname }} | {{ $user->Sex }} | {{ $user->username }} | {{ $user->Email }} | {{ $user->Phone }} | {{ $user->usertype->Description }} | {{ $user->client->BusinessName }}"><span class="glyphicon glyphicon-pencil" id="btnOpenModalUser"></span></button></p>
                                     </td>
                                     <td>
                                         <p data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#deleteUserModal" id="{{ $user->id }}" ><span class="glyphicon glyphicon-trash"></span></button></p>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="form-group">
                         Password
-                        <input class="form-control " type="text" placeholder="Password" id="editModalPassword">
+                        <input class="form-control " type="text" placeholder="Password: Lasciare vuoto per non aggiornarla" id="editModalPassword">
                     </div>
                     <div class="form-group">
                         Email

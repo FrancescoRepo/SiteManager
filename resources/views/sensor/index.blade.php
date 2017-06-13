@@ -12,9 +12,8 @@
                 <div class="alert-panel-heading"><strong>ERRORI RILEVATI</strong></div>
                 <div class="alert-panel-content">
                     @foreach($errors as $error)
-                        <img src="img/logo.png" alt="error"><b>{{$error->Date}}</b> Il sensore {{$error->sensor->model}} ha riscontrato il seguente errore: <b>"<u>{{$error->error->Description}}</u>"</b>.
+                        <img src="{{ asset('img/logo.png') }}" alt="error"><b>{{$error->Date}}</b> Il sensore {{$error->sensor->model}} ha riscontrato il seguente errore: <b>"<u>{{$error->error->Description}}</u>"</b>.
                         <hr>
-                        NON CAPISCO PERCHE' LA CAZZO DI IMMAGINE NON ESCE
                     @endforeach
                 </div>
             </div>
@@ -125,7 +124,7 @@
                         </tr>
                         @endif
                         @foreach($sensors as $sensor)
-                            <tr class='clickable-row' data-href="{{--route('sensors' ,  $site->id)--}}">
+                            <tr class='clickable-row'>
                                 <td>{{ $sensor->Model }}</td>
                                 <td>{{ $sensor->Latitude }}</td>
                                 <td>{{ $sensor->Longitude }}</td>
@@ -133,7 +132,7 @@
                                 <td>{{ $sensor->MinValue }}</td>
                                 <td>{{ $sensor->site->Description }}</td>
                                 <td>{{ $sensor->brand->Description }}</td>
-                                <td>{{ $sensor->type->Description }}</td>
+                                <td>{{  $sensor->type->Description }}</td>
                                 @if($user->usertype->Description == "ResponsabileAziendale")
                                     <td>
                                         <p data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#editSensorModal" id="{{ $sensor->id}} | {{$sensor->Model}} | {{$sensor->Latitude}} | {{$sensor->Longitude}} | {{$sensor->MaxValue}} | {{$sensor->MinValue}} | {{ $sensor->brand->Description }} | {{ $sensor->type->Description }}"><span class="glyphicon glyphicon-pencil"></span></button></p>
