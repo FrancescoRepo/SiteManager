@@ -14,8 +14,6 @@
                     @foreach($errors as $error)
                         <img src="{{ asset('img/error.png') }}" style="height: 25px; width: 25px;" alt="error"><b>   {{$error->Date}}</b> Il sensore {{$error->sensor->model}} ha riscontrato il seguente errore: <b>"<u>{{$error->error->Description}}</u>"</b>.
                         <hr>
-                        <img src="{{ asset('img/error.png') }}" style="height: 25px; width: 25px;" alt="error"><b>   {{$error->Date}}</b> Il sensore {{$error->sensor->model}} ha riscontrato il seguente errore: <b>"<u>{{$error->error->Description}}</u>"</b>.
-
                     @endforeach
                 </div>
             </div>

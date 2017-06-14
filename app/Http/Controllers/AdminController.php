@@ -34,7 +34,9 @@ class AdminController extends Controller
 
     public function sites(){
         $sites = Site::all();
-        return view ('admin.sitesadmin', compact('sites'));
+        $users = User::all();
+        $association =  Site::with('users')->get(); //ritorna tutti i record della tabella molti a molti
+        return view ('admin.sitesadmin', compact('sites', 'users', 'association'));
     }
 
     public function sensors(){
@@ -223,4 +225,5 @@ class AdminController extends Controller
         }
         return $response;
     }
+
 }

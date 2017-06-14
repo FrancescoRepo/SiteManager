@@ -59,7 +59,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input class="form-control" type="text" style="display: none" id="editModalID">
+                        <input class="form-control" style="display: none" type="text"  id="editModalID">
                     </div>
                     <div class="form-group">
                         Nome
@@ -83,6 +83,17 @@
                     <div class="form-group">
                         Provincia
                         <input class="form-control " type="text" placeholder="Provincia" id="editModalProvince">
+                    </div>
+                    <div class="form-group">
+                        <div id="users-list" style="overflow-y: scroll; height: 200px;">
+                            <h3>Utenti associati:</h3>
+                            @foreach($users as $user)
+                                <label>
+                                    <input type="checkbox"> {{$user->Surname}} {{$user->Name}}
+                                </label>
+                                <br>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
