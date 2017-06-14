@@ -11,6 +11,7 @@ use App\Sensor;
 use App\Site;
 use App\UserType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -173,6 +174,21 @@ class AdminController extends Controller
         } else if($type == "site") {
             $site = Site::find($request->id);
             $address = Address::find($request->AddressID);
+
+            if(count($request->users_id) > 0) {
+                foreach ($request->users_id as $id) {
+                    $user = User::find($id);
+
+                    $exist = DB::table('site_user')
+                            ->where('user_id', $id)
+                            ->where('site_id', $request->id)
+                            ->first();
+
+                    if(is_null($exist)) {
+                        $user->sites()->attach($request->id);
+                    }
+                }
+            }
 
             $address->Street = $request->Street;
             $address->Province = $request->Province;

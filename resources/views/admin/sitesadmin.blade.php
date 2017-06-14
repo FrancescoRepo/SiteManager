@@ -85,11 +85,11 @@
                         <input class="form-control " type="text" placeholder="Provincia" id="editModalProvince">
                     </div>
                     <div class="form-group">
+                        <h3>Utenti associati:</h3>
                         <div id="users-list" style="overflow-y: scroll; height: 200px;">
-                            <h3>Utenti associati:</h3>
                             @foreach($users as $user)
                                 <label>
-                                    <input type="checkbox"> {{$user->Surname}} {{$user->Name}}
+                                    <input type="checkbox" name="user[]" value="{{ $user->id }}"> {{$user->Surname}} {{$user->Name}}
                                 </label>
                                 <br>
                             @endforeach
