@@ -50,9 +50,9 @@
                         <td><input type="password" id="password" name="password" class="form-control"></td>
                         <td></td>
                     </tr>
-                    <tr>
-                        <td><input type="hidden" id="FirstLogin" name="FirstLogin" value="1"></td>
-                    </tr>
+
+                        <input type="hidden" id="FirstLogin" name="FirstLogin" value="1">
+
                     <tr>
                         <td>Email</td>
                         <td><input type="text" id="Email" name="Email" class="form-control"></td>
