@@ -152,6 +152,7 @@
                         $('#div_search_no_result').css('display', 'block');
                         console.log(data['data']);
                     } else {
+                        console.log(data['data']);
                         $('#div_search_ok_result').css('display', 'block');
                         $(row).css('display', 'block');
                         $(table).bootstrapTable('destroy');

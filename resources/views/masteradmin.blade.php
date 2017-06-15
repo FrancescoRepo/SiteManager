@@ -192,7 +192,8 @@
                 Email: Email,
                 Phone: Phone,
                 usertype_id: Usertype,
-                client_id: Client
+                client_id: Client,
+
             },
             type: 'POST',
             success: function(data) {
@@ -275,6 +276,11 @@
         var Street = $('#editModalStreet').val();
         var StreetNumber = $('#editModalStreetNumber').val();
         var Province = $('#editModalProvince').val();
+        var users_id = [];
+
+        $(':checkbox:checked').each(function(i){
+            users_id[i] = $(this).val();
+        });
 
         $.ajax({
             url: '{{route('edit', 'site') }}',
@@ -286,7 +292,8 @@
                 AddressID: AddressID,
                 Street: Street,
                 StreetNumber: StreetNumber,
-                Province: Province
+                Province: Province,
+                users_id: users_id
             },
             type: 'POST',
             success: function(data) {
