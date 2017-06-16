@@ -29,4 +29,5 @@ class CreateErrorsTable extends Migration
     {
         Schema::dropIfExists('errors');
     }
+
 }

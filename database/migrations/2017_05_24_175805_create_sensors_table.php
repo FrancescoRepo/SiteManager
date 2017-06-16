@@ -39,4 +39,5 @@ class CreateSensorsTable extends Migration
     {
         Schema::dropIfExists('sensors');
     }
+
 }

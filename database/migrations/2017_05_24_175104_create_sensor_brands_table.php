@@ -29,4 +29,5 @@ class CreateSensorBrandsTable extends Migration
     {
         Schema::dropIfExists('sensor_brands');
     }
+
 }
