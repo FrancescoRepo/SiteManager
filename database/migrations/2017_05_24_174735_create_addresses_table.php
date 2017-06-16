@@ -34,4 +34,5 @@ class CreateAddressesTable extends Migration
     {
         Schema::dropIfExists('addresses');
     }
+
 }
