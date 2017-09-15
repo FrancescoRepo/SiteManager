@@ -34,11 +34,21 @@
                         <td>Provincia</td>
                         <td><input type="text" id="Province" name="Province" class="form-control" required></td>
                         <td></td>
+                        @if ($errors->has('Province'))
+                            <div class="alert alert-danger">
+                                <strong>Attenzione! </strong>{{ $errors->first('Province') }}
+                            </div>
+                        @endif
                     </tr>
                     <tr>
                         <td>Città</td>
                         <td><input type="text" id="City" name="City" class="form-control" required></td>
                         <td></td>
+                        @if ($errors->has('City'))
+                            <div class="alert alert-danger">
+                                <strong>Attenzione! </strong>{{ $errors->first('City') }}
+                            </div>
+                        @endif
                     </tr>
                     <tr>
                         <td>Via</td>
@@ -49,11 +59,21 @@
                         <td>Civico</td>
                         <td><input type="text" id="StreetNumber" name="StreetNumber" class="form-control"></td>
                         <td></td>
+                        @if ($errors->has('StreetNumber'))
+                            <div class="alert alert-danger">
+                                <strong>Attenzione! </strong>{{ $errors->first('StreetNumber') }}
+                            </div>
+                        @endif
                     </tr>
                     <tr>
                         <td>CodicePostale</td>
                         <td><input type="text" id="ZipCode" name="ZipCode" class="form-control"></td>
                         <td></td>
+                        @if ($errors->has('ZipCode'))
+                            <div class="alert alert-danger">
+                                <strong>Attenzione! </strong>{{ $errors->first('ZipCode') }}
+                            </div>
+                        @endif
                     </tr>
                     <tr>
                         <td>Utente</td>

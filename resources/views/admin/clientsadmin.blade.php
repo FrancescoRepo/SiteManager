@@ -30,8 +30,8 @@
                     @foreach($customers as $customer)
                         <tr>
                             <th class="text-center">{{$customer->id}}</th>
-                            <th class="text-center">{{$customer->BusinessName}}</th>
                             <th class="text-center">{{$customer->PI}}</th>
+                            <th class="text-center">{{$customer->BusinessName}}</th>
                             <td>
                                 <p data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#editClientModal" id="{{ $customer->id }} | {{ $customer->PI }} | {{ $customer->BusinessName }}"><span class="glyphicon glyphicon-pencil" id="btnOpenModalSite"></span></button></p>
                             </td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Address;
 use App\Site;
 use Illuminate\Http\Request;
+use Tests\Feature\TestClass;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,7 +31,10 @@ class SiteController extends Controller
     public function create(Request $request)
     {
         $rules = array(
-            'ZipCode' => 'string|min:5|max:5'
+            'Province' => 'regex:^[A-Z]{2}$^',
+            'City' => 'regex:^[a-zA-Z]$^',
+            'ZipCode' => 'regex:^[0-9]{5}$^',
+            'StreetNumber' => 'regex:^[0-9]$^'
         );
 
         $validator = Validator::make($request->all(), $rules);

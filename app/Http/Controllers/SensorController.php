@@ -10,6 +10,7 @@ use App\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection;
+use Tests\Feature\TestClass;
 use function Sodium\add;
 
 class SensorController extends Controller
@@ -48,6 +49,7 @@ class SensorController extends Controller
     public function create(Request $request)
     {
         $sensor = new Sensor($request->all());
+
         $sensor->save();
 
         $site = Site::find($request->site_id);
@@ -58,6 +60,7 @@ class SensorController extends Controller
     public function edit(Request $request)
     {
         $sensor = Sensor::find($request->id);
+
         $sensor->update($request->all());
 
         $response = array(

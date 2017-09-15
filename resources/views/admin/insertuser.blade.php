@@ -19,16 +19,31 @@
                         <td>CF</td>
                         <td><input type="text" id="CF" name="CF" class="form-control" required></td>
                         <td></td>
+                        @if ($errors->has('CF'))
+                            <div class="alert alert-danger">
+                                <strong>Attenzione! </strong>{{ $errors->first('CF') }}
+                            </div>
+                        @endif
                     </tr>
                     <tr>
                         <td>Nome</td>
                         <td><input type="text" id="Name" name="Name" class="form-control" required></td>
                         <td></td>
+                        @if ($errors->has('Name'))
+                            <div class="alert alert-danger">
+                                <strong>Attenzione! </strong>{{ $errors->first('Name') }}
+                            </div>
+                        @endif
                     </tr>
                     <tr>
                         <td>Cognome</td>
                         <td><input type="text" id="Surname" name="Surname" class="form-control" required></td>
                         <td></td>
+                        @if ($errors->has('Surname'))
+                            <div class="alert alert-danger">
+                                <strong>Attenzione! </strong>{{ $errors->first('Surname') }}
+                            </div>
+                        @endif
                     </tr>
                     <tr>
                         <td>Sesso</td>
@@ -62,6 +77,11 @@
                         <td>Telefono</td>
                         <td><input type="text" id="Phone" name="Phone" class="form-control" required></td>
                         <td></td>
+                        @if ($errors->has('Phone'))
+                            <div class="alert alert-danger">
+                                <strong>Attenzione! </strong>{{ $errors->first('Phone') }}
+                            </div>
+                        @endif
                     </tr>
                     <tr>
                         <td>Tipo utente</td>

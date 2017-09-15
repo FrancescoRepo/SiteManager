@@ -29,11 +29,21 @@
                     <td>Nome</td>
                     <td><input type="text" id="Name" name="Name" value="{{ $user->Name }}" class="form-control" required></td>
                     <td></td>
+                    @if ($errors->has('Name'))
+                        <div class="alert alert-danger">
+                            <strong>Attenzione! </strong>{{ $errors->first('Name') }}
+                        </div>
+                    @endif
                 </tr>
                 <tr>
                     <td>Cognome</td>
                     <td><input type="text" id="Surname" name="Surname" value="{{ $user->Surname }}" class="form-control" required></td>
                     <td></td>
+                    @if ($errors->has('Surname'))
+                        <div class="alert alert-danger">
+                            <strong>Attenzione! </strong>{{ $errors->first('Surname') }}
+                        </div>
+                    @endif
                 </tr>
                 <tr>
                     <td>Sesso</td>
@@ -68,11 +78,6 @@
                     <td>Email</td>
                     <td><input type="email" id="Email" name="Email" value="{{ $user->Email }}" class="form-control"></td>
                     <td></td>
-                    @if ($errors->has('Email'))
-                        <div class="alert alert-danger">
-                            <strong>Attenzione! </strong>{{ $errors->first('Email') }}
-                        </div>
-                    @endif
                 </tr>
                 <tr>
                     <td>Telefono</td>

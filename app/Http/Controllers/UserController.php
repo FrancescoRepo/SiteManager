@@ -26,8 +26,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $rules = array(
-            'Email' => 'email',
-            'Phone' => 'string|min:10|max:10'
+            'CF' => 'regex:^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$^',
+            'Name' => 'regex:^[a-zA-Z]+$^',
+            'Surname' => 'regex:^[a-zA-Z]+$^',
+            'Phone' => 'regex:^[0-9]{9,10}$^'
         );
 
         $validator = Validator::make($request->all(), $rules);
