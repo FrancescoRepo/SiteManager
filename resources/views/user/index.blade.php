@@ -19,6 +19,11 @@
                     <td>Codice Fiscale</td>
                     <td><input type="text" id="CF" name="CF" value="{{ $user->CF }}" class="form-control" required></td>
                     <td></td>
+                    @if ($errors->has('CF'))
+                        <div class="alert alert-danger">
+                            <strong>Attenzione! </strong>{{ $errors->first('CF') }}
+                        </div>
+                    @endif
                 </tr>
                 <tr>
                     <td>Nome</td>

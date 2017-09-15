@@ -15,12 +15,16 @@
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
+    "laravel/browser-kit-testing": "1.*",
+    "laravel/dusk": "v1.1",
     "mockery/mockery": "0.9.*",
     "phpunit/phpunit": "~5.7"
   },
   "autoload": {
     "classmap": [
-      "database"
+      "database",
+      "tests/TestCase.php",
+      "tests/BrowserKitTestCase.php"
     ],
     "psr-4": {
       "App\\": "app/"

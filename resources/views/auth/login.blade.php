@@ -29,7 +29,7 @@
                     </div>
                 @endif
 
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" id="login" name="login">Login</button>
             </div>
         </form>
     </div>

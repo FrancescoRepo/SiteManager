@@ -2,22 +2,20 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
+use Tests\BrowserKitTestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class ClassTest extends BrowserKitTestCase
 {
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testExample()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
     }
 }
