@@ -77,7 +77,6 @@ class AdminController extends Controller
 
     public function add(Request $request, $type)
     {
-        $response = array();
         if($type == "user") {
             $cryptPassword = Hash::make($request->password);
             $request->merge(array('password' => $cryptPassword));
@@ -102,7 +101,7 @@ class AdminController extends Controller
             $rules = array(
                 'PI' => 'regex:^[0-9]{11}$^',
                 'Province' => 'regex:^[A-Z]{2}$^',
-                'City' => 'regex:^[a-zA-Z]$^',
+                'City' => 'regex:^[a-zA-Z]+$^',
                 'ZipCode' => 'regex:^[0-9]{5}$^',
                 'StreetNumber' => 'regex:^[0-9]$^'
             );
@@ -143,14 +142,14 @@ class AdminController extends Controller
         } else if($type == "site") {
             $rules = array(
                 'Province' => 'regex:^[A-Z]{2}$^',
-                'City' => 'regex:^[a-zA-Z]$^',
+                'City' => 'regex:^[a-zA-Z]+$^',
                 'ZipCode' => 'regex:^[0-9]{5}$^',
                 'StreetNumber' => 'regex:^[0-9]$^'
             );
 
             $validator = Validator::make($request->all(), $rules);
             if($validator->fails()) {
-                return redirect(route('adminSites'))->withErrors($errors);
+                return redirect('/admin/site/showAdd')->withErrors($validator);
             } else {
                 $user = User::find($request->user_id);
 
@@ -171,7 +170,7 @@ class AdminController extends Controller
                         'Address' => "Attenzione: L'indirizzo è già utilizzato"
                     );
 
-                    return redirect(route('showAdd', 'site'))->withErrors($errors);
+                    return redirect('/admin/site/showAdd')->withErrors($errors);
                 } else {
                     $address->save();
                     $site->address_id = $address->id;
@@ -183,11 +182,22 @@ class AdminController extends Controller
                 }
             }
         } else if($type == "sensor") {
-            $sensor = new Sensor($request->all());
+            $rules = array(
+                'Latitude' => 'regex:^-?\d{1,2}\.\d{6,}$^',
+                'Longitude' => 'regex:^-?\d{1,2}\.\d{6,}$^',
+                'MaxValue' => 'integer',
+                'MinValue' => 'integer'
+            );
 
-            $sensor->save();
+            $validator = Validator::make($request->all(), $rules);
+            if($validator->fails()) {
+                return redirect('/admin/sensor/showAdd')->withErrors($validator);
+            } else {
+                $sensor = new Sensor($request->all());
+                $sensor->save();
 
-            return redirect(route('adminSensors'));
+                return redirect(route('adminSensors'));
+            }
         }
     }
 
@@ -277,7 +287,10 @@ class AdminController extends Controller
                 'success' => 'true'
             );
         } else if($type == "site") {
-            Site::destroy($request->id);
+            $site = Site::find($request->id);
+            $site->address()->delete();
+            $site->delete();
+            //Site::destroy($request->id);
 
             $response = array(
                 'success' => 'true'
