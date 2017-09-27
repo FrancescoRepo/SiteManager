@@ -3,16 +3,14 @@
 namespace Tests\Feature;
 
 use Tests\BrowserKitTestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+
 
 class ClassTest extends BrowserKitTestCase
 {
     /**
      * Test per controllare che il login da parte del superadmin vada a buon fine
      */
-    public function testLoginAdmin()
+    public function testLoginAdmin() //white
     {
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
     }
@@ -20,7 +18,7 @@ class ClassTest extends BrowserKitTestCase
     /**
      * Test per controllare che il login da parte del responsabile aziendale vada a buon fine
      */
-    public function testLoginManager()
+    public function testLoginManager() //white
     {
         $this->visit('/login')->type('roberta', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
     }
@@ -28,7 +26,7 @@ class ClassTest extends BrowserKitTestCase
     /**
      * Test per controllare che il login da parte del dipendente vada a buon fine
      */
-    public function testLoginEmployee()
+    public function testLoginEmployee() //white
     {
         $this->visit('/login')->type('daniela', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
     }
@@ -36,15 +34,15 @@ class ClassTest extends BrowserKitTestCase
     /**
      * Test login con dati non validi
      */
-    public function testLoginWrong()
+    public function testLoginWrong() //black
     {
-        $this->visit('/login')->type('daniela', 'username')->type('b', 'password')->press('Login')->seePageIs('/welcome');
+        $this->visit('/login')->type('daniela', 'username')->type('b', 'password')->press('Login')->seeStatusCode(200);
     }
 
     /**
      * Test per controllare che l'aggiunta di un utente da parte dell'admin risulta valida
      */
-    public function testAdminAddUserValid()
+    public function testAdminAddUserValid() //white
     {
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
@@ -76,7 +74,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('fra@hotmail.com', 'Email')
             ->type('3334107565', 'Phone')
             ->press('insert_user')
-            ->seePageIs('/admin/users');
+            ->seePageIs('/admin/user/showAdd');
     }
 
     /**
@@ -95,7 +93,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('fra@hotmail.com', 'Email')
             ->type('3334107565', 'Phone')
             ->press('insert_user')
-            ->seePageIs('/admin/users');
+            ->seePageIs('/admin/user/showAdd');
     }
 
     /**
@@ -114,7 +112,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('fra@hotmail.com', 'Email')
             ->type('3334107565', 'Phone')
             ->press('insert_user')
-            ->seePageIs('/admin/users');
+            ->seePageIs('/admin/user/showAdd');
     }
 
     /**
@@ -133,7 +131,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('fra@hotmail.com', 'Email')
             ->type('aaaaaa', 'Phone')
             ->press('insert_user')
-            ->seePageIs('/admin/users');
+            ->seePageIs('/admin/user/showAdd');
     }
 
     /**
@@ -173,7 +171,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('10', 'StreetNumber')
             ->type('70122', 'ZipCode')
             ->press('insert_client')
-            ->seePageIs('/admin/clients');
+            ->seePageIs('/admin/client/showAdd');
     }
 
     /**
@@ -193,7 +191,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('10', 'StreetNumber')
             ->type('70122', 'ZipCode')
             ->press('insert_client')
-            ->seePageIs('/admin/clients');
+            ->seePageIs('/admin/client/showAdd');
     }
 
     /**
@@ -213,7 +211,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('10', 'StreetNumber')
             ->type('70122', 'ZipCode')
             ->press('insert_client')
-            ->seePageIs('/admin/clients');
+            ->seePageIs('/admin/client/showAdd');
     }
 
     /**
@@ -233,7 +231,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('AB', 'StreetNumber')
             ->type('70122', 'ZipCode')
             ->press('insert_client')
-            ->seePageIs('/admin/clients');
+            ->seePageIs('/admin/client/showAdd');
     }
 
     /**
@@ -253,7 +251,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('10', 'StreetNumber')
             ->type('701226', 'ZipCode')
             ->press('insert_client')
-            ->seePageIs('/admin/clients');
+            ->seePageIs('/admin/client/showAdd');
     }
 
     /**
@@ -293,7 +291,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('78', 'StreetNumber')
             ->type('70123', 'ZipCode')
             ->press('insert_site')
-            ->seePageIs('/admin/sites');
+            ->seePageIs('/admin/site/showAdd');
     }
 
     /**
@@ -313,7 +311,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('78', 'StreetNumber')
             ->type('70123', 'ZipCode')
             ->press('insert_site')
-            ->seePageIs('/admin/sites');
+            ->seePageIs('/admin/site/showAdd');
     }
 
     /**
@@ -333,11 +331,11 @@ class ClassTest extends BrowserKitTestCase
             ->type('AB', 'StreetNumber')
             ->type('70123', 'ZipCode')
             ->press('insert_site')
-            ->seePageIs('/admin/sites');
+            ->seePageIs('/admin/site/showAdd');
     }
 
     /**
-     * Test aggiunta sito da parte dell'admin con codice civio errato
+     * Test aggiunta sito da parte dell'admin con codice civico errato
      */
     public function testAdminAddSiteWrongZipCode()
     {
@@ -353,7 +351,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('78', 'StreetNumber')
             ->type('701236', 'ZipCode')
             ->press('insert_site')
-            ->seePageIs('/admin/sites');
+            ->seePageIs('/admin/site/showAdd');
     }
 
     /**
@@ -387,7 +385,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('100', 'MaxValue')
             ->type('20', 'MinValue')
             ->press('insert_sensor')
-            ->seePageIs('/admin/sensors');
+            ->seePageIs('/admin/sensor/showAdd');
     }
 
     /**
@@ -404,7 +402,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('100', 'MaxValue')
             ->type('20', 'MinValue')
             ->press('insert_sensor')
-            ->seePageIs('/admin/sensors');
+            ->seePageIs('/admin/sensor/showAdd');
     }
 
     /**
@@ -421,7 +419,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('100.50', 'MaxValue')
             ->type('20', 'MinValue')
             ->press('insert_sensor')
-            ->seePageIs('/admin/sensors');
+            ->seePageIs('/admin/sensor/showAdd');
     }
 
     /**
@@ -438,6 +436,6 @@ class ClassTest extends BrowserKitTestCase
             ->type('100', 'MaxValue')
             ->type('20.50', 'MinValue')
             ->press('insert_sensor')
-            ->seePageIs('/admin/sensors');
+            ->seePageIs('/admin/sensor/showAdd');
     }
 }
