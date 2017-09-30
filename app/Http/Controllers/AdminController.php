@@ -83,8 +83,8 @@ class AdminController extends Controller
 
             $rules = array(
                 'CF' => 'regex:^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$^',
-                'Name' => 'regex:^[a-zA-Z]+$^',
-                'Surname' => 'regex:^[a-zA-Z]+$^',
+                'Name' => 'regex:^[a-zA-Z]{2,}$^',
+                'Surname' => 'regex:^[a-zA-Z]{2,}$^',
                 'Phone' => 'regex:^[0-9]{9,10}$^'
             );
 
@@ -102,8 +102,8 @@ class AdminController extends Controller
                 'PI' => 'regex:^[0-9]{11}$^',
                 'Province' => 'regex:^[A-Z]{2}$^',
                 'City' => 'regex:^[a-zA-Z]+$^',
-                'ZipCode' => 'regex:^[0-9]{5}$^',
-                'StreetNumber' => 'regex:^[0-9]$^'
+                'StreetNumber' => 'regex:^[0-9]+[a-zA-Z]$^',
+                'ZipCode' => 'regex:^[0-9]{5}$^'
             );
 
             $validator = Validator::make($request->all(), $rules);
@@ -138,13 +138,12 @@ class AdminController extends Controller
                     return redirect(route('adminClients'));
                 }
             }
-
         } else if($type == "site") {
             $rules = array(
                 'Province' => 'regex:^[A-Z]{2}$^',
                 'City' => 'regex:^[a-zA-Z]+$^',
-                'ZipCode' => 'regex:^[0-9]{5}$^',
-                'StreetNumber' => 'regex:^[0-9]$^'
+                'StreetNumber' => 'regex:^[0-9]+[a-zA-Z]$^',
+                'ZipCode' => 'regex:^[0-9]{5}$^'
             );
 
             $validator = Validator::make($request->all(), $rules);
