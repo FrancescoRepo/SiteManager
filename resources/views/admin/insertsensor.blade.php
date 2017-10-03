@@ -22,7 +22,7 @@
                     </tr>
                     <tr>
                         <td>Latitudine</td>
-                        <td><input type="number" id="Latitude" name="Latitude" class="form-control" required></td>
+                        <td><input type="number" step="any" id="Latitude" name="Latitude" class="form-control" required></td>
                         <td></td>
                         @if ($errors->has('Latitude'))
                             <div class="alert alert-danger">
@@ -32,7 +32,7 @@
                     </tr>
                     <tr>
                         <td>Longitudine</td>
-                        <td><input type="number" id="Longitude" name="Longitude" class="form-control" required></td>
+                        <td><input type="number" step="any" id="Longitude" name="Longitude" class="form-control" required></td>
                         <td></td>
                         @if ($errors->has('Longitude'))
                             <div class="alert alert-danger">

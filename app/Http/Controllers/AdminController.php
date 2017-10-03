@@ -85,7 +85,7 @@ class AdminController extends Controller
                 'CF' => 'regex:^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$^',
                 'Name' => 'regex:^[a-zA-Z]{2,}$^',
                 'Surname' => 'regex:^[a-zA-Z]{2,}$^',
-                'Phone' => 'regex:^[0-9]{9,10}$^'
+                'Phone' => 'digits_between:9,10'
             );
 
             $validator = Validator::make($request->all(), $rules);
@@ -102,7 +102,7 @@ class AdminController extends Controller
                 'PI' => 'regex:^[0-9]{11}$^',
                 'Province' => 'regex:^[A-Z]{2}$^',
                 'City' => 'regex:^[a-zA-Z]+$^',
-                'StreetNumber' => 'regex:^[0-9]+[a-zA-Z]$^',
+                'StreetNumber' => 'regex:^[0-9]+[a-zA-Z]?$^',
                 'ZipCode' => 'regex:^[0-9]{5}$^'
             );
 
@@ -142,7 +142,7 @@ class AdminController extends Controller
             $rules = array(
                 'Province' => 'regex:^[A-Z]{2}$^',
                 'City' => 'regex:^[a-zA-Z]+$^',
-                'StreetNumber' => 'regex:^[0-9]+[a-zA-Z]$^',
+                'StreetNumber' => 'regex:^[0-9]+[a-zA-Z]?$^',
                 'ZipCode' => 'regex:^[0-9]{5}$^'
             );
 
@@ -164,7 +164,7 @@ class AdminController extends Controller
                 $address->StreetNumber = $request->StreetNumber;
                 $address->ZipCode = $request->ZipCode;
 
-                if(Address::where('Street', '=', $request->Street)->exists()) {
+                if(Address::where('StreetNumber', '=', $request->StreetNumber)->exists()) {
                     $errors = array(
                         'Address' => "Attenzione: L'indirizzo è già utilizzato"
                     );
@@ -182,8 +182,8 @@ class AdminController extends Controller
             }
         } else if($type == "sensor") {
             $rules = array(
-                'Latitude' => 'regex:^-?\d{1,2}\.\d{6,}$^',
-                'Longitude' => 'regex:^-?\d{1,2}\.\d{6,}$^',
+                'Latitude' => 'regex:^-?[0-9]{1,2}\.\d{6,}$^',
+                'Longitude' => 'regex:^-?[0-9]{1,2}\.\d{6,}$^',
                 'MaxValue' => 'integer',
                 'MinValue' => 'integer'
             );

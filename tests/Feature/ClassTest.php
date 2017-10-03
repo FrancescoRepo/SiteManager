@@ -39,405 +39,6 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('daniela', 'username')->type('b', 'password')->press('Login')->seeStatusCode(200);
     }
 
-    /**
-     * Test per controllare che l'aggiunta di un utente da parte dell'admin risulta valida
-     */
-    public function testAdminAddUserValid() //white
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/user/showAdd')
-            ->type('SNAMRA80D54A662I', 'CF')
-            ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
-            ->type('missmaria80', 'username')
-            ->type('a', 'password')
-            ->type('missmaria@gmail.com', 'Email')
-            ->type('3334107577', 'Phone')
-            ->press('insert_user')
-            ->seePageIs('/admin/users');
-    }
-
-    /**
-     * Test aggiunta utente da parte dell'admin con Codice Fiscale non valido
-     */
-    public function testAdminAddUserCFWrong()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/user/showAdd')
-            ->type('SNAMRA80D54A66', 'CF')
-            ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
-            ->type('missmaria80', 'username')
-            ->type('a', 'password')
-            ->type('missmaria80@gmail.com', 'Email')
-            ->type('3334107587', 'Phone')
-            ->press('insert_user')
-            ->seePageIs('/admin/user/showAdd');
-    }
-
-    /**
-     * Test aggiunta utente da parte dell'admin con Nome non valido
-     */
-    public function testAdminAddUserNameWrong()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/user/showAdd')
-            ->type('SNAMRA80D54A662I', 'CF')
-            ->type('11114', 'Name')
-            ->type('Sanò', 'Surname')
-            ->type('missmaria80', 'username')
-            ->type('a', 'password')
-            ->type('missmaria80@gmail.com', 'Email')
-            ->type('3334107565', 'Phone')
-            ->press('insert_user')
-            ->seePageIs('/admin/user/showAdd');
-    }
-
-    /**
-     * Test aggiunta utente da parte dell'admin con Cognome non valido
-     */
-    public function testAdminAddUserSurnameWrong()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/user/showAdd')
-            ->type('SNAMRA80D54A662I', 'CF')
-            ->type('Maria', 'Name')
-            ->type('1111154', 'Surname')
-            ->type('missmaria80', 'username')
-            ->type('a', 'password')
-            ->type('missmaria80@gmail.com', 'Email')
-            ->type('3334107576', 'Phone')
-            ->press('insert_user')
-            ->seePageIs('/admin/user/showAdd');
-    }
-
-    /**
-     * Test aggiunta utente da parte dell'admin con Telefono non valido
-     */
-    public function testAdminAddUserPhoneWrong()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/user/showAdd')
-            ->type('SNAMRA80D54A662I', 'CF')
-            ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
-            ->type('missmaria80', 'username')
-            ->type('a', 'password')
-            ->type('missmaria80@gmail.com', 'Email')
-            ->type('aaaaaab', 'Phone')
-            ->press('insert_user')
-            ->seePageIs('/admin/user/showAdd');
-    }
-
-    /**
-     * Test per controllare che l'aggiunta di un cliente da parte dell'admin risulta valida
-     */
-    public function testAdminAddClientValid()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/client/showAdd')
-            ->type('25647921365', 'PI')
-            ->type('Amarcord SRL', 'BusinessName')
-            ->type('Italia', 'Country')
-            ->type('BA', 'Province')
-            ->type('Bari', 'City')
-            ->type('Viale King', 'Street')
-            ->type('8', 'StreetNumber')
-            ->type('70120', 'ZipCode')
-            ->press('insert_client')
-            ->seePageIs('/admin/clients');
-    }
-
-    /**
-     * Test aggiunta cliente da parte dell'admin con Partiva Iva errata
-     */
-    public function testAdminAddClientWrongPI()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/client/showAdd')
-            ->type('256479213ab', 'PI')
-            ->type('Amarcord SRL', 'BusinessName')
-            ->type('Italia', 'Country')
-            ->type('BA', 'Province')
-            ->type('Bari', 'City')
-            ->type('Viale King', 'Street')
-            ->type('8', 'StreetNumber')
-            ->type('70120', 'ZipCode')
-            ->press('insert_client')
-            ->seePageIs('/admin/client/showAdd');
-    }
-
-    /**
-     * Test aggiunta cliente da parte dell'admin con Provincia errata
-     */
-    public function testAdminAddClientWrongProvince()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/client/showAdd')
-            ->type('25647921365', 'PI')
-            ->type('Amarcord SRL', 'BusinessName')
-            ->type('Italia', 'Country')
-            ->type('BARI', 'Province')
-            ->type('Bari', 'City')
-            ->type('Viale King', 'Street')
-            ->type('8', 'StreetNumber')
-            ->type('70120', 'ZipCode')
-            ->press('insert_client')
-            ->seePageIs('/admin/client/showAdd');
-    }
-
-    /**
-     * Test aggiunta cliente da parte dell'admin con città errata
-     */
-    public function testAdminAddClientWrongCity()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/client/showAdd')
-            ->type('25647921365', 'PI')
-            ->type('Amarcord SRL', 'BusinessName')
-            ->type('Italia', 'Country')
-            ->type('BA', 'Province')
-            ->type('89g', 'City')
-            ->type('Viale King', 'Street')
-            ->type('8', 'StreetNumber')
-            ->type('70120', 'ZipCode')
-            ->press('insert_client')
-            ->seePageIs('/admin/client/showAdd');
-    }
-
-    /**
-     * Test aggiunta cliente da parte dell'admin con Numero Civico errato
-     */
-    public function testAdminAddClientWrongStNumber()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/client/showAdd')
-            ->type('25647921365', 'PI')
-            ->type('Amarcord SRL', 'BusinessName')
-            ->type('Italia', 'Country')
-            ->type('BARI', 'Province')
-            ->type('Bari', 'City')
-            ->type('Viale King', 'Street')
-            ->type('AB', 'StreetNumber')
-            ->type('70120', 'ZipCode')
-            ->press('insert_client')
-            ->seePageIs('/admin/client/showAdd');
-    }
-
-    /**
-     * Test aggiunta cliente da parte dell'admin con Codice Postale errato
-     */
-    public function testAdminAddClientWrongZipCode()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/client/showAdd')
-            ->type('25647921365', 'PI')
-            ->type('Amarcord SRL', 'BusinessName')
-            ->type('Italia', 'Country')
-            ->type('BARI', 'Province')
-            ->type('Bari', 'City')
-            ->type('Viale King', 'Street')
-            ->type('8', 'StreetNumber')
-            ->type('701256', 'ZipCode')
-            ->press('insert_client')
-            ->seePageIs('/admin/client/showAdd');
-    }
-
-    /**
-     * Test per controllare che l'aggiunta di un sito da parte dell'admin risulti valida
-     */
-    public function testAdminAddSiteValid()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/site/showAdd')
-            ->type('Sito65', 'Name')
-            ->type('Silos', 'Description')
-            ->type('Italia', 'Country')
-            ->type('BA', 'Province')
-            ->type('Bari', 'City')
-            ->type('Viale Einaudi', 'Street')
-            ->type('7', 'StreetNumber')
-            ->type('70125', 'ZipCode')
-            ->press('insert_site')
-            ->seePageIs('/admin/sites');
-    }
-
-    /**
-     * Test aggiunta sito da parte dell'admin con provincia errata
-     */
-    public function testAdminAddSiteWrongProvince()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/site/showAdd')
-            ->type('Sito65', 'Name')
-            ->type('Silos', 'Description')
-            ->type('Italia', 'Country')
-            ->type('BARI', 'Province')
-            ->type('Bari', 'City')
-            ->type('Viale Einaudi', 'Street')
-            ->type('7', 'StreetNumber')
-            ->type('70125', 'ZipCode')
-            ->press('insert_site')
-            ->seePageIs('/admin/site/showAdd');
-    }
-
-    /**
-     * Test aggiunta sito da parte dell'admin con città errata
-     */
-    public function testAdminAddSiteWrongCity()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/site/showAdd')
-            ->type('Sito65', 'Name')
-            ->type('Silos', 'Description')
-            ->type('Italia', 'Country')
-            ->type('BA', 'Province')
-            ->type('76', 'City')
-            ->type('Viale Einaudi', 'Street')
-            ->type('7', 'StreetNumber')
-            ->type('70125', 'ZipCode')
-            ->press('insert_site')
-            ->seePageIs('/admin/site/showAdd');
-    }
-
-    /**
-     * Test aggiunta sito da parte dell'admin con N. civico errato
-     */
-    public function testAdminAddSiteWrongStNumber()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/site/showAdd')
-            ->type('Sito65', 'Name')
-            ->type('Silos', 'Description')
-            ->type('Italia', 'Country')
-            ->type('BARI', 'Province')
-            ->type('Bari', 'City')
-            ->type('Viale Einaudi', 'Street')
-            ->type('AB', 'StreetNumber')
-            ->type('70125', 'ZipCode')
-            ->press('insert_site')
-            ->seePageIs('/admin/site/showAdd');
-    }
-
-    /**
-     * Test aggiunta sito da parte dell'admin con codice civico errato
-     */
-    public function testAdminAddSiteWrongZipCode()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/site/showAdd')
-            ->type('Sito65', 'Name')
-            ->type('Silos', 'Description')
-            ->type('Italia', 'Country')
-            ->type('BARI', 'Province')
-            ->type('Bari', 'City')
-            ->type('Viale Einaudi', 'Street')
-            ->type('7', 'StreetNumber')
-            ->type('7012565', 'ZipCode')
-            ->press('insert_site')
-            ->seePageIs('/admin/site/showAdd');
-    }
-
-    /**
-     * Test per controlalre che l'aggiunta di un sensore da parte dell'admin sia valida
-     */
-    public function testAdminAddSensorValid()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/sensor/showAdd')
-            ->type('GFG-578', 'Model')
-            ->type('42.666678', 'Latitude')
-            ->type('54.554576', 'Longitude')
-            ->type('105', 'MaxValue')
-            ->type('26', 'MinValue')
-            ->press('insert_sensor')
-            ->seePageIs('/admin/sensors');
-    }
-
-    /**
-     * Test aggiunta sensore da parte dell'admin con latitudine errata
-     */
-    public function testAdminAddSensorWrongLat()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/sensor/showAdd')
-            ->type('GFG-578', 'Model')
-            ->type('42.7', 'Latitude')
-            ->type('54.554576', 'Longitude')
-            ->type('105', 'MaxValue')
-            ->type('26', 'MinValue')
-            ->press('insert_sensor')
-            ->seePageIs('/admin/sensor/showAdd');
-    }
-
-    /**
-     * Test aggiunta sensore da parte dell'admin con longitudine errata
-     */
-    public function testAdminAddSensorWrongLong()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/sensor/showAdd')
-            ->type('GFG-578', 'Model')
-            ->type('42.666678', 'Latitude')
-            ->type('54.6', 'Longitude')
-            ->type('105', 'MaxValue')
-            ->type('26', 'MinValue')
-            ->press('insert_sensor')
-            ->seePageIs('/admin/sensor/showAdd');
-    }
-
-    /**
-     * Test aggiunta sensore da parte dell'admin con valore massimo errato
-     */
-    public function testAdminAddSensorWrongMaxValue()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/sensor/showAdd')
-            ->type('GFG-578', 'Model')
-            ->type('42.666678', 'Latitude')
-            ->type('54.554576', 'Longitude')
-            ->type('105.87', 'MaxValue')
-            ->type('26', 'MinValue')
-            ->press('insert_sensor')
-            ->seePageIs('/admin/sensor/showAdd');
-    }
-
-    /**
-     * Test aggiunta sensore da parte dell'admin con valore minimo errato
-     */
-    public function testAdminAddSensorWrongMinValue()
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-
-        $this->visit('/admin/sensor/showAdd')
-            ->type('GFG-578', 'Model')
-            ->type('42.666678', 'Latitude')
-            ->type('54.554576', 'Longitude')
-            ->type('105', 'MaxValue')
-            ->type('26.87', 'MinValue')
-            ->press('insert_sensor')
-            ->seePageIs('/admin/sensor/showAdd');
-    }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /**
@@ -449,13 +50,13 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/user/showAdd')
-            ->type('SNAMRA80D54A662I', 'CF')
-            ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
-            ->type('missmaria80', 'username')
+            ->type('MGGLNZ80D01F205O', 'CF')
+            ->type('Lorenzo', 'Name')
+            ->type('Maggi', 'Surname')
+            ->type('lorenzo80', 'username')
             ->type('a', 'password')
-            ->type('missmaria@gmail.com', 'Email')
-            ->type('3334107577', 'Phone')
+            ->type('maggilorenzo@gmail.com', 'Email')
+            ->type('3334107607', 'Phone')
             ->press('insert_user')
             ->seePageIs('/admin/users');
     }
@@ -471,7 +72,7 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/admin/user/showAdd')
             ->type('SNAMRA80D54A66', 'CF')
             ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
+            ->type('Sano', 'Surname')
             ->type('missmaria80', 'username')
             ->type('a', 'password')
             ->type('missmaria@gmail.com', 'Email')
@@ -491,7 +92,7 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/admin/user/showAdd')
             ->type('SNAMRA80D54A662IXS', 'CF')
             ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
+            ->type('Sano', 'Surname')
             ->type('missmaria80', 'username')
             ->type('a', 'password')
             ->type('missmaria@gmail.com', 'Email')
@@ -511,7 +112,7 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/admin/user/showAdd')
             ->type('80D54SNAMRAA662I', 'CF')
             ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
+            ->type('Sano', 'Surname')
             ->type('missmaria80', 'username')
             ->type('a', 'password')
             ->type('missmaria@gmail.com', 'Email')
@@ -529,13 +130,13 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/user/showAdd')
-            ->type('SNAMRA80D54A662I', 'CF')
+            ->type('CRNMRA70B50F839D', 'CF')
             ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
-            ->type('missmaria80', 'username')
+            ->type('Carenza', 'Surname')
+            ->type('mariacar', 'username')
             ->type('a', 'password')
-            ->type('missmaria@gmail.com', 'Email')
-            ->type('3334107577', 'Phone')
+            ->type('mariacar@hotmail.it', 'Email')
+            ->type('3465107577', 'Phone')
             ->press('insert_user')
             ->seePageIs('/admin/users');
     }
@@ -551,7 +152,7 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/admin/user/showAdd')
             ->type('SNAMRA80D54A662I', 'CF')
             ->type('M', 'Name')
-            ->type('Sanò', 'Surname')
+            ->type('Sano', 'Surname')
             ->type('missmaria80', 'username')
             ->type('a', 'password')
             ->type('missmaria@gmail.com', 'Email')
@@ -571,7 +172,7 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/admin/user/showAdd')
             ->type('SNAMRA80D54A662I', 'CF')
             ->type('M7', 'Name')
-            ->type('Sanò', 'Surname')
+            ->type('Sano', 'Surname')
             ->type('missmaria80', 'username')
             ->type('a', 'password')
             ->type('missmaria@gmail.com', 'Email')
@@ -589,13 +190,13 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/user/showAdd')
-            ->type('SNAMRA80D54A662I', 'CF')
-            ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
-            ->type('missmaria80', 'username')
+            ->type('DLISRN00M46A662K', 'CF')
+            ->type('Sabrina', 'Name')
+            ->type('Dileo', 'Surname')
+            ->type('sabrina', 'username')
             ->type('a', 'password')
-            ->type('missmaria@gmail.com', 'Email')
-            ->type('3334107577', 'Phone')
+            ->type('dileo00@gmail.com', 'Email')
+            ->type('3351265986', 'Phone')
             ->press('insert_user')
             ->seePageIs('/admin/users');
     }
@@ -649,13 +250,13 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/user/showAdd')
-            ->type('SNAMRA80D54A662I', 'CF')
-            ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
-            ->type('missmaria80', 'username')
+            ->type('LPZRSO49A41A662E', 'CF')
+            ->type('Rosa', 'Name')
+            ->type('Lopez', 'Surname')
+            ->type('rosetta', 'username')
             ->type('a', 'password')
-            ->type('missmaria@gmail.com', 'Email')
-            ->type('333410757', 'Phone')
+            ->type('rosetta49@gmail.com', 'Email')
+            ->type('331237457', 'Phone')
             ->press('insert_user')
             ->seePageIs('/admin/users');
     }
@@ -669,13 +270,13 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/user/showAdd')
-            ->type('SNAMRA80D54A662I', 'CF')
-            ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
-            ->type('missmaria80', 'username')
+            ->type('CLNFRC84L48A662X', 'CF')
+            ->type('Federica', 'Name')
+            ->type('Colaianni', 'Surname')
+            ->type('missfede', 'username')
             ->type('a', 'password')
-            ->type('missmaria@gmail.com', 'Email')
-            ->type('3334107577', 'Phone')
+            ->type('federicacola@hotmail.it', 'Email')
+            ->type('3315107577', 'Phone')
             ->press('insert_user')
             ->seePageIs('/admin/users');
     }
@@ -691,7 +292,7 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/admin/user/showAdd')
             ->type('SNAMRA80D54A662I', 'CF')
             ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
+            ->type('Sano', 'Surname')
             ->type('missmaria80', 'username')
             ->type('a', 'password')
             ->type('missmaria@gmail.com', 'Email')
@@ -711,7 +312,7 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/admin/user/showAdd')
             ->type('SNAMRA80D54A662I', 'CF')
             ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
+            ->type('Sano', 'Surname')
             ->type('missmaria80', 'username')
             ->type('a', 'password')
             ->type('missmaria@gmail.com', 'Email')
@@ -731,7 +332,7 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/admin/user/showAdd')
             ->type('SNAMRA80D54A662I', 'CF')
             ->type('Maria', 'Name')
-            ->type('Sanò', 'Surname')
+            ->type('Sano', 'Surname')
             ->type('missmaria80', 'username')
             ->type('a', 'password')
             ->type('missmaria@gmail.com', 'Email')
@@ -833,14 +434,14 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/client/showAdd')
-            ->type('25647921365', 'PI')
-            ->type('Amarcord SRL', 'BusinessName')
+            ->type('78974125864', 'PI')
+            ->type('De Santis SRL', 'BusinessName')
             ->type('Italia', 'Country')
             ->type('BA', 'Province')
             ->type('Bari', 'City')
-            ->type('Viale King', 'Street')
-            ->type('8', 'StreetNumber')
-            ->type('70120', 'ZipCode')
+            ->type('Viale Salandra', 'Street')
+            ->type('84', 'StreetNumber')
+            ->type('70124', 'ZipCode')
             ->press('insert_client')
             ->seePageIs('/admin/clients');
     }
@@ -917,14 +518,14 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/client/showAdd')
-            ->type('25647921365', 'PI')
-            ->type('Amarcord SRL', 'BusinessName')
+            ->type('36521039586', 'PI')
+            ->type('Brunori Spa', 'BusinessName')
             ->type('Italia', 'Country')
-            ->type('BA', 'Province')
-            ->type('Bari', 'City')
-            ->type('Viale King', 'Street')
-            ->type('8', 'StreetNumber')
-            ->type('70120', 'ZipCode')
+            ->type('MI', 'Province')
+            ->type('Milano', 'City')
+            ->type('Via Papa XXIII', 'Street')
+            ->type('89', 'StreetNumber')
+            ->type('70150', 'ZipCode')
             ->press('insert_client')
             ->seePageIs('/admin/clients');
     }
@@ -980,14 +581,14 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/client/showAdd')
-            ->type('25647921365', 'PI')
-            ->type('Amarcord SRL', 'BusinessName')
+            ->type('85236974100', 'PI')
+            ->type('Giannini SRL', 'BusinessName')
             ->type('Italia', 'Country')
-            ->type('BA', 'Province')
-            ->type('Bari', 'City')
-            ->type('Viale King', 'Street')
+            ->type('NA', 'Province')
+            ->type('Napoli', 'City')
+            ->type('Viale Einaudi', 'Street')
             ->type('8', 'StreetNumber')
-            ->type('70120', 'ZipCode')
+            ->type('78590', 'ZipCode')
             ->press('insert_client')
             ->seePageIs('/admin/clients');
     }
@@ -1001,12 +602,12 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/client/showAdd')
-            ->type('25647921365', 'PI')
-            ->type('Amarcord SRL', 'BusinessName')
+            ->type('75395125864', 'PI')
+            ->type('Maldarizzi', 'BusinessName')
             ->type('Italia', 'Country')
             ->type('BA', 'Province')
             ->type('Bari', 'City')
-            ->type('Viale King', 'Street')
+            ->type('Via Pavoncelli', 'Street')
             ->type('8B', 'StreetNumber')
             ->type('70120', 'ZipCode')
             ->press('insert_client')
@@ -1031,7 +632,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('A', 'StreetNumber')
             ->type('70122', 'ZipCode')
             ->press('insert_client')
-            ->seePageIs('/admin/clients');
+            ->seePageIs('/admin/client/showAdd');
     }
 
     /**
@@ -1064,14 +665,14 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/client/showAdd')
-            ->type('25647921365', 'PI')
-            ->type('Amarcord SRL', 'BusinessName')
+            ->type('74125896325', 'PI')
+            ->type('Natuzzi', 'BusinessName')
             ->type('Italia', 'Country')
             ->type('BA', 'Province')
             ->type('Bari', 'City')
-            ->type('Viale King', 'Street')
-            ->type('8B', 'StreetNumber')
-            ->type('70120', 'ZipCode')
+            ->type('Via Fanelli', 'Street')
+            ->type('404', 'StreetNumber')
+            ->type('70180', 'ZipCode')
             ->press('insert_client')
             ->seePageIs('/admin/clients');
     }
@@ -1232,14 +833,14 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/site/showAdd')
-            ->type('Sito65', 'Name')
-            ->type('Silos', 'Description')
+            ->type('Sito9', 'Name')
+            ->type('Campagna', 'Description')
             ->type('Italia', 'Country')
             ->type('BA', 'Province')
             ->type('Bari', 'City')
-            ->type('Viale Einaudi', 'Street')
-            ->type('7', 'StreetNumber')
-            ->type('70125', 'ZipCode')
+            ->type('Via Trevisani', 'Street')
+            ->type('6', 'StreetNumber')
+            ->type('70825', 'ZipCode')
             ->press('insert_site')
             ->seePageIs('/admin/sites');
     }
@@ -1295,14 +896,14 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/site/showAdd')
-            ->type('Sito65', 'Name')
-            ->type('Silos', 'Description')
+            ->type('Sito79', 'Name')
+            ->type('Container', 'Description')
             ->type('Italia', 'Country')
             ->type('BA', 'Province')
             ->type('Bari', 'City')
-            ->type('Viale Einaudi', 'Street')
+            ->type('Via De Rossi', 'Street')
             ->type('7', 'StreetNumber')
-            ->type('70125', 'ZipCode')
+            ->type('70129', 'ZipCode')
             ->press('insert_site')
             ->seePageIs('/admin/sites');
     }
@@ -1316,14 +917,14 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/site/showAdd')
-            ->type('Sito65', 'Name')
+            ->type('Sito99', 'Name')
             ->type('Silos', 'Description')
             ->type('Italia', 'Country')
-            ->type('BA', 'Province')
-            ->type('Bari', 'City')
-            ->type('Viale Einaudi', 'Street')
+            ->type('NA', 'Province')
+            ->type('Napoli', 'City')
+            ->type('Corso Benedetto Croce', 'Street')
             ->type('7A', 'StreetNumber')
-            ->type('70125', 'ZipCode')
+            ->type('70105', 'ZipCode')
             ->press('insert_site')
             ->seePageIs('/admin/sites');
     }
@@ -1346,7 +947,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('A', 'StreetNumber')
             ->type('70123', 'ZipCode')
             ->press('insert_site')
-            ->seePageIs('/admin/sites');
+            ->seePageIs('/admin/site/showAdd');
     }
 
     /**
@@ -1379,14 +980,14 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/site/showAdd')
-            ->type('Sito65', 'Name')
+            ->type('Sito10', 'Name')
             ->type('Silos', 'Description')
             ->type('Italia', 'Country')
             ->type('BA', 'Province')
             ->type('Bari', 'City')
-            ->type('Viale Einaudi', 'Street')
-            ->type('7', 'StreetNumber')
-            ->type('70125', 'ZipCode')
+            ->type('Via Giuseppe Di Vagno', 'Street')
+            ->type('55', 'StreetNumber')
+            ->type('70128', 'ZipCode')
             ->press('insert_site')
             ->seePageIs('/admin/sites');
     }
@@ -1463,7 +1064,7 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/sensor/showAdd')
-            ->type('GFG-578', 'Model')
+            ->type('GFG-159', 'Model')
             ->type('42.666678', 'Latitude')
             ->type('54.554576', 'Longitude')
             ->type('105', 'MaxValue')
@@ -1516,11 +1117,11 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/sensor/showAdd')
-            ->type('GFG-578', 'Model')
-            ->type('42.666678', 'Latitude')
-            ->type('54.554576', 'Longitude')
-            ->type('105', 'MaxValue')
-            ->type('26', 'MinValue')
+            ->type('POG-888', 'Model')
+            ->type('45.669678', 'Latitude')
+            ->type('12.551276', 'Longitude')
+            ->type('196', 'MaxValue')
+            ->type('46', 'MinValue')
             ->press('insert_sensor')
             ->seePageIs('/admin/sensors');
     }
@@ -1570,11 +1171,11 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/sensor/showAdd')
-            ->type('GFG-578', 'Model')
-            ->type('42.666678', 'Latitude')
-            ->type('54.554576', 'Longitude')
-            ->type('105', 'MaxValue')
-            ->type('26', 'MinValue')
+            ->type('UIP-123', 'Model')
+            ->type('42.156678', 'Latitude')
+            ->type('2.514776', 'Longitude')
+            ->type('59', 'MaxValue')
+            ->type('6', 'MinValue')
             ->press('insert_sensor')
             ->seePageIs('/admin/sensors');
     }
@@ -1588,13 +1189,13 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/sensor/showAdd')
-            ->type('GFG-578', 'Model')
-            ->type('42.666678', 'Latitude')
-            ->type('54.554576', 'Longitude')
+            ->type('TYR-258', 'Model')
+            ->type('20.147852', 'Latitude')
+            ->type('96.456321', 'Longitude')
             ->type('-27', 'MaxValue')
-            ->type('26', 'MinValue')
+            ->type('27', 'MinValue')
             ->press('insert_sensor')
-            ->seePageIs('/admin/sensor/showAdd');
+            ->seePageIs('/admin/sensors');
     }
 
     /**
@@ -1624,11 +1225,11 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/sensor/showAdd')
-            ->type('GFG-578', 'Model')
-            ->type('42.666678', 'Latitude')
-            ->type('54.554576', 'Longitude')
-            ->type('105', 'MaxValue')
-            ->type('26', 'MinValue')
+            ->type('LOP-568', 'Model')
+            ->type('8.4569852', 'Latitude')
+            ->type('56.3698521', 'Longitude')
+            ->type('147', 'MaxValue')
+            ->type('96', 'MinValue')
             ->press('insert_sensor')
             ->seePageIs('/admin/sensors');
     }
@@ -1642,10 +1243,10 @@ class ClassTest extends BrowserKitTestCase
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->visit('/admin/sensor/showAdd')
-            ->type('GFG-578', 'Model')
-            ->type('42.666678', 'Latitude')
-            ->type('54.554576', 'Longitude')
-            ->type('105', 'MaxValue')
+            ->type('ASD-741', 'Model')
+            ->type('52.856987', 'Latitude')
+            ->type('4.557476', 'Longitude')
+            ->type('44', 'MaxValue')
             ->type('-8', 'MinValue')
             ->press('insert_sensor')
             ->seePageIs('/admin/sensor/showAdd');
