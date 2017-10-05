@@ -1238,7 +1238,7 @@ class ClassTest extends BrowserKitTestCase
      * Test Black Box: aggiunta sensore con il valore minimo corretto
      * Classe di Equivalenza: CE36
      */
-    public function testAdminAddSensorMinValWrong1()
+    public function testAdminAddSensorMinValid1()
     {
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
@@ -1249,14 +1249,14 @@ class ClassTest extends BrowserKitTestCase
             ->type('44', 'MaxValue')
             ->type('-8', 'MinValue')
             ->press('insert_sensor')
-            ->seePageIs('/admin/sensor/showAdd');
+            ->seePageIs('/admin/sensors');
     }
 
     /**
      * Test Black Box: aggiunta sensore con il valore minimo con formato errato
      * Classe di Equivalenza: CE37
      */
-    public function testAdminAddSensorMinValWrong2()
+    public function testAdminAddSensorMinValWrong1()
     {
         $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
