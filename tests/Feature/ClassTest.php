@@ -1318,12 +1318,30 @@ class ClassTest extends BrowserKitTestCase
     }
 
     /**
-     * Test White Box: aggiunta cliente da parte del responsabile azienda (deve fallire)
+     * Test White Box: aggiunta cliente da parte del responsabile aziendale (deve fallire)
      */
     public function testManagerAddClient()
     {
         $this->visit('/login')->type('roberta', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
 
         $this->dontSeeInElement("span", "Clienti");
+    }
+
+    /**
+     * Test White Box: aggiunta sito da parte del responsabile aziendale (deve riuscire)
+     */
+    public function testManagerAddSite()
+    {
+        $this->visit('/login')->type('roberta', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
+        $this->$this->visit('/sites')->SeeInElement("a", "Aggiungi Sito");
+    }
+
+    /**
+     * Test White Box: aggiunta sensore da parte del responsabile aziendale (deve riuscire)
+     */
+    public function testManagerAddSensor()
+    {
+        $this->visit('/login')->type('roberta', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
+        $this->$this->visit('/site/1/sensors')->SeeInElement("a", "Aggiungi sensore");
     }
 }
