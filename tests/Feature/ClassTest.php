@@ -1272,6 +1272,42 @@ class ClassTest extends BrowserKitTestCase
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /**
+     * Test White Box: aggiunta utente da parte del superadmin (deve riuscire)
+     */
+    public function testAdminAddUser()
+    {
+        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
+        $this->seeInElement("span", "Utenti");
+    }
+
+    /**
+     * Test White Box: aggiunta cliente da parte del superadmin (deve riuscire)
+     */
+    public function testAdminAddClient()
+    {
+        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
+        $this->seeInElement("span", "Clienti");
+    }
+
+    /**
+     * Test White Box: aggiunta sito da parte del superadmin (deve riuscire)
+     */
+    public function testAdminAddSite()
+    {
+        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
+        $this->seeInElement("span", "Siti");
+    }
+
+    /**
+     * Test White Box: aggiunta sensore da parte del superadmin (deve riuscire)
+     */
+    public function testAdminAddSensor()
+    {
+        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
+        $this->seeInElement("span", "Sensori");
+    }
+
+    /**
      * Test White Box: aggiunta utente da parte del responsabile aziendale (deve fallire)
      */
     public function testManagerAddUser()
