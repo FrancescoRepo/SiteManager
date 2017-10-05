@@ -1069,6 +1069,7 @@ class ClassTest extends BrowserKitTestCase
             ->type('54.554576', 'Longitude')
             ->type('105', 'MaxValue')
             ->type('26', 'MinValue')
+            ->press('insert_sensor')
             ->seePageIs('/admin/sensors');
     }
 
@@ -1333,7 +1334,7 @@ class ClassTest extends BrowserKitTestCase
     public function testManagerAddSite()
     {
         $this->visit('/login')->type('roberta', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-        $this->$this->visit('/sites')->SeeInElement("a", "Aggiungi Sito");
+        $this->visit('/sites')->seeInElement('a', 'Aggiungi Sito');
     }
 
     /**
@@ -1342,6 +1343,6 @@ class ClassTest extends BrowserKitTestCase
     public function testManagerAddSensor()
     {
         $this->visit('/login')->type('roberta', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-        $this->$this->visit('/site/1/sensors')->SeeInElement("a", "Aggiungi sensore");
+        $this->visit('/site/1/sensors')->seeInElement('a', 'Aggiungi sensore');
     }
 }

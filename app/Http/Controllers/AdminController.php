@@ -164,7 +164,7 @@ class AdminController extends Controller
                 $address->StreetNumber = $request->StreetNumber;
                 $address->ZipCode = $request->ZipCode;
 
-                if(Address::where('StreetNumber', '=', $request->StreetNumber)->exists()) {
+                if(Address::where('Street', '=', $request->Street)->exists() && Address::where('StreetNumber', '=', $request->StreetNumber)->exists()) {
                     $errors = array(
                         'Address' => "Attenzione: L'indirizzo è già utilizzato"
                     );
@@ -182,8 +182,8 @@ class AdminController extends Controller
             }
         } else if($type == "sensor") {
             $rules = array(
-                'Latitude' => 'regex:^-?[0-9]{1,2}\.\d{6,}$^',
-                'Longitude' => 'regex:^-?[0-9]{1,2}\.\d{6,}$^',
+                'Latitude' => 'regex:/^-?[0-9]{1,2}\.[0-9]{6,}$/',
+                'Longitude' => 'regex:/^-?[0-9]{1,2}\.[0-9]{6,}$/',
                 'MaxValue' => 'integer',
                 'MinValue' => 'integer'
             );
