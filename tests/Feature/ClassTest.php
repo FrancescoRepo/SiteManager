@@ -1269,4 +1269,25 @@ class ClassTest extends BrowserKitTestCase
             ->press('insert_sensor')
             ->seePageIs('/admin/sensor/showAdd');
     }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /**
+     * Test White Box: aggiunta utente da parte del responsabile aziendale (deve fallire)
+     */
+    public function testManagerAddUser()
+    {
+        $this->visit('/login')->type('roberta', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
+
+        $this->dontSeeInElement("span", "Utenti");
+    }
+
+    /**
+     * Test White Box: aggiunta cliente da parte del responsabile azienda (deve fallire)
+     */
+    public function testManagerAddClient()
+    {
+        $this->visit('/login')->type('roberta', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
+
+        $this->dontSeeInElement("span", "Clienti");
+    }
 }
