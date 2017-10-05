@@ -8,40 +8,6 @@ use Tests\BrowserKitTestCase;
 class ClassTest extends BrowserKitTestCase
 {
     /**
-     * Test per controllare che il login da parte del superadmin vada a buon fine
-     */
-    public function testLoginAdmin() //white
-    {
-        $this->visit('/login')->type('francesco', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-    }
-
-    /**
-     * Test per controllare che il login da parte del responsabile aziendale vada a buon fine
-     */
-    public function testLoginManager() //white
-    {
-        $this->visit('/login')->type('roberta', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-    }
-
-    /**
-     * Test per controllare che il login da parte del dipendente vada a buon fine
-     */
-    public function testLoginEmployee() //white
-    {
-        $this->visit('/login')->type('daniela', 'username')->type('a', 'password')->press('Login')->See('Benvenuto');
-    }
-
-    /**
-     * Test login con dati non validi
-     */
-    public function testLoginWrong() //black
-    {
-        $this->visit('/login')->type('daniela', 'username')->type('b', 'password')->press('Login')->seeStatusCode(200);
-    }
-
-
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /**
      * Test Black Box: aggiunta utente con codice fiscale corretto
      * Classe di Equivalenza: CE1
      */
