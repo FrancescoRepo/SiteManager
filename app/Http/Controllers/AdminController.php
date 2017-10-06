@@ -78,125 +78,145 @@ class AdminController extends Controller
     public function add(Request $request, $type)
     {
         if($type == "user") {
-            $cryptPassword = Hash::make($request->password);
-            $request->merge(array('password' => $cryptPassword));
-
-            $rules = array(
-                'CF' => 'regex:^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$^',
-                'Name' => 'regex:^[a-zA-Z]{2,}$^',
-                'Surname' => 'regex:^[a-zA-Z]{2,}$^',
-                'Phone' => 'digits_between:9,10'
-            );
-
-            $validator = Validator::make($request->all(), $rules);
-            if($validator->fails()) {
-                return redirect('/admin/user/showAdd')->withErrors($validator);
-            } else {
-                $user = new User($request->all());
-                $user->save();
-            }
-
-            return redirect(route('adminUsers'));
+            return $this->addUser($request);
         } else if($type == "client") {
-            $rules = array(
-                'PI' => 'regex:^[0-9]{11}$^',
-                'Province' => 'regex:^[A-Z]{2}$^',
-                'City' => 'regex:^[a-zA-Z]+$^',
-                'StreetNumber' => 'regex:^[0-9]+[a-zA-Z]?$^',
-                'ZipCode' => 'regex:^[0-9]{5}$^'
-            );
-
-            $validator = Validator::make($request->all(), $rules);
-            if($validator->fails()) {
-                return redirect('/admin/client/showAdd')->withErrors($validator);
-            } else {
-                $client = new Client();
-                $client->PI = $request->PI;
-                $client->BusinessName = $request->BusinessName;
-
-
-                $address = new Address();
-                $address->Country = $request->Country;
-                $address->Province = $request->Province;
-                $address->City = $request->City;
-                $address->Street = $request->Street;
-                $address->StreetNumber = $request->StreetNumber;
-                $address->ZipCode = $request->ZipCode;
-
-                if(Address::where('Street', '=', $request->Street)->exists()) {
-                    $errors = array(
-                        'Address' => "Attenzione: L'indirizzo è già utilizzato"
-                    );
-
-                    return redirect(route('showAdd', 'client'))->withErrors($errors);
-                } else {
-                    $address->save();
-
-                    $client->address_id = $address->id;
-                    $client->save();
-
-                    return redirect(route('adminClients'));
-                }
-            }
+            return $this->addClient($request);
         } else if($type == "site") {
-            $rules = array(
-                'Province' => 'regex:^[A-Z]{2}$^',
-                'City' => 'regex:^[a-zA-Z]+$^',
-                'StreetNumber' => 'regex:^[0-9]+[a-zA-Z]?$^',
-                'ZipCode' => 'regex:^[0-9]{5}$^'
-            );
-
-            $validator = Validator::make($request->all(), $rules);
-            if($validator->fails()) {
-                return redirect('/admin/site/showAdd')->withErrors($validator);
-            } else {
-                $user = User::find($request->user_id);
-
-                $site = new Site();
-                $site->Name = $request->Name;
-                $site->Description = $request->Description;
-
-                $address = new Address();
-                $address->Country = $request->Country;
-                $address->Province = $request->Province;
-                $address->City = $request->City;
-                $address->Street = $request->Street;
-                $address->StreetNumber = $request->StreetNumber;
-                $address->ZipCode = $request->ZipCode;
-
-                if(Address::where('Street', '=', $request->Street)->exists() && Address::where('StreetNumber', '=', $request->StreetNumber)->exists()) {
-                    $errors = array(
-                        'Address' => "Attenzione: L'indirizzo è già utilizzato"
-                    );
-
-                    return redirect('/admin/site/showAdd')->withErrors($errors);
-                } else {
-                    $address->save();
-                    $site->address_id = $address->id;
-                    $site->save();
-
-                    $user->sites()->attach($site->id);
-
-                    return redirect(route('adminSites'));
-                }
-            }
+            return $this->addSite($request);
         } else if($type == "sensor") {
-            $rules = array(
-                'Latitude' => 'regex:/^-?[0-9]{1,2}\.[0-9]{6,}$/',
-                'Longitude' => 'regex:/^-?[0-9]{1,2}\.[0-9]{6,}$/',
-                'MaxValue' => 'integer',
-                'MinValue' => 'integer'
-            );
+            return $this->addSensor($request);
+        }
+    }
 
-            $validator = Validator::make($request->all(), $rules);
-            if($validator->fails()) {
-                return redirect('/admin/sensor/showAdd')->withErrors($validator);
+    private function addUser(Request $request)
+    {
+        $cryptPassword = Hash::make($request->password);
+        $request->merge(array('password' => $cryptPassword));
+
+        $rules = array(
+            'CF' => 'regex:^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$^',
+            'Name' => 'regex:^[a-zA-Z]{2,}$^',
+            'Surname' => 'regex:^[a-zA-Z]{2,}$^',
+            'Phone' => 'digits_between:9,10'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return redirect('/admin/user/showAdd')->withErrors($validator);
+        } else {
+            $user = new User($request->all());
+            $user->save();
+        }
+
+        return redirect(route('adminUsers'));
+    }
+
+    private function addClient(Request $request)
+    {
+        $rules = array(
+            'PI' => 'regex:^[0-9]{11}$^',
+            'Province' => 'regex:^[A-Z]{2}$^',
+            'City' => 'regex:^[a-zA-Z]+$^',
+            'StreetNumber' => 'regex:^[0-9]+[a-zA-Z]?$^',
+            'ZipCode' => 'regex:^[0-9]{5}$^'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return redirect('/admin/client/showAdd')->withErrors($validator);
+        } else {
+            $client = new Client();
+            $client->PI = $request->PI;
+            $client->BusinessName = $request->BusinessName;
+
+
+            $address = new Address();
+            $address->Country = $request->Country;
+            $address->Province = $request->Province;
+            $address->City = $request->City;
+            $address->Street = $request->Street;
+            $address->StreetNumber = $request->StreetNumber;
+            $address->ZipCode = $request->ZipCode;
+
+            if(Address::where('Street', '=', $request->Street)->exists()) {
+                $errors = array(
+                    'Address' => "Attenzione: L'indirizzo è già utilizzato"
+                );
+
+                return redirect(route('showAdd', 'client'))->withErrors($errors);
             } else {
-                $sensor = new Sensor($request->all());
-                $sensor->save();
+                $address->save();
 
-                return redirect(route('adminSensors'));
+                $client->address_id = $address->id;
+                $client->save();
+
+                return redirect(route('adminClients'));
             }
+        }
+    }
+
+    private function addSite(Request $request)
+    {
+        $rules = array(
+            'Province' => 'regex:^[A-Z]{2}$^',
+            'City' => 'regex:^[a-zA-Z]+$^',
+            'StreetNumber' => 'regex:^[0-9]+[a-zA-Z]?$^',
+            'ZipCode' => 'regex:^[0-9]{5}$^'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return redirect('/admin/site/showAdd')->withErrors($validator);
+        } else {
+            $user = User::find($request->user_id);
+
+            $site = new Site();
+            $site->Name = $request->Name;
+            $site->Description = $request->Description;
+
+            $address = new Address();
+            $address->Country = $request->Country;
+            $address->Province = $request->Province;
+            $address->City = $request->City;
+            $address->Street = $request->Street;
+            $address->StreetNumber = $request->StreetNumber;
+            $address->ZipCode = $request->ZipCode;
+
+            if(Address::where('Street', '=', $request->Street)->exists() && Address::where('StreetNumber', '=', $request->StreetNumber)->exists()) {
+                $errors = array(
+                    'Address' => "Attenzione: L'indirizzo è già utilizzato"
+                );
+
+                return redirect('/admin/site/showAdd')->withErrors($errors);
+            } else {
+                $address->save();
+                $site->address_id = $address->id;
+                $site->save();
+
+                $user->sites()->attach($site->id);
+
+                return redirect(route('adminSites'));
+            }
+        }
+    }
+
+    private function addSensor(Request $request)
+    {
+        $rules = array(
+            'Latitude' => 'regex:/^-?[0-9]{1,2}\.[0-9]{6,}$/',
+            'Longitude' => 'regex:/^-?[0-9]{1,2}\.[0-9]{6,}$/',
+            'MaxValue' => 'integer',
+            'MinValue' => 'integer'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return redirect('/admin/sensor/showAdd')->withErrors($validator);
+        } else {
+            $sensor = new Sensor($request->all());
+            $sensor->save();
+
+            return redirect(route('adminSensors'));
         }
     }
 

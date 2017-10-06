@@ -56,13 +56,21 @@ class SiteController extends Controller
             $address->StreetNumber = $request->StreetNumber;
             $address->ZipCode = $request->ZipCode;
 
-            $address->save();
+            if(Address::where('Street', '=', $request->Street)->exists() && Address::where('StreetNumber', '=', $request->StreetNumber)->exists()) {
+                $errors = array(
+                    'Address' => "Attenzione: L'indirizzo è già utilizzato"
+                );
 
-            $site->address_id = $address->id;
-            $site->save();
+                return redirect('/site/showAdd')->withErrors($errors);
+            } else {
+                $address->save();
+                $site->address_id = $address->id;
+                $site->save();
 
-            $user->sites()->attach($site->id);
-            return redirect(route('sites'));
+                $user->sites()->attach($site->id);
+
+                return redirect(route('sites'));
+            }
         }
     }
 
